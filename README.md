@@ -13,6 +13,8 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 <img width="1459" alt="Screenshot 2025-04-13 at 7 27 45 PM" src="https://github.com/user-attachments/assets/fdd400b2-4966-49f3-a4cb-e4109f0ff6c5" />
 <img width="1456" alt="Screenshot 2025-04-13 at 7 31 33 PM" src="https://github.com/user-attachments/assets/3a0e855b-7949-4e37-9373-4957f8803532" />
 
+---
+
 
 ### Table of Contents
 - [Features](#features)
