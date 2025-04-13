@@ -1,30 +1,35 @@
-# Supply Chain Visualizer
+# Supply Chain Visualizer ⛓️
 
 The **Supply Chain Visualizer** is a comprehensive **web application** designed to provide powerful visualization and analysis of supply chain networks. By combining **React** frontend technology with a robust **Spring Boot/Java backend**, this platform enables businesses to **interactively map their supply chains**, **track inventory levels**, and **monitor shipment status** in real-time. The application provides actionable insights through **performance metrics** and **data visualizations**, allowing users to identify bottlenecks and opportunities for optimization. With a user-friendly interface integrating **Leaflet maps** and **Chart.js visualizations**, the Supply Chain Visualizer transforms complex supply chain data into accessible, meaningful information.
 
-The ultimate goal is to equip businesses with the **analytical tools** and **visual insights** needed to strengthen their supply chain resilience, improve operational efficiency, and make data-driven decisions in an increasingly complex global logistics environment. 🌐🚚
+The ultimate goal is to equip businesses with the **analytical tools** and **visual insights** needed to strengthen their supply chain resilience, improve operational efficiency, and make data-driven decisions in an increasingly complex global logistics environment. 🚚📊
 
 ---
 
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F) ![Java](https://img.shields.io/badge/Java-Programming_Language-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3)
 
+---
+
+<img width="1459" alt="Screenshot 2025-04-13 at 7 27 45 PM" src="https://github.com/user-attachments/assets/fdd400b2-4966-49f3-a4cb-e4109f0ff6c5" />
+<img width="1456" alt="Screenshot 2025-04-13 at 7 31 33 PM" src="https://github.com/user-attachments/assets/3a0e855b-7949-4e37-9373-4957f8803532" />
+
+
 ### Table of Contents
-- [Features](#-features)
-- [Technology Stack](#-technology-stack)
-- [Installation](#-getting-started)
-- [Project Structure](#-project-structure)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation](#getting-started)
+- [Project Structure](#project-structure)
 - [Core Components](#-core-components)
 - [API Documentation](#-api-documentation)
 - [Deployment](#-deployment)
 - [Development](#-development)
-- [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Contact](#-contact)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [Contact](#contact-)
 
 ---
 
-### 🚀 Features
+### Features:
 
 - **Supply Chain Map**: Visualize your supply chain network with an interactive map
 - **Inventory Dashboard**: Track inventory levels across facilities
@@ -35,7 +40,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 ---
 
-### 🛠️ Technology Stack
+### Technology Stack:
 
 #### Frontend
 - React for the user interface
@@ -61,7 +66,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 ---
 
-### 🚀 Getting Started
+### Getting Started:
 
 #### Prerequisites
 - Node.js (v14+)
@@ -69,11 +74,11 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 - PostgreSQL
 - Git
 
-#### Setting Up the Backend
+#### Setting Up the Backend:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/mrodr1136/supply-chain-visualizer.git
+   git clone https://github.com/mariarodr1136/supply-chain-visualizer.git
    cd supply-chain-visualizer
    ```
 
@@ -115,7 +120,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 ---
 
-### 🏗️ Project Structure
+### Project Structure
 
 ```
 supply-chain-visualizer/
@@ -265,7 +270,7 @@ npm test
 
 ---
 
-### 🐛 Troubleshooting
+### Troubleshooting
 
 Common issues and their solutions:
 
