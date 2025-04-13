@@ -1,0 +1,43 @@
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .product-icon {
+    background-color: #e9ecef;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #6c757d;
+  }
+  
+  .stats-summary {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0d6efd;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+  }

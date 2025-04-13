@@ -1,0 +1,14 @@
+.dashboard-card {
+    transition: transform 0.3s;
+    cursor: pointer;
+    height: 100%;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .dashboard-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }

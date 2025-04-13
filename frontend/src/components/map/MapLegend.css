@@ -1,0 +1,123 @@
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    max-width: 100%;
+    z-index: 1000;
+    opacity: 0.9;
+  }
+  
+  .map-legend .card-body {
+    padding: 0.75rem;
+  }
+  
+  .legend-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  
+  .legend-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .factory-icon {
+    background-color: #4dabf7;
+    color: white;
+  }
+  
+  .warehouse-icon {
+    background-color: #748ffc;
+    color: white;
+  }
+  
+  .store-icon {
+    background-color: #20c997;
+    color: white;
+  }
+  
+  .supplier-icon {
+    background-color: #ff922b;
+    color: white;
+  }
+  
+  .legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  .risk-low,
+  .performance-high {
+    background-color: #2ecc71;
+  }
+  
+  .risk-medium,
+  .performance-medium {
+    background-color: #ffa502;
+  }
+  
+  .risk-high,
+  .performance-low {
+    background-color: #ff6b6b;
+  }
+  
+  .legend-line {
+    height: 3px;
+    width: 24px;
+    margin-right: 0.5rem;
+  }
+  
+  .normal-line {
+    background-color: #3498db;
+  }
+  
+  .delayed-line {
+    background-color: #ff6b6b;
+  }
+  
+  .capacity-line {
+    background-color: #ffa502;
+  }
+  
+  .risk-low-line,
+  .performance-high-line {
+    background-color: #2ecc71;
+  }
+  
+  .risk-medium-line,
+  .performance-medium-line {
+    background-color: #ffa502;
+  }
+  
+  .risk-high-line,
+  .performance-low-line {
+    background-color: #ff6b6b;
+  }
+  
+  .legend-divider {
+    height: 1px;
+    background-color: #dee2e6;
+    margin: 0.5rem 0;
+  }
