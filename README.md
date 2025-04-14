@@ -133,7 +133,6 @@ supply-chain-visualizer/
 │       ├── pages/              # Page components
 │       ├── services/           # API services
 │       ├── context/            # React context providers
-│       ├── utils/              # Utility functions
 │       ├── App.js              # Main App component
 │       └── index.js            # Entry point
 │
