@@ -185,6 +185,12 @@ Measure the efficiency of your supply chain:
 
 ---
 
+<img width="1458" alt="Screenshot 2025-04-13 at 8 49 36 PM" src="https://github.com/user-attachments/assets/c722fa66-72b5-4f77-850c-f8e42b126436" />
+
+<img width="1461" alt="Screenshot 2025-04-13 at 8 49 27 PM" src="https://github.com/user-attachments/assets/d9ac64ab-3391-4e00-affb-2a1725c047ab" />
+
+---
+
 ### 📝 API Documentation
 
 The backend provides the following key API endpoints:
