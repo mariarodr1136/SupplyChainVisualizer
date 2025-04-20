@@ -1,12 +1,9 @@
 package com.example.supplychainvisualizer.dto;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
 public class ShipmentDto {
     private Long id;
     
@@ -25,4 +22,69 @@ public class ShipmentDto {
     private LocalDateTime actualArrival;
     
     private List<ShipmentItemDto> items;
+    
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public Long getSourceId() {
+        return sourceId;
+    }
+    
+    public void setSourceId(Long sourceId) {
+        this.sourceId = sourceId;
+    }
+    
+    public Long getDestinationId() {
+        return destinationId;
+    }
+    
+    public void setDestinationId(Long destinationId) {
+        this.destinationId = destinationId;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public LocalDateTime getDepartureDate() {
+        return departureDate;
+    }
+    
+    public void setDepartureDate(LocalDateTime departureDate) {
+        this.departureDate = departureDate;
+    }
+    
+    public LocalDateTime getEstimatedArrival() {
+        return estimatedArrival;
+    }
+    
+    public void setEstimatedArrival(LocalDateTime estimatedArrival) {
+        this.estimatedArrival = estimatedArrival;
+    }
+    
+    public LocalDateTime getActualArrival() {
+        return actualArrival;
+    }
+    
+    public void setActualArrival(LocalDateTime actualArrival) {
+        this.actualArrival = actualArrival;
+    }
+    
+    public List<ShipmentItemDto> getItems() {
+        return items;
+    }
+    
+    public void setItems(List<ShipmentItemDto> items) {
+        this.items = items;
+    }
 }

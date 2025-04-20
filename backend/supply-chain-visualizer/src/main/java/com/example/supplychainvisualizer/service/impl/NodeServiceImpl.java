@@ -4,9 +4,9 @@ import com.example.supplychainvisualizer.dto.NodeDto;
 import com.example.supplychainvisualizer.model.Node;
 import com.example.supplychainvisualizer.repository.NodeRepository;
 import com.example.supplychainvisualizer.service.NodeService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,7 +78,12 @@ public class NodeServiceImpl implements NodeService {
 
     private Node convertToEntity(NodeDto nodeDto) {
         Node node = new Node();
-        BeanUtils.copyProperties(nodeDto, node, "id");
+        node.setName(nodeDto.getName());
+        node.setType(nodeDto.getType());
+        node.setLatitude(nodeDto.getLatitude());
+        node.setLongitude(nodeDto.getLongitude());
+        node.setCapacity(nodeDto.getCapacity());
+        node.setStatus(nodeDto.getStatus());
         return node;
     }
 }

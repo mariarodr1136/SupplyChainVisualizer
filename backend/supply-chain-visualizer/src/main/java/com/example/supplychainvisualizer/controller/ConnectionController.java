@@ -23,7 +23,7 @@ public class ConnectionController {
         return ResponseEntity.ok(connectionService.getAllConnections());
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/{id:\\d+}")
     public ResponseEntity<ConnectionDto> getConnectionById(@PathVariable Long id) {
         return connectionService.getConnectionById(id)
                 .map(ResponseEntity::ok)
@@ -31,21 +31,21 @@ public class ConnectionController {
     }
     
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<ConnectionDto> createConnection(@Valid @RequestBody ConnectionDto connectionDto) {
         return ResponseEntity.ok(connectionService.createConnection(connectionDto));
     }
     
-    @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id:\\d+}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<ConnectionDto> updateConnection(@PathVariable Long id, @Valid @RequestBody ConnectionDto connectionDto) {
         return connectionService.updateConnection(id, connectionDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
     
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id:\\d+}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> deleteConnection(@PathVariable Long id) {
         return connectionService.deleteConnection(id)
                 ? ResponseEntity.ok().build()

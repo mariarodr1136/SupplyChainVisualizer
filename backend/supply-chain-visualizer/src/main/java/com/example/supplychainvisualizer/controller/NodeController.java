@@ -32,13 +32,13 @@ public class NodeController {
     }
     
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<NodeDto> createNode(@Valid @RequestBody NodeDto nodeDto) {
         return ResponseEntity.ok(nodeService.createNode(nodeDto));
     }
     
     @PutMapping("/{id:\\d+}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<NodeDto> updateNode(@PathVariable Long id, @Valid @RequestBody NodeDto nodeDto) {
         return nodeService.updateNode(id, nodeDto)
                 .map(ResponseEntity::ok)
@@ -46,7 +46,7 @@ public class NodeController {
     }
     
     @DeleteMapping("/{id:\\d+}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> deleteNode(@PathVariable Long id) {
         return nodeService.deleteNode(id)
                 ? ResponseEntity.ok().build()

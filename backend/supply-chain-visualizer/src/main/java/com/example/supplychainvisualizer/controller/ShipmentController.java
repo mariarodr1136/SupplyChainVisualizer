@@ -25,7 +25,7 @@ public class ShipmentController {
         return ResponseEntity.ok(shipmentService.getAllShipments());
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/{id:\\d+}")
     public ResponseEntity<ShipmentDto> getShipmentById(@PathVariable Long id) {
         return shipmentService.getShipmentById(id)
                 .map(ResponseEntity::ok)
@@ -33,29 +33,29 @@ public class ShipmentController {
     }
     
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<ShipmentDto> createShipment(@Valid @RequestBody ShipmentDto shipmentDto) {
         return ResponseEntity.ok(shipmentService.createShipment(shipmentDto));
     }
     
-    @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PutMapping("/{id:\\d+}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<ShipmentDto> updateShipment(@PathVariable Long id, @Valid @RequestBody ShipmentDto shipmentDto) {
         return shipmentService.updateShipment(id, shipmentDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
     
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id:\\d+}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> deleteShipment(@PathVariable Long id) {
         return shipmentService.deleteShipment(id)
                 ? ResponseEntity.ok().build()
                 : ResponseEntity.notFound().build();
     }
     
-    @PutMapping("/status/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PutMapping("/status/{id:\\d+}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<ShipmentDto> updateShipmentStatus(
             @PathVariable Long id, @RequestParam String status) {
         return shipmentService.updateShipmentStatus(id, status)

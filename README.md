@@ -103,7 +103,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
    mvn clean install
    mvn spring-boot:run
    ```
-   The backend server will start on http://localhost:8080
+   The backend server will start on http://localhost:3000
 
 #### Setting Up the Frontend
 
@@ -193,38 +193,160 @@ Measure the efficiency of your supply chain:
 
 ### 📝 API Documentation
 
-The backend provides the following key API endpoints:
-
-#### Authentication
-- `POST /api/auth/login`: User login
-- `POST /api/auth/register`: User registration
-
-#### Supply Chain Nodes
-- `GET /api/nodes`: Get all supply chain nodes
-- `GET /api/nodes/:id`: Get a specific node
-- `POST /api/nodes`: Create a new node
-- `PUT /api/nodes/:id`: Update a node
-- `DELETE /api/nodes/:id`: Delete a node
-
-#### Connections
-- `GET /api/connections`: Get all connections
-- `POST /api/connections`: Create a new connection
-- `PUT /api/connections/:id`: Update a connection
-- `DELETE /api/connections/:id`: Delete a connection
-
-#### Inventory
-- `GET /api/inventory`: Get inventory for all locations
-- `GET /api/inventory/:nodeId`: Get inventory for a specific location
-- `POST /api/inventory`: Update inventory data
-
-#### Shipments
-- `GET /api/shipments`: Get all shipments
-- `GET /api/shipments/:id`: Get a specific shipment
-- `POST /api/shipments`: Create a new shipment
-- `PUT /api/shipments/:id`: Update shipment
-- `PUT /api/shipments/status/:id`: Update shipment status
+This section describes how to authenticate and interact with the Supply Chain Visualizer backend.
 
 ---
+
+## 1. Authentication
+
+### 1.1 Register a User
+
+```bash
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "username": "<your_username>",
+  "email":    "<your_email>",
+  "password": "<your_password>"
+}
+```
+
+### 1.2 Login to Obtain JWT
+
+```bash
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "username": "<your_username>",
+  "password": "<your_password>"
+}
+```
+
+<details>
+<summary>Sample Response</summary>
+
+```json
+{
+  "token": "eyJhbGciOiJIUzUxMiJ9...",
+  "type": "Bearer",
+  "id": 3,
+  "username": "james",
+  "email": "james@gmail.com",
+  "roles": ["ROLE_USER"]
+}
+```
+
+</details>
+
+### 1.3 Set Authorization Header
+
+Include the JWT in the `Authorization` header for all protected requests:
+
+```
+Authorization: Bearer <your_token_here>
+```
+
+---
+
+## 2. Endpoints Overview
+
+| Category             | Method | Endpoint                        | Description                         |
+|----------------------|--------|---------------------------------|-------------------------------------|
+| **Nodes**            | GET    | `/api/nodes`                    | List all supply chain nodes        |
+|                      | GET    | `/api/nodes/:id`                | Retrieve a specific node           |
+|                      | POST   | `/api/nodes`                    | Create a new node                  |
+|                      | PUT    | `/api/nodes/:id`                | Update an existing node            |
+|                      | DELETE | `/api/nodes/:id`                | Delete a node                      |
+| **Connections**      | GET    | `/api/connections`              | List all connections               |
+|                      | POST   | `/api/connections`              | Create a new connection            |
+|                      | PUT    | `/api/connections/:id`          | Update a connection                |
+|                      | DELETE | `/api/connections/:id`          | Delete a connection                |
+| **Inventory**        | GET    | `/api/inventory`                | List inventory across all nodes    |
+|                      | GET    | `/api/inventory/:nodeId`        | Inventory for a specific node      |
+|                      | POST   | `/api/inventory`                | Add or update inventory data       |
+| **Shipments**        | GET    | `/api/shipments`                | List all shipments                 |
+|                      | GET    | `/api/shipments/:id`            | Retrieve a specific shipment       |
+|                      | POST   | `/api/shipments`                | Create a new shipment              |
+|                      | PUT    | `/api/shipments/:id`            | Update a shipment                  |
+|                      | PUT    | `/api/shipments/status/:id`     | Update shipment status             |
+
+---
+
+## 3. Sample Requests
+
+### 3.1 Create a Supply Chain Node
+
+```bash
+POST /api/nodes
+Content-Type: application/json
+Authorization: Bearer <your_token_here>
+
+{
+  "name":      "Warehouse Alpha",
+  "type":      "warehouse",
+  "latitude":  25.7617,
+  "longitude": -80.1918,
+  "capacity":  1000,
+  "status":    "active"
+}
+```
+
+### 3.2 Create a Connection
+
+```bash
+POST /api/connections
+Content-Type: application/json
+Authorization: Bearer <your_token_here>
+
+{
+  "sourceId":          1,
+  "targetId":          2,
+  "transportationType": "truck",
+  "distance":           300.5,
+  "travelTime":         6,
+  "costPerUnit":        2.75,
+  "status":             "active"
+}
+```
+
+### 3.3 Update Inventory Data
+
+```bash
+POST /api/inventory
+Content-Type: application/json
+Authorization: Bearer <your_token_here>
+
+{
+  "nodeId":       1,
+  "productId":    10,
+  "quantity":     500,
+  "minThreshold": 100,
+  "maxThreshold": 1000
+}
+```
+
+### 3.4 Create a Shipment
+
+```bash
+POST /api/shipments
+Content-Type: application/json
+Authorization: Bearer <your_token_here>
+
+{
+  "sourceId":          1,
+  "destinationId":     2,
+  "status":            "in_transit",
+  "departureDate":     "2025-04-20T10:00:00",
+  "estimatedArrival":  "2025-04-21T18:00:00",
+  "actualArrival":     null,
+  "items": [
+    { "productId": 101, "quantity": 50 },
+    { "productId": 102, "quantity": 75 }
+  ]
+}
+```
 
 ### 🚢 Deployment
 

@@ -23,7 +23,7 @@ public class InventoryController {
         return ResponseEntity.ok(inventoryService.getAllInventory());
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/{id:\\d+}")
     public ResponseEntity<InventoryDto> getInventoryById(@PathVariable Long id) {
         return inventoryService.getInventoryById(id)
                 .map(ResponseEntity::ok)
@@ -31,13 +31,13 @@ public class InventoryController {
     }
     
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<InventoryDto> createOrUpdateInventory(@Valid @RequestBody InventoryDto inventoryDto) {
         return ResponseEntity.ok(inventoryService.createOrUpdateInventory(inventoryDto));
     }
     
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id:\\d+}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> deleteInventory(@PathVariable Long id) {
         return inventoryService.deleteInventory(id)
                 ? ResponseEntity.ok().build()
