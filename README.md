@@ -271,6 +271,9 @@ Authorization: Bearer <your_token_here>
 |                      | POST   | `/api/shipments`                | Create a new shipment              |
 |                      | PUT    | `/api/shipments/:id`            | Update a shipment                  |
 |                      | PUT    | `/api/shipments/status/:id`     | Update shipment status             |
+| **Products**         | POST   | `/api/products`                 | Create a new product               |
+|                      | GET    | `/api/products`                 | List all products                  |
+|                      | GET    | `/api/products/sku/:sku`        | Retrieve a product by SKU          |
 
 ---
 
@@ -346,6 +349,37 @@ Authorization: Bearer <your_token_here>
     { "productId": 102, "quantity": 75 }
   ]
 }
+```
+
+### 3.5 Create a Product
+
+```bash
+POST /api/products
+Content-Type: application/json
+Authorization: Bearer <your_token_here>
+
+{
+  "name": "Laptop Model X",
+  "description": "High performance laptop",
+  "unitPrice": 999.99,
+  "weight": 2.5,
+  "sku": "LT-X-001",
+  "status": "active"
+}
+```
+
+### 3.6 Get All Products
+
+```bash
+GET /api/products
+Authorization: Bearer <your_token_here>
+```
+
+### 3.7 Get Product by SKU
+
+```bash
+GET /api/products/sku/LT-X-001
+Authorization: Bearer <your_token_here>
 ```
 
 ### 🚢 Deployment
