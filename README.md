@@ -32,10 +32,6 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 ---
 
-https://github.com/user-attachments/assets/8b1563bb-08f3-49b1-86eb-8c045e089003
-
----
-
 ### Features:
 
 - **Supply Chain Map**: Visualize your supply chain network with an interactive map
@@ -130,6 +126,10 @@ https://github.com/user-attachments/assets/8b1563bb-08f3-49b1-86eb-8c045e089003
 
 ---
 
+https://github.com/user-attachments/assets/8b1563bb-08f3-49b1-86eb-8c045e089003
+
+---
+
 ### Project Structure
 
 ```
@@ -161,10 +161,6 @@ supply-chain-visualizer/
 ├── .gitignore                  # Git ignore file
 └── README.md                   # Project documentation
 ```
-
----
-
-<img width="1461" alt="Screenshot 2025-04-21 at 9 25 56 AM" src="https://github.com/user-attachments/assets/e81eef55-c55f-46ca-beac-5c38a03f53df" />
 
 ---
 
@@ -286,6 +282,10 @@ Authorization: Bearer <your_token_here>
 | **Products**         | POST   | `/api/products`                 | Create a new product               |
 |                      | GET    | `/api/products`                 | List all products                  |
 |                      | GET    | `/api/products/sku/:sku`        | Retrieve a product by SKU          |
+
+---
+
+<img width="1461" alt="Screenshot 2025-04-21 at 9 25 56 AM" src="https://github.com/user-attachments/assets/e81eef55-c55f-46ca-beac-5c38a03f53df" />
 
 ---
 
