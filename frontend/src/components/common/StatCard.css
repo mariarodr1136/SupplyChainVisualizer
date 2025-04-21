@@ -2,10 +2,10 @@
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
-  margin: 0 3px 10px 3px;  /* Added margin to sides to create space */
-  padding: 15px;  /* Added padding to make the box bigger */
+  margin: 0 3px 10px 3px;  
+  padding: 15px;  
   height: 80%;
-  min-height: 20px;  /* Increased min-height */
+  min-height: 20px;  
 }
 
 .stat-card:hover {
@@ -13,12 +13,12 @@
 }
 
 .stat-card .card-body {
-  padding: 2.0rem;  /* Increased internal padding */
+  padding: 2.0rem;  
 }
 
 .stat-icon {
   font-size: 3.0rem;
-  margin-right: 20px;  /* Increased margin-right */
+  margin-right: 20px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,10 +31,10 @@
 .stat-title {
   color: #6c757d;
   font-size: 1.0rem;
-  margin-bottom: 8px;  /* Increased margin */
+  margin-bottom: 8px;  
 }
 
 .stat-value {
-  font-size: 2.3rem;  /* Increased font size */
+  font-size: 2.3rem;  
   font-weight: bold;
 }
