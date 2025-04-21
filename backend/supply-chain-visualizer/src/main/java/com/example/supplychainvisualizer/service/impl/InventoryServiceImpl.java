@@ -8,7 +8,6 @@ import com.example.supplychainvisualizer.repository.InventoryRepository;
 import com.example.supplychainvisualizer.repository.NodeRepository;
 import com.example.supplychainvisualizer.repository.ProductRepository;
 import com.example.supplychainvisualizer.service.InventoryService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
