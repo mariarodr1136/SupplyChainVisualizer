@@ -6,6 +6,7 @@ import L from 'leaflet';
 import NodeService from '../services/node.service';
 import ConnectionService from '../services/connection.service';
 import PageHeader from '../components/common/PageHeader';
+import MapLegend from '../components/map/MapLegend';
 import './SupplyChainMap.css';
 
 // Fix for the marker icons in Leaflet with webpack
@@ -36,12 +37,13 @@ const nodeIcons = {
     iconAnchor: [18, 36],
     popupAnchor: [0, -36],
   }),
+  supplier: new L.Icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1198/1198420.png',
+    iconSize: [36, 36],
+    iconAnchor: [18, 36],
+    popupAnchor: [0, -36],
+  }),
   default: new L.Icon.Default(),
-};
-
-// Utility function to get the correct icon
-const getNodeIcon = (nodeType) => {
-  return nodeIcons[nodeType.toLowerCase()] || nodeIcons.default;
 };
 
 // Colors for connection status
@@ -66,12 +68,19 @@ const SupplyChainMap = () => {
     connectionStatus: '',
   });
   const [selectedNode, setSelectedNode] = useState(null);
+  const [viewMode, setViewMode] = useState('normal'); // Options: normal, risk, performance
 
   useEffect(() => {
     const fetchMapData = async () => {
       try {
-        const nodesResponse = await NodeService.getAllNodes();
-        const connectionsResponse = await ConnectionService.getAllConnections();
+        // Update the authentication headers if needed
+        const authHeader = localStorage.getItem('token') 
+          ? { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          : {};
+        
+        // Pass the headers to your service calls
+        const nodesResponse = await NodeService.getAllNodes(authHeader);
+        const connectionsResponse = await ConnectionService.getAllConnections(authHeader);
         
         setNodes(nodesResponse.data);
         setConnections(connectionsResponse.data);
@@ -85,9 +94,17 @@ const SupplyChainMap = () => {
           setMapZoom(4); // Zoom in a bit after centering
         }
       } catch (err) {
-        setError('Failed to load map data');
+        console.error('Error details:', err);
+        if (err.response && err.response.status === 401) {
+          setError('Authentication failed. Please login again.');
+          // Redirect to login page
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 3000);
+        } else {
+          setError('Failed to load map data. Please try again later.');
+        }
         setLoading(false);
-        console.error(err);
       }
     };
 
@@ -115,6 +132,10 @@ const SupplyChainMap = () => {
     setShowFilters(!showFilters);
   };
 
+  const handleViewModeChange = (e) => {
+    setViewMode(e.target.value);
+  };
+
   const openNodeDetails = (node) => {
     setSelectedNode(node);
   };
@@ -134,6 +155,8 @@ const SupplyChainMap = () => {
     // Check if both source and target nodes pass the node filters
     const sourceNode = nodes.find((node) => node.id === connection.sourceId);
     const targetNode = nodes.find((node) => node.id === connection.targetId);
+    
+    if (!sourceNode || !targetNode) return false;
     
     if (filters.nodeType) {
       if (sourceNode.type !== filters.nodeType && targetNode.type !== filters.nodeType) {
@@ -157,6 +180,19 @@ const SupplyChainMap = () => {
 
     return true;
   });
+
+  // Get connection color based on viewMode
+  const getConnectionColor = (connection) => {
+    if (viewMode === 'risk') {
+      const riskLevel = connection.riskLevel || 'low';
+      return riskLevel === 'high' ? '#ff6b6b' : riskLevel === 'medium' ? '#ffa502' : '#2ecc71';
+    } else if (viewMode === 'performance') {
+      const perfLevel = connection.performanceLevel || 'medium';
+      return perfLevel === 'low' ? '#ff6b6b' : perfLevel === 'medium' ? '#ffa502' : '#2ecc71';
+    } else {
+      return connectionColors[connection.status] || connectionColors.active;
+    }
+  };
 
   // Loading state
   if (loading) {
@@ -196,7 +232,7 @@ const SupplyChainMap = () => {
 
       {showFilters && (
         <Card className="mb-4 filters-card">
-          <Card.Body>
+          <Card.Body className="p-3">
             <Row>
               <Col md={3}>
                 <Form.Group className="mb-3">
@@ -210,6 +246,7 @@ const SupplyChainMap = () => {
                     <option value="factory">Factory</option>
                     <option value="warehouse">Warehouse</option>
                     <option value="store">Store</option>
+                    <option value="supplier">Supplier</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -260,91 +297,112 @@ const SupplyChainMap = () => {
                 </Form.Group>
               </Col>
             </Row>
-            <div className="text-end">
-              <Button variant="secondary" onClick={resetFilters} className="me-2">
-                Reset Filters
-              </Button>
-              <Button variant="primary" onClick={toggleFilters}>
-                Apply Filters
-              </Button>
-            </div>
+            <Row>
+              <Col md={3}>
+                <Form.Group className="mb-3">
+                  <Form.Label>View Mode</Form.Label>
+                  <Form.Select
+                    name="viewMode"
+                    value={viewMode}
+                    onChange={handleViewModeChange}
+                  >
+                    <option value="normal">Normal View</option>
+                    <option value="risk">Risk Analysis</option>
+                    <option value="performance">Performance Metrics</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col md={9} className="d-flex align-items-end justify-content-end">
+                <Button variant="secondary" onClick={resetFilters} className="me-2">
+                  Reset Filters
+                </Button>
+                <Button variant="primary" onClick={toggleFilters}>
+                  Apply Filters
+                </Button>
+              </Col>
+            </Row>
           </Card.Body>
         </Card>
       )}
 
       <Card>
-        <Card.Body style={{ padding: 0, height: 'calc(100vh - 220px)', minHeight: '600px' }}>
-          <MapContainer 
-            center={mapCenter} 
-            zoom={mapZoom} 
-            style={{ height: '100%', width: '100%' }}
-            whenCreated={(mapInstance) => {
-              // Optional: Store map instance if you need to access it later
-              // setMap(mapInstance);
-            }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            
-            {/* Render connections */}
-            {filteredConnections.map((connection) => {
-              const sourceNode = nodes.find(node => node.id === connection.sourceId);
-              const targetNode = nodes.find(node => node.id === connection.targetId);
+        <Card.Body style={{ padding: 0 }}>
+          <div className="map-container">
+            <MapContainer 
+              center={mapCenter} 
+              zoom={mapZoom} 
+              style={{ height: '100%', width: '100%' }}
+              whenCreated={(mapInstance) => {
+                // Optional: Store map instance if you need to access it later
+                // setMap(mapInstance);
+              }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
               
-              if (!sourceNode || !targetNode) return null;
+              {/* Render connections */}
+              {filteredConnections.map((connection) => {
+                const sourceNode = nodes.find(node => node.id === connection.sourceId);
+                const targetNode = nodes.find(node => node.id === connection.targetId);
+                
+                if (!sourceNode || !targetNode) return null;
+                
+                const positions = [
+                  [sourceNode.latitude, sourceNode.longitude],
+                  [targetNode.latitude, targetNode.longitude]
+                ];
+                
+                const color = getConnectionColor(connection);
+                
+                return (
+                  <Polyline
+                    key={connection.id}
+                    positions={positions}
+                    color={color}
+                    weight={3}
+                    opacity={0.7}
+                  />
+                );
+              })}
               
-              const positions = [
-                [sourceNode.latitude, sourceNode.longitude],
-                [targetNode.latitude, targetNode.longitude]
-              ];
+              {/* Render nodes */}
+              {filteredNodes.map((node) => (
+                <Marker
+                  key={node.id}
+                  position={[node.latitude, node.longitude]}
+                  icon={nodeIcons[node.type.toLowerCase()] || nodeIcons.default}
+                  eventHandlers={{
+                    click: () => {
+                      openNodeDetails(node);
+                    },
+                  }}
+                >
+                  <Popup>
+                    <div>
+                      <h6>{node.name}</h6>
+                      <p>Type: {node.type}</p>
+                      <p>Status: {node.status}</p>
+                      <Button 
+                        size="sm" 
+                        variant="info" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openNodeDetails(node);
+                        }}
+                      >
+                        <FaInfoCircle className="me-1" /> Details
+                      </Button>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
               
-              const color = connectionColors[connection.status] || connectionColors.active;
-              
-              return (
-                <Polyline
-                  key={connection.id}
-                  positions={positions}
-                  color={color}
-                  weight={3}
-                  opacity={0.7}
-                />
-              );
-            })}
-            
-            {/* Render nodes */}
-            {filteredNodes.map((node) => (
-              <Marker
-                key={node.id}
-                position={[node.latitude, node.longitude]}
-                icon={getNodeIcon(node.type)}
-                eventHandlers={{
-                  click: () => {
-                    openNodeDetails(node);
-                  },
-                }}
-              >
-                <Popup>
-                  <div>
-                    <h6>{node.name}</h6>
-                    <p>Type: {node.type}</p>
-                    <p>Status: {node.status}</p>
-                    <Button 
-                      size="sm" 
-                      variant="info" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openNodeDetails(node);
-                      }}
-                    >
-                      <FaInfoCircle className="me-1" /> Details
-                    </Button>
-                  </div>
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
+              {/* Add Map Legend */}
+              <MapLegend viewMode={viewMode} />
+            </MapContainer>
+          </div>
         </Card.Body>
       </Card>
 

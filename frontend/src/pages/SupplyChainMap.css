@@ -1,9 +1,9 @@
-.map-container {
-  height: calc(100vh - 220px);
-  min-height: 600px;
-  width: 100%;
-  border-radius: 4px;
-  overflow: hidden;
+.map-container { 
+  height: calc(100vh - 220px); 
+  min-height: 600px; 
+  width: 100%; 
+  border-radius: 4px; 
+  overflow: hidden; 
   position: relative;
 }
 
@@ -38,6 +38,11 @@
   padding: 0 !important;
 }
 
+/* Override for filter card body */
+.filters-card .card-body {
+  padding: 0.75rem !important;
+}
+
 /* Fix for filters section */
 .filters-card {
   margin-bottom: 1rem;
@@ -54,5 +59,9 @@
 @media (max-width: 768px) {
   .map-container {
     height: 400px;
+  }
+  
+  .filters-card .row [class*='col-'] {
+    margin-bottom: 10px;
   }
 }

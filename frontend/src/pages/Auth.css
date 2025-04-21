@@ -1,24 +1,78 @@
 .auth-wrapper {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-    padding: 30px 0;
-    background: linear-gradient(135deg, #000000 0%, #524ba2 100%);
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px 0;
+  background: linear-gradient(135deg, #000000 0%, #524ba2 100%);
+}
+
+.auth-card {
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+/* Add internal padding to the entire content */
+.login-content {
+  padding: 40px;
+}
+
+.auth-title {
+  font-weight: 700;
+  color: #3d4852;
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  color: #606f7b;
+  margin-bottom: 0;
+}
+
+/* Add spacing after the header section */
+.header-spacing {
+  margin-bottom: 35px;
+}
+
+/* Add spacing between form groups */
+.form-group-spacing {
+  margin-bottom: 25px;
+}
+
+/* Style for the form inputs */
+.form-input {
+  padding: 12px;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Add spacing before the button */
+.button-spacing {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+/* Style for the sign in button */
+.sign-in-button {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  background-color: #4299e1;
+  border-color: #4299e1;
+}
+
+.sign-in-button:hover {
+  background-color: #3182ce;
+  border-color: #3182ce;
+}
+
+/* Add spacing for the footer */
+.footer-spacing {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .login-content {
+    padding: 25px;
   }
-  
-  .auth-card {
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: none;
-  }
-  
-  .auth-title {
-    font-weight: 700;
-    color: #3d4852;
-    margin-bottom: 10px;
-  }
-  
-  .auth-subtitle {
-    color: #606f7b;
-    margin-bottom: 0;
-  }
+}

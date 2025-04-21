@@ -50,54 +50,59 @@ const Login = () => {
           <Col md={6} lg={5}>
             <Card className="auth-card">
               <Card.Body>
-                <div className="text-center mb-4">
-                  <h2 className="auth-title">Supply Chain Visualizer</h2>
-                  <p className="auth-subtitle">Sign in to your account</p>
+                <div className="login-content">
+                  <div className="text-center header-spacing">
+                    <h2 className="auth-title">Supply Chain Visualizer</h2>
+                    <p className="auth-subtitle">Sign in to your account</p>
+                  </div>
+
+                  <Form onSubmit={handleLogin}>
+                    {message && (
+                      <Alert variant="danger" className="mb-4">
+                        {message}
+                      </Alert>
+                    )}
+
+                    <Form.Group className="form-group-spacing">
+                      <Form.Label>Username</Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        className="form-input"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="form-group-spacing">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="form-input"
+                      />
+                    </Form.Group>
+
+                    <div className="button-spacing">
+                      <Button 
+                        variant="primary" 
+                        type="submit" 
+                        disabled={loading}
+                        className="sign-in-button"
+                      >
+                        {loading ? 'Loading...' : 'Sign In'}
+                      </Button>
+                    </div>
+
+                    <div className="text-center footer-spacing">
+                      <p>
+                        Don't have an account? <Link to="/register">Sign up</Link>
+                      </p>
+                    </div>
+                  </Form>
                 </div>
-
-                <Form onSubmit={handleLogin}>
-                  {message && (
-                    <Alert variant="danger" className="mb-4">
-                      {message}
-                    </Alert>
-                  )}
-
-                  <Form.Group className="mb-3">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                    />
-                  </Form.Group>
-
-                  <Form.Group className="mb-4">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </Form.Group>
-
-                  <div className="d-grid mb-4">
-                    <Button 
-                      variant="primary" 
-                      type="submit" 
-                      disabled={loading}
-                    >
-                      {loading ? 'Loading...' : 'Sign In'}
-                    </Button>
-                  </div>
-
-                  <div className="text-center">
-                    <p>
-                      Don't have an account? <Link to="/register">Sign up</Link>
-                    </p>
-                  </div>
-                </Form>
               </Card.Body>
             </Card>
           </Col>
