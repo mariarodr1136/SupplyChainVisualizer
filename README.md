@@ -11,7 +11,8 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 ---
 
 <img width="1459" alt="Screenshot 2025-04-13 at 7 27 45 PM" src="https://github.com/user-attachments/assets/fdd400b2-4966-49f3-a4cb-e4109f0ff6c5" />
-<img width="1456" alt="Screenshot 2025-04-13 at 7 31 33 PM" src="https://github.com/user-attachments/assets/3a0e855b-7949-4e37-9373-4957f8803532" />
+<img width="1465" alt="Screenshot 2025-04-21 at 9 24 55 AM" src="https://github.com/user-attachments/assets/cb570359-fc6d-4e54-b672-3a540e2c2491" />
+
 
 ---
 
@@ -31,6 +32,10 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 ---
 
+https://github.com/user-attachments/assets/8b1563bb-08f3-49b1-86eb-8c045e089003
+
+---
+
 ### Features:
 
 - **Supply Chain Map**: Visualize your supply chain network with an interactive map
@@ -39,6 +44,9 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 - **Performance Metrics**: View key performance indicators for your supply chain
 - **Data Management**: Add and update supply chain nodes, connections, and inventory data
 - **Basic Optimization**: Get suggestions for improving your supply chain efficiency
+
+---
+<img width="1459" alt="Screenshot 2025-04-21 at 9 25 05 AM" src="https://github.com/user-attachments/assets/669736d9-dfa7-46b4-96c6-843adeac9c01" />
 
 ---
 
@@ -153,6 +161,10 @@ supply-chain-visualizer/
 ├── .gitignore                  # Git ignore file
 └── README.md                   # Project documentation
 ```
+
+---
+
+<img width="1461" alt="Screenshot 2025-04-21 at 9 25 56 AM" src="https://github.com/user-attachments/assets/e81eef55-c55f-46ca-beac-5c38a03f53df" />
 
 ---
 
