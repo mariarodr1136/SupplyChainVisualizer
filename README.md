@@ -341,8 +341,8 @@ Authorization: Bearer <your_token_here>
   "sourceId":          1,
   "destinationId":     2,
   "status":            "in_transit",
-  "departureDate":     "2025-04-20T10:00:00",
-  "estimatedArrival":  "2025-04-21T18:00:00",
+  "departureDate":     "2025-04-20",
+  "estimatedArrival":  "2025-04-21",
   "actualArrival":     null,
   "items": [
     { "productId": 101, "quantity": 50 },
