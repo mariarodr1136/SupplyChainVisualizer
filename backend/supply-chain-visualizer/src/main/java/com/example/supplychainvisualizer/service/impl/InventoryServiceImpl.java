@@ -114,7 +114,9 @@ public class InventoryServiceImpl implements InventoryService {
         InventoryDto inventoryDto = new InventoryDto();
         inventoryDto.setId(inventory.getId());
         inventoryDto.setNodeId(inventory.getNode().getId());
+        inventoryDto.setNodeName(inventory.getNode().getName());  
         inventoryDto.setProductId(inventory.getProduct().getId());
+        inventoryDto.setProductName(inventory.getProduct().getName());  
         inventoryDto.setQuantity(inventory.getQuantity());
         inventoryDto.setMinThreshold(inventory.getMinThreshold());
         inventoryDto.setMaxThreshold(inventory.getMaxThreshold());

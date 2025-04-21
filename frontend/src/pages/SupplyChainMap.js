@@ -195,7 +195,7 @@ const SupplyChainMap = () => {
       />
 
       {showFilters && (
-        <Card className="mb-4">
+        <Card className="mb-4 filters-card">
           <Card.Body>
             <Row>
               <Col md={3}>
@@ -273,76 +273,78 @@ const SupplyChainMap = () => {
       )}
 
       <Card>
-        <Card.Body className="p-0">
-          <div className="map-container">
-            <MapContainer 
-              center={mapCenter} 
-              zoom={mapZoom} 
-              style={{ height: '100%', width: '100%' }}
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
+        <Card.Body style={{ padding: 0, height: 'calc(100vh - 220px)', minHeight: '600px' }}>
+          <MapContainer 
+            center={mapCenter} 
+            zoom={mapZoom} 
+            style={{ height: '100%', width: '100%' }}
+            whenCreated={(mapInstance) => {
+              // Optional: Store map instance if you need to access it later
+              // setMap(mapInstance);
+            }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            
+            {/* Render connections */}
+            {filteredConnections.map((connection) => {
+              const sourceNode = nodes.find(node => node.id === connection.sourceId);
+              const targetNode = nodes.find(node => node.id === connection.targetId);
               
-              {/* Render connections */}
-              {filteredConnections.map((connection) => {
-                const sourceNode = nodes.find(node => node.id === connection.sourceId);
-                const targetNode = nodes.find(node => node.id === connection.targetId);
-                
-                if (!sourceNode || !targetNode) return null;
-                
-                const positions = [
-                  [sourceNode.latitude, sourceNode.longitude],
-                  [targetNode.latitude, targetNode.longitude]
-                ];
-                
-                const color = connectionColors[connection.status] || connectionColors.active;
-                
-                return (
-                  <Polyline
-                    key={connection.id}
-                    positions={positions}
-                    color={color}
-                    weight={3}
-                    opacity={0.7}
-                  />
-                );
-              })}
+              if (!sourceNode || !targetNode) return null;
               
-              {/* Render nodes */}
-              {filteredNodes.map((node) => (
-                <Marker
-                  key={node.id}
-                  position={[node.latitude, node.longitude]}
-                  icon={getNodeIcon(node.type)}
-                  eventHandlers={{
-                    click: () => {
-                      openNodeDetails(node);
-                    },
-                  }}
-                >
-                  <Popup>
-                    <div>
-                      <h6>{node.name}</h6>
-                      <p>Type: {node.type}</p>
-                      <p>Status: {node.status}</p>
-                      <Button 
-                        size="sm" 
-                        variant="info" 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openNodeDetails(node);
-                        }}
-                      >
-                        <FaInfoCircle className="me-1" /> Details
-                      </Button>
-                    </div>
-                  </Popup>
-                </Marker>
-              ))}
-            </MapContainer>
-          </div>
+              const positions = [
+                [sourceNode.latitude, sourceNode.longitude],
+                [targetNode.latitude, targetNode.longitude]
+              ];
+              
+              const color = connectionColors[connection.status] || connectionColors.active;
+              
+              return (
+                <Polyline
+                  key={connection.id}
+                  positions={positions}
+                  color={color}
+                  weight={3}
+                  opacity={0.7}
+                />
+              );
+            })}
+            
+            {/* Render nodes */}
+            {filteredNodes.map((node) => (
+              <Marker
+                key={node.id}
+                position={[node.latitude, node.longitude]}
+                icon={getNodeIcon(node.type)}
+                eventHandlers={{
+                  click: () => {
+                    openNodeDetails(node);
+                  },
+                }}
+              >
+                <Popup>
+                  <div>
+                    <h6>{node.name}</h6>
+                    <p>Type: {node.type}</p>
+                    <p>Status: {node.status}</p>
+                    <Button 
+                      size="sm" 
+                      variant="info" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openNodeDetails(node);
+                      }}
+                    >
+                      <FaInfoCircle className="me-1" /> Details
+                    </Button>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
         </Card.Body>
       </Card>
 

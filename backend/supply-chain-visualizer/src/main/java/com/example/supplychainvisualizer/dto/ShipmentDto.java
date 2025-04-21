@@ -87,4 +87,22 @@ public class ShipmentDto {
     public void setItems(List<ShipmentItemDto> items) {
         this.items = items;
     }
+    private String sourceName;
+    private String destinationName;
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
+
+    public String getDestinationName() {
+        return destinationName;
+    }
+
+    public void setDestinationName(String destinationName) {
+        this.destinationName = destinationName;
+    }
 }

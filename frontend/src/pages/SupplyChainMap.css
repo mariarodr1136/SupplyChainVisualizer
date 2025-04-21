@@ -4,9 +4,55 @@
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
+  position: relative;
 }
 
 .leaflet-container {
-  height: 100%;
+  height: 100% !important;
   width: 100%;
+  z-index: 1;
+}
+
+/* Fix for marker icons */
+.leaflet-marker-icon {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Fix for popup content */
+.leaflet-popup-content {
+  margin: 10px 10px;
+  line-height: 1.4;
+}
+
+.leaflet-popup-content h6 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.leaflet-popup-content p {
+  margin: 0 0 5px 0;
+}
+
+/* Make sure the map takes up full height */
+.card-body {
+  padding: 0 !important;
+}
+
+/* Fix for filters section */
+.filters-card {
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-height: 700px) {
+  .map-container {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    height: 400px;
+  }
 }

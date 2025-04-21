@@ -8,8 +8,12 @@ public class InventoryDto {
     @NotNull
     private Long nodeId;
     
+    private String nodeName;
+    
     @NotNull
     private Long productId;
+    
+    private String productName;
     
     @NotNull
     private Integer quantity;
@@ -35,12 +39,28 @@ public class InventoryDto {
         this.nodeId = nodeId;
     }
     
+    public String getNodeName() {
+        return nodeName;
+    }
+    
+    public void setNodeName(String nodeName) {
+        this.nodeName = nodeName;
+    }
+    
     public Long getProductId() {
         return productId;
     }
     
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+    
+    public String getProductName() {
+        return productName;
+    }
+    
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
     
     public Integer getQuantity() {

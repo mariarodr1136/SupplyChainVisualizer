@@ -1,7 +1,7 @@
 package com.example.supplychainvisualizer.controller;
 
 import com.example.supplychainvisualizer.dto.NodeDto;
-//import com.example.supplychainvisualizer.model.Node;
+import com.example.supplychainvisualizer.model.Node;
 import com.example.supplychainvisualizer.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

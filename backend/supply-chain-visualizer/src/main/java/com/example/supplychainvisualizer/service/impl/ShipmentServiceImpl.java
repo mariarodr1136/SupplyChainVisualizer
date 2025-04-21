@@ -157,12 +157,14 @@ public class ShipmentServiceImpl implements ShipmentService {
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
-    
+
     private ShipmentDto convertToDto(Shipment shipment) {
         ShipmentDto shipmentDto = new ShipmentDto();
         shipmentDto.setId(shipment.getId());
         shipmentDto.setSourceId(shipment.getSource().getId());
+        shipmentDto.setSourceName(shipment.getSource().getName());  
         shipmentDto.setDestinationId(shipment.getDestination().getId());
+        shipmentDto.setDestinationName(shipment.getDestination().getName()); 
         shipmentDto.setStatus(shipment.getStatus());
         shipmentDto.setDepartureDate(shipment.getDepartureDate());
         shipmentDto.setEstimatedArrival(shipment.getEstimatedArrival());
@@ -175,6 +177,7 @@ public class ShipmentServiceImpl implements ShipmentService {
                         ShipmentItemDto itemDto = new ShipmentItemDto();
                         itemDto.setId(item.getId());
                         itemDto.setProductId(item.getProduct().getId());
+                        itemDto.setProductName(item.getProduct().getName());  
                         itemDto.setQuantity(item.getQuantity());
                         return itemDto;
                     })

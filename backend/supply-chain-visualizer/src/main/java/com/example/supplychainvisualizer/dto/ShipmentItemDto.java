@@ -8,6 +8,8 @@ public class ShipmentItemDto {
     @NotNull
     private Long productId;
     
+    private String productName;
+    
     @NotNull
     private Integer quantity;
     
@@ -26,6 +28,14 @@ public class ShipmentItemDto {
     
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+    
+    public String getProductName() {
+        return productName;
+    }
+    
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
     
     public Integer getQuantity() {
