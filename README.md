@@ -11,7 +11,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 ---
 
 <img width="1459" alt="Screenshot 2025-04-13 at 7 27 45 PM" src="https://github.com/user-attachments/assets/fdd400b2-4966-49f3-a4cb-e4109f0ff6c5" />
-<img width="1465" alt="Screenshot 2025-04-21 at 9 24 55 AM" src="https://github.com/user-attachments/assets/cb570359-fc6d-4e54-b672-3a540e2c2491" />
+<img width="1463" alt="Screenshot 2025-04-21 at 9 39 21 AM" src="https://github.com/user-attachments/assets/b4dc09c4-bc41-4d2c-b2e6-7b3256f897a1" />
 
 
 ---
