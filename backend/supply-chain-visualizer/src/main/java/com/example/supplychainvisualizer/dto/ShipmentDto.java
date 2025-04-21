@@ -1,7 +1,7 @@
 package com.example.supplychainvisualizer.dto;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ShipmentDto {
@@ -15,11 +15,11 @@ public class ShipmentDto {
     
     private String status = "pending";
     
-    private LocalDateTime departureDate;
+    private LocalDate departureDate;
     
-    private LocalDateTime estimatedArrival;
+    private LocalDate estimatedArrival;
     
-    private LocalDateTime actualArrival;
+    private LocalDate actualArrival;
     
     private List<ShipmentItemDto> items;
     
@@ -56,27 +56,27 @@ public class ShipmentDto {
         this.status = status;
     }
     
-    public LocalDateTime getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
     
-    public void setDepartureDate(LocalDateTime departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
     
-    public LocalDateTime getEstimatedArrival() {
+    public LocalDate getEstimatedArrival() {
         return estimatedArrival;
     }
     
-    public void setEstimatedArrival(LocalDateTime estimatedArrival) {
+    public void setEstimatedArrival(LocalDate estimatedArrival) {
         this.estimatedArrival = estimatedArrival;
     }
     
-    public LocalDateTime getActualArrival() {
+    public LocalDate getActualArrival() {
         return actualArrival;
     }
     
-    public void setActualArrival(LocalDateTime actualArrival) {
+    public void setActualArrival(LocalDate actualArrival) {
         this.actualArrival = actualArrival;
     }
     

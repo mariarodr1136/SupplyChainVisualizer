@@ -13,9 +13,11 @@ import java.util.Optional;
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     List<Inventory> findByNode(Node node);
+    
     List<Inventory> findByProduct(Product product);
+    
     Optional<Inventory> findByNodeAndProduct(Node node, Product product);
     
-    @Query("SELECT i FROM Inventory i WHERE i.quantity < i.minThreshold")
-    List<Inventory> findLowStockInventory();
+    @Query("SELECT i FROM Inventory i WHERE i.quantity <= i.minThreshold AND i.minThreshold IS NOT NULL")
+    List<Inventory> findLowStock();
 }

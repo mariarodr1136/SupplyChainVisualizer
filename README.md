@@ -382,6 +382,8 @@ GET /api/products/sku/LT-X-001
 Authorization: Bearer <your_token_here>
 ```
 
+---
+
 ### 🚢 Deployment
 
 #### Local Deployment with Docker (Optional)

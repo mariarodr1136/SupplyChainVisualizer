@@ -2,7 +2,7 @@ package com.example.supplychainvisualizer.service;
 
 import com.example.supplychainvisualizer.dto.ShipmentDto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,5 +16,5 @@ public interface ShipmentService {
     List<ShipmentDto> getShipmentsBySource(Long sourceId);
     List<ShipmentDto> getShipmentsByDestination(Long destinationId);
     List<ShipmentDto> getShipmentsByStatus(String status);
-    List<ShipmentDto> getShipmentsByDateRange(LocalDateTime startDate, LocalDateTime endDate, String dateType);
+    List<ShipmentDto> getShipmentsByDateRange(LocalDate startDate, LocalDate endDate, String dateType);
 }
