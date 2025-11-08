@@ -84,8 +84,8 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/mariarodr1136/supply-chain-visualizer.git
-   cd supply-chain-visualizer
+   git clone https://github.com/mariarodr1136/SupplyChainVisualizer.git
+   cd SupplyChainVisualizer
    ```
 
 2. **Set up the database**:
@@ -103,7 +103,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 4. **Build and run the backend**:
    ```bash
    cd backend
-   cd supply-chain-visualizer
+   cd SupplyChainVisualizer
    mvn clean install
    mvn spring-boot:run
    ```
