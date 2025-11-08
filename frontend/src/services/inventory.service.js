@@ -33,4 +33,5 @@ class InventoryService {
   }
 }
 
-export default new InventoryService();
+const inventoryService = new InventoryService();
+export default inventoryService;
