@@ -33,4 +33,5 @@ class NodeService {
   }
 }
 
-export default new NodeService();
+const nodeService = new NodeService();
+export default nodeService;
