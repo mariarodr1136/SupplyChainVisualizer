@@ -43,4 +43,5 @@ class ConnectionService {
   }
 }
 
-export default new ConnectionService();
+const connectionService = new ConnectionService();
+export default connectionService;
