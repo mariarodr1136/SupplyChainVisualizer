@@ -55,4 +55,5 @@ class ShipmentService {
   }
 }
 
-export default new ShipmentService();
+const shipmentService = new ShipmentService();
+export default shipmentService;
