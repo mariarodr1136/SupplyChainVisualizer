@@ -103,7 +103,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 4. **Build and run the backend**:
    ```bash
    cd backend
-   cd SupplyChainVisualizer
+   cd supply-chain-visualizer
    mvn clean install
    mvn spring-boot:run
    ```
