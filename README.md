@@ -84,7 +84,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/mariarodr1136/SupplyChainVisualizer.git
+   git clone https://github.com/<YOUR_GITHUB_USERNAME>/SupplyChainVisualizer.git
    cd SupplyChainVisualizer
    ```
 
