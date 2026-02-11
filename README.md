@@ -6,7 +6,7 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 
 ---
 
-![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F) ![Java](https://img.shields.io/badge/Java-Programming_Language-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F) ![Java](https://img.shields.io/badge/Java-Programming_Language-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3) ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED) ![Render](https://img.shields.io/badge/Render-Deployment-46E3B7)
 
 ---
 
@@ -65,10 +65,12 @@ The ultimate goal is to equip businesses with the **analytical tools** and **vis
 #### Database
 - PostgreSQL
 
-#### Deployment
+#### Deployment & DevOps
 - Git/GitHub for version control
-- Docker for containerization (optional)
-- AWS (EC2 for application hosting, S3 for static assets)
+- Docker for backend containerization (multi-stage build)
+- Render for cloud hosting (Blueprint IaC deployment)
+- Render PostgreSQL for managed database
+- Environment-based configuration (no hardcoded secrets)
 
 ---
 
@@ -145,6 +147,8 @@ supply-chain-visualizer/
 │       └── index.js            # Entry point
 │
 ├── backend/                    # Java Spring Boot backend
+│   ├── Dockerfile              # Multi-stage Docker build
+│   ├── entrypoint.sh           # Container startup script
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -154,10 +158,13 @@ supply-chain-visualizer/
 │   │   │   │   ├── repository/ # JPA repositories
 │   │   │   │   ├── security/   # JWT and security config
 │   │   │   │   └── service/    # Business logic
-│   │   │   └── resources/      # Configuration files
+│   │   │   └── resources/
+│   │   │       ├── application-render.properties  # Production config
+│   │   │       └── data.sql                       # Seed data
 │   │   └── test/               # Test code
 │   └── pom.xml                 # Maven dependencies
 │
+├── render.yaml                 # Render Blueprint (IaC)
 ├── .gitignore                  # Git ignore file
 └── README.md                   # Project documentation
 ```
@@ -398,19 +405,33 @@ Authorization: Bearer <your_token_here>
 
 ### 🚢 Deployment
 
+#### Live Demo on Render
+
+The application is deployed on **Render** using a Blueprint (`render.yaml`) for Infrastructure as Code:
+
+- **Backend**: Dockerized Spring Boot API deployed as a Render Web Service
+- **Frontend**: React static site built and served via Render Static Site
+- **Database**: Managed PostgreSQL instance on Render
+
+##### How It Works
+The project uses a `render.yaml` Blueprint that provisions all three services in one click:
+1. A **PostgreSQL database** is created and connection credentials are automatically injected
+2. The **backend** is built using a multi-stage Dockerfile (Maven build → JRE runtime) with an `entrypoint.sh` that parses the database connection string into JDBC-compatible components
+3. The **frontend** is built with `npm run build` and served as a static site with client-side routing support
+4. **Environment variables** handle all sensitive configuration (database credentials, JWT secrets, CORS origins) — no secrets are hardcoded or committed to version control
+
+##### Deploy Your Own Instance
+1. Fork this repository
+2. Go to [Render Dashboard](https://dashboard.render.com) → **New** → **Blueprint**
+3. Connect your forked repository — Render auto-detects `render.yaml`
+4. Click **Apply** to provision all services
+5. After deployment, update `CORS_ALLOWED_ORIGINS` on the backend and `REACT_APP_API_URL` on the frontend to match the actual Render-assigned URLs
+
 #### Local Deployment with Docker (Optional)
 ```bash
 # Build and start the containers
 docker-compose up -d
 ```
-
-#### AWS Deployment
-1. Launch an EC2 instance with appropriate security groups
-2. Install dependencies (Node.js, Java, PostgreSQL)
-3. Clone the repository and set up the application
-4. Use a process manager like PM2 to run the application
-5. Set up an Nginx reverse proxy for the frontend and API
-6. (Optional) Create an S3 bucket for static assets
 
 ---
 
