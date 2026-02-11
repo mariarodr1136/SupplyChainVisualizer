@@ -1,12 +1,12 @@
 # Supply Chain Visualizer ⛓️
 
+![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F) ![Java](https://img.shields.io/badge/Java-Programming_Language-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3) ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED) ![Render](https://img.shields.io/badge/Render-Deployment-46E3B7)
+
 The **Supply Chain Visualizer** is a comprehensive **web application** designed to provide powerful visualization and analysis of supply chain networks. By combining **React** frontend technology with a robust **Spring Boot/Java backend**, this platform enables businesses to **interactively map their supply chains**, **track inventory levels**, and **monitor shipment status** in real-time. The application provides actionable insights through **performance metrics** and **data visualizations**, allowing users to identify bottlenecks and opportunities for optimization. With a user-friendly interface integrating **Leaflet maps** and **Chart.js visualizations**, the Supply Chain Visualizer transforms complex supply chain data into accessible, meaningful information.
 
 The ultimate goal is to equip businesses with the **analytical tools** and **visual insights** needed to strengthen their supply chain resilience, improve operational efficiency, and make data-driven decisions in an increasingly complex global logistics environment. 🚚📊
 
----
-
-![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F) ![Java](https://img.shields.io/badge/Java-Programming_Language-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3) ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED) ![Render](https://img.shields.io/badge/Render-Deployment-46E3B7)
+Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
