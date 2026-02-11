@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = '/api/nodes/';
+const API_URL = (process.env.REACT_APP_API_URL || '') + '/api/nodes/';
 
 class NodeService {
   getAllNodes() {
