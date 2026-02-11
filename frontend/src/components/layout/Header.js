@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaBars, FaUser, FaSignOutAlt, FaCog } from 'react-icons/fa';
+import { FaBars, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { AuthContext } from '../../context/AuthContext';
 import './Header.css';
 
@@ -28,13 +28,6 @@ const Header = ({ toggleSidebar, logOut }) => {
                 } 
                 id="user-dropdown"
               >
-                <NavDropdown.Item as={Link} to="/profile">
-                  <FaUser className="me-2" /> Profile
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/settings">
-                  <FaCog className="me-2" /> Settings
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logOut}>
                   <FaSignOutAlt className="me-2" /> Logout
                 </NavDropdown.Item>

@@ -19,8 +19,6 @@ import Nodes from './pages/Nodes';
 import NodeDetails from './pages/NodeDetails';
 import Connections from './pages/Connections';
 import Products from './pages/Products';
-import Profile from './pages/Profile';
-
 // Authentication services and context
 import AuthService from './services/auth.service';
 import { AuthContext } from './context/AuthContext';
@@ -64,7 +62,6 @@ function App() {
                     <Route path="/nodes/:id" element={<NodeDetails />} />
                     <Route path="/connections" element={<Connections />} />
                     <Route path="/products" element={<Products />} />
-                    <Route path="/profile" element={<Profile />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </main>
