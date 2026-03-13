@@ -21,6 +21,10 @@ public class InventoryDto {
     private Integer minThreshold;
     
     private Integer maxThreshold;
+
+    private String status;
+
+    private java.time.LocalDateTime updatedAt;
     
     // Getters and setters
     public Long getId() {
@@ -85,5 +89,21 @@ public class InventoryDto {
     
     public void setMaxThreshold(Integer maxThreshold) {
         this.maxThreshold = maxThreshold;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public java.time.LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(java.time.LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

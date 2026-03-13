@@ -119,6 +119,25 @@ public class InventoryServiceImpl implements InventoryService {
         inventoryDto.setQuantity(inventory.getQuantity());
         inventoryDto.setMinThreshold(inventory.getMinThreshold());
         inventoryDto.setMaxThreshold(inventory.getMaxThreshold());
+        inventoryDto.setStatus(computeStatus(inventory));
+        inventoryDto.setUpdatedAt(inventory.getUpdatedAt());
         return inventoryDto;
+    }
+
+    private String computeStatus(Inventory inventory) {
+        int quantity = inventory.getQuantity() == null ? 0 : inventory.getQuantity();
+        Integer min = inventory.getMinThreshold();
+        Integer max = inventory.getMaxThreshold();
+
+        if (quantity <= 0) {
+            return "critical";
+        }
+        if (min != null && quantity <= min) {
+            return "low";
+        }
+        if (max != null && quantity >= max) {
+            return "excess";
+        }
+        return "optimal";
     }
 }
