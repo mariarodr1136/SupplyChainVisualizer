@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, isNew }) => {
   const CREATE_OPTION = '__create__';
+  const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     nodeId: '',
     productId: '',
@@ -31,12 +34,13 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (value === CREATE_OPTION) {
+      const returnTo = encodeURIComponent(location.pathname + location.search);
       if (name === 'nodeId') {
-        window.location.href = '/nodes';
+        navigate(`/nodes?create=1&returnTo=${returnTo}`);
         return;
       }
       if (name === 'productId') {
-        window.location.href = '/products';
+        navigate(`/products?create=1&returnTo=${returnTo}`);
         return;
       }
     }

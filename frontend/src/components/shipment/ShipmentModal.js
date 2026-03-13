@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form, Table } from 'react-bootstrap';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProductService from '../../services/product.service';
 
 const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
   const CREATE_OPTION = '__create__';
+  const navigate = useNavigate();
+  const location = useLocation();
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     sourceId: '',
@@ -61,7 +64,8 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (value === CREATE_OPTION) {
-      window.location.href = '/nodes';
+      const returnTo = encodeURIComponent(location.pathname + location.search);
+      navigate(`/nodes?create=1&returnTo=${returnTo}`);
       return;
     }
     setFormData({
@@ -73,7 +77,8 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
   const handleItemChange = (e) => {
     const { name, value } = e.target;
     if (name === 'productId' && value === CREATE_OPTION) {
-      window.location.href = '/products';
+      const returnTo = encodeURIComponent(location.pathname + location.search);
+      navigate(`/products?create=1&returnTo=${returnTo}`);
       return;
     }
     setNewItem({

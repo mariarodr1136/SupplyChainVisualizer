@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => {
   const CREATE_OPTION = '__create__';
+  const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     sourceId: '',
     targetId: '',
@@ -35,7 +38,8 @@ const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (value === CREATE_OPTION) {
-      window.location.href = '/nodes';
+      const returnTo = encodeURIComponent(location.pathname + location.search);
+      navigate(`/nodes?create=1&returnTo=${returnTo}`);
       return;
     }
     setFormData({

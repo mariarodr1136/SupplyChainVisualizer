@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Badge, Spinner, Alert, ProgressBar } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEye, FaSyncAlt, FaRegCheckCircle, FaExclamationTriangle, FaBoxOpen, FaPrint } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ShipmentService from '../services/shipment.service';
 import NodeService from '../services/node.service';
 import PageHeader from '../components/common/PageHeader';
@@ -21,10 +21,11 @@ const ShipmentTracker = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedShipment, setSelectedShipment] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     loadShipmentData();
-  }, []);
+  }, [location.key]);
 
   const loadShipmentData = async () => {
     try {

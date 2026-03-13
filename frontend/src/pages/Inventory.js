@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Badge, Spinner, Alert } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEdit, FaSyncAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import InventoryService from '../services/inventory.service';
 import NodeService from '../services/node.service';
 import ProductService from '../services/product.service';
@@ -22,10 +22,11 @@ const Inventory = () => {
   // Modal state
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     loadInventoryData();
-  }, []);
+  }, [location.key]);
 
   const loadInventoryData = async () => {
     try {

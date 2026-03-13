@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEdit, FaTrashAlt, FaSyncAlt, FaBoxOpen } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProductService from '../services/product.service';
 import PageHeader from '../components/common/PageHeader';
 import ProductModal from '../components/product/ProductModal';
@@ -21,10 +22,31 @@ const Products = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [returnTo, setReturnTo] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     loadProductsData();
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('create') === '1') {
+      const returnParam = params.get('returnTo') || '';
+      setReturnTo(returnParam);
+      setSelectedProduct(null);
+      setShowModal(true);
+      params.delete('create');
+      params.delete('returnTo');
+      const nextSearch = params.toString();
+      navigate(
+        { pathname: location.pathname, search: nextSearch ? `?${nextSearch}` : '' },
+        { replace: true }
+      );
+    }
+  }, [location.pathname, location.search, navigate]);
 
   const loadProductsData = async () => {
     try {
@@ -54,6 +76,7 @@ const Products = () => {
 
   const handleAddNew = () => {
     setSelectedProduct(null);
+    setReturnTo('');
     setShowModal(true);
   };
 
@@ -72,6 +95,10 @@ const Products = () => {
       
       // Close modal
       setShowModal(false);
+      if (!productData.id && returnTo) {
+        navigate(returnTo);
+        setReturnTo('');
+      }
     } catch (err) {
       console.error('Failed to save product:', err);
       alert('Failed to save product. Please try again.');

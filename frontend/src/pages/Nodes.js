@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Badge, Spinner, Alert } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEdit, FaTrashAlt, FaSyncAlt, FaEye } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import NodeService from '../services/node.service';
 import PageHeader from '../components/common/PageHeader';
 import NodeModal from '../components/map/NodeModal';
@@ -20,12 +20,31 @@ const Nodes = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [returnTo, setReturnTo] = useState('');
   
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     loadNodesData();
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('create') === '1') {
+      const returnParam = params.get('returnTo') || '';
+      setReturnTo(returnParam);
+      setSelectedNode(null);
+      setShowModal(true);
+      params.delete('create');
+      params.delete('returnTo');
+      const nextSearch = params.toString();
+      navigate(
+        { pathname: location.pathname, search: nextSearch ? `?${nextSearch}` : '' },
+        { replace: true }
+      );
+    }
+  }, [location.pathname, location.search, navigate]);
 
   const loadNodesData = async () => {
     try {
@@ -59,6 +78,7 @@ const Nodes = () => {
 
   const handleAddNew = () => {
     setSelectedNode(null);
+    setReturnTo('');
     setShowModal(true);
   };
 
@@ -77,6 +97,10 @@ const Nodes = () => {
       
       // Close modal
       setShowModal(false);
+      if (!nodeData.id && returnTo) {
+        navigate(returnTo);
+        setReturnTo('');
+      }
     } catch (err) {
       console.error('Failed to save node:', err);
       alert('Failed to save node. Please try again.');

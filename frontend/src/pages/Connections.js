@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Badge, Spinner, Alert } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEdit, FaTrashAlt, FaSyncAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import NodeService from '../services/node.service';
 import ConnectionService from '../services/connection.service';
 import PageHeader from '../components/common/PageHeader';
@@ -22,10 +22,11 @@ const Connections = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedConnection, setSelectedConnection] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     loadConnectionsData();
-  }, []);
+  }, [location.key]);
 
   const loadConnectionsData = async () => {
     try {
