@@ -1,9 +1,3 @@
-databases:
-  - name: supply-chain-db
-    databaseName: supply_chain_db
-    user: supply_chain_user
-    plan: free
-
 services:
   # Backend - Spring Boot API
   - type: web
@@ -13,26 +7,8 @@ services:
     dockerfilePath: ./backend/supply-chain-visualizer/Dockerfile
     dockerContext: ./backend/supply-chain-visualizer
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: supply-chain-db
-          property: connectionString
-      - key: DATABASE_USERNAME
-        fromDatabase:
-          name: supply-chain-db
-          property: user
-      - key: DATABASE_PASSWORD
-        fromDatabase:
-          name: supply-chain-db
-          property: password
-      - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: supply-chain-db
-          property: user
-      - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: supply-chain-db
-          property: password
+      - key: SPRING_PROFILES_ACTIVE
+        value: h2
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ALLOWED_ORIGINS

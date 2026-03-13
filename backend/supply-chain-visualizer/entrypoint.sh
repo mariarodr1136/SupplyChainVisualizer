@@ -13,4 +13,9 @@ if [ -n "$DATABASE_URL" ]; then
   # Build clean JDBC URL (no credentials)
   export SPRING_DATASOURCE_URL="jdbc:postgresql://${DB_HOST_AND_DB}"
 fi
-exec java -jar app.jar --spring.profiles.active=render
+# Allow overriding the active Spring profile (default: render)
+SPRING_PROFILE="${SPRING_PROFILES_ACTIVE:-render}"
+if [ "$SPRING_PROFILE" = "h2" ]; then
+  mkdir -p /app/data
+fi
+exec java -jar app.jar --spring.profiles.active="$SPRING_PROFILE"
