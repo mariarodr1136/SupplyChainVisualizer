@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, isNew }) => {
+  const CREATE_OPTION = '__create__';
   const [formData, setFormData] = useState({
     nodeId: '',
     productId: '',
@@ -29,6 +30,16 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (value === CREATE_OPTION) {
+      if (name === 'nodeId') {
+        window.location.href = '/nodes';
+        return;
+      }
+      if (name === 'productId') {
+        window.location.href = '/products';
+        return;
+      }
+    }
     setFormData({
       ...formData,
       [name]: value
@@ -70,6 +81,7 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
               required
             >
               <option value="">Select Location</option>
+              <option value={CREATE_OPTION}>+ Create new location</option>
               {nodes.map(node => (
                 <option key={node.id} value={node.id}>
                   {node.name}
@@ -87,6 +99,7 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
               required
             >
               <option value="">Select Product</option>
+              <option value={CREATE_OPTION}>+ Create new product</option>
               {products.map(product => (
                 <option key={product.id} value={product.id}>
                   {product.name} ({product.sku})

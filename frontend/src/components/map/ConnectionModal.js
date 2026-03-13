@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => {
+  const CREATE_OPTION = '__create__';
   const [formData, setFormData] = useState({
     sourceId: '',
     targetId: '',
@@ -33,6 +34,10 @@ const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (value === CREATE_OPTION) {
+      window.location.href = '/nodes';
+      return;
+    }
     setFormData({
       ...formData,
       [name]: value
@@ -75,6 +80,7 @@ const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => 
               required
             >
               <option value="">Select Source Node</option>
+              <option value={CREATE_OPTION}>+ Create new location</option>
               {nodes.map(node => (
                 <option key={node.id} value={node.id}>
                   {node.name}
@@ -92,6 +98,7 @@ const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => 
               required
             >
               <option value="">Select Target Node</option>
+              <option value={CREATE_OPTION}>+ Create new location</option>
               {nodes.map(node => (
                 <option key={node.id} value={node.id}>
                   {node.name}

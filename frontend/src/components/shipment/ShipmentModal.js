@@ -4,6 +4,7 @@ import { FaPlus, FaTrashAlt } from 'react-icons/fa';
 import ProductService from '../../services/product.service';
 
 const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
+  const CREATE_OPTION = '__create__';
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     sourceId: '',
@@ -59,6 +60,10 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (value === CREATE_OPTION) {
+      window.location.href = '/nodes';
+      return;
+    }
     setFormData({
       ...formData,
       [name]: value
@@ -67,6 +72,10 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
 
   const handleItemChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'productId' && value === CREATE_OPTION) {
+      window.location.href = '/products';
+      return;
+    }
     setNewItem({
       ...newItem,
       [name]: name === 'quantity' ? parseInt(value, 10) : value
@@ -157,6 +166,7 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
                   required
                 >
                   <option value="">Select Source</option>
+                  <option value={CREATE_OPTION}>+ Create new location</option>
                   {nodes.map(node => (
                     <option key={node.id} value={node.id}>
                       {node.name}
@@ -175,6 +185,7 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
                   required
                 >
                   <option value="">Select Destination</option>
+                  <option value={CREATE_OPTION}>+ Create new location</option>
                   {nodes.map(node => (
                     <option 
                       key={node.id} 
@@ -228,13 +239,19 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
                   disabled={products.length === 0}
                 >
                   {products.length === 0 ? (
-                    <option value="">No products available</option>
+                    <>
+                      <option value="">No products available</option>
+                      <option value={CREATE_OPTION}>+ Create new product</option>
+                    </>
                   ) : (
-                    products.map(product => (
-                      <option key={product.id} value={product.id}>
-                        {product.name} ({product.sku})
-                      </option>
-                    ))
+                    <>
+                      <option value={CREATE_OPTION}>+ Create new product</option>
+                      {products.map(product => (
+                        <option key={product.id} value={product.id}>
+                          {product.name} ({product.sku})
+                        </option>
+                      ))}
+                    </>
                   )}
                 </Form.Select>
               </Form.Group>
