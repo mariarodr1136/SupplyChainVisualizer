@@ -5,6 +5,16 @@
     transform: translateY(-50%);
     color: #6c757d;
   }
+
+  .search-group {
+    min-width: 280px;
+  }
+
+  @media (min-width: 992px) {
+    .search-group {
+      min-width: 360px;
+    }
+  }
   
   .table th, .table td {
     vertical-align: middle;

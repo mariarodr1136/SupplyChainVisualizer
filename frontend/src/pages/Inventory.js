@@ -148,7 +148,7 @@ const Inventory = () => {
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="d-flex align-items-center">
-                  <Form.Group className="me-3">
+                  <Form.Group className="me-3 search-group">
                     <div className="position-relative">
                       <Form.Control
                         type="text"

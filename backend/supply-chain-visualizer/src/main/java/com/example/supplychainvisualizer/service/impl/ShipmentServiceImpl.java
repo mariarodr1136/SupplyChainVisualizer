@@ -4,8 +4,10 @@ import com.example.supplychainvisualizer.dto.ShipmentDto;
 import com.example.supplychainvisualizer.dto.ShipmentItemDto;
 import com.example.supplychainvisualizer.model.Node;
 import com.example.supplychainvisualizer.model.Product;
+import com.example.supplychainvisualizer.model.Inventory;
 import com.example.supplychainvisualizer.model.Shipment;
 import com.example.supplychainvisualizer.model.ShipmentItem;
+import com.example.supplychainvisualizer.repository.InventoryRepository;
 import com.example.supplychainvisualizer.repository.NodeRepository;
 import com.example.supplychainvisualizer.repository.ProductRepository;
 import com.example.supplychainvisualizer.repository.ShipmentRepository;
@@ -32,6 +34,9 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
     @Override
     public List<ShipmentDto> getAllShipments() {
@@ -71,6 +76,8 @@ public class ShipmentServiceImpl implements ShipmentService {
                         item.setQuantity(itemDto.getQuantity());
                         item.setShipment(shipment);
                         items.add(item);
+                        // Decrement source inventory when a shipment is created
+                        adjustInventory(sourceOpt.get(), productOpt.get(), -itemDto.getQuantity());
                     }
                 }
                 
@@ -120,10 +127,35 @@ public class ShipmentServiceImpl implements ShipmentService {
     @Override
     public Optional<ShipmentDto> updateShipmentStatus(Long id, String status) {
         return shipmentRepository.findById(id).map(shipment -> {
+            String previousStatus = shipment.getStatus();
             shipment.setStatus(status);
+
+            if (!"delivered".equalsIgnoreCase(previousStatus)
+                    && "delivered".equalsIgnoreCase(status)) {
+                // Increment destination inventory once when delivered
+                for (ShipmentItem item : shipment.getItems()) {
+                    adjustInventory(shipment.getDestination(), item.getProduct(), item.getQuantity());
+                }
+            }
             Shipment updatedShipment = shipmentRepository.save(shipment);
             return convertToDto(updatedShipment);
         });
+    }
+
+    private void adjustInventory(Node node, Product product, int delta) {
+        Inventory inventory = inventoryRepository
+                .findByNodeAndProduct(node, product)
+                .orElseGet(() -> {
+                    Inventory created = new Inventory();
+                    created.setNode(node);
+                    created.setProduct(product);
+                    created.setQuantity(0);
+                    return created;
+                });
+
+        int currentQty = inventory.getQuantity() == null ? 0 : inventory.getQuantity();
+        inventory.setQuantity(currentQty + delta);
+        inventoryRepository.save(inventory);
     }
 
     @Override
