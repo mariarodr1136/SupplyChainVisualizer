@@ -216,7 +216,7 @@ const Inventory = () => {
                 <tbody>
                   {filteredInventory.length > 0 ? (
                     filteredInventory.map(item => {
-                      const node = nodes.find(n => n.id === item.nodeId);
+                      const node = nodes.find(n => Number(n.id) === Number(item.nodeId));
                       return (
                         <tr key={item.id}>
                           <td>

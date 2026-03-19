@@ -49,7 +49,7 @@ const Analytics = () => {
 
       <Row className="mb-4">
         <Col lg={7} className="mb-4 mb-lg-0">
-          <Card>
+          <Card className="h-100 analytics-card">
             <Card.Header>
               <h5 className="m-0 dashboard-section-title">Cost Trends</h5>
             </Card.Header>
@@ -79,16 +79,16 @@ const Analytics = () => {
         </Col>
 
         <Col lg={5}>
-          <Card>
+          <Card className="h-100 analytics-card">
             <Card.Header>
               <h5 className="m-0 dashboard-section-title title-white">SLA Performance</h5>
             </Card.Header>
             <Card.Body className="sla-list">
               {slaPerformance.map((lane) => (
-                <div key={lane.lane} className="mb-3">
-                  <div className="d-flex justify-content-between mb-1">
-                    <span>{lane.lane}</span>
-                    <span>{lane.value}%</span>
+                <div key={lane.lane} className="sla-item">
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <span className="sla-label">{lane.lane}</span>
+                    <span className="sla-value">{lane.value}%</span>
                   </div>
                   <ProgressBar now={lane.value} variant={lane.value >= 95 ? 'success' : 'info'} />
                 </div>

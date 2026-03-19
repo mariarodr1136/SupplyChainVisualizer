@@ -409,7 +409,7 @@ const SupplyChainMap = () => {
       </Card>
 
       {/* Node Details Modal */}
-      <Modal show={!!selectedNode} onHide={closeNodeDetails} size="lg">
+      <Modal show={!!selectedNode} onHide={closeNodeDetails} size="lg" contentClassName="dark-modal">
         <Modal.Header closeButton>
           <Modal.Title>{selectedNode?.name}</Modal.Title>
         </Modal.Header>
