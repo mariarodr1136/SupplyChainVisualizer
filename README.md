@@ -14,8 +14,8 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1459" alt="Screenshot 2025-04-13 at 7 27 45 PM" src="https://github.com/user-attachments/assets/fdd400b2-4966-49f3-a4cb-e4109f0ff6c5" />
-<img width="1463" alt="Screenshot 2025-04-21 at 9 39 21 AM" src="https://github.com/user-attachments/assets/b4dc09c4-bc41-4d2c-b2e6-7b3256f897a1" />
+<img width="1460" height="703" alt="Screenshot 2026-03-19 at 6 36 29 PM" src="https://github.com/user-attachments/assets/8e3f5d3e-67f0-4033-a2d9-e21eac48858e" />
+<img width="1456" height="700" alt="Screenshot 2026-03-19 at 6 48 51 PM" src="https://github.com/user-attachments/assets/fd8d68d1-3ab1-4f21-8f7d-1ad7332a581d" />
 
 ---
 
@@ -53,7 +53,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1459" alt="Screenshot 2025-04-21 at 9 25 05 AM" src="https://github.com/user-attachments/assets/669736d9-dfa7-46b4-96c6-843adeac9c01" />
+<img width="1449" height="776" alt="Screenshot 2026-03-19 at 6 37 20 PM" src="https://github.com/user-attachments/assets/f9efc70f-810b-4ba1-b5a4-50eb39f00fcf" />
 
 ---
 
@@ -217,9 +217,11 @@ For demos and stakeholder walkthroughs, the app supports a **Guest Mode**:
 
 ---
 
-<img width="1458" alt="Screenshot 2025-04-13 at 8 49 36 PM" src="https://github.com/user-attachments/assets/c722fa66-72b5-4f77-850c-f8e42b126436" />
+<img width="1450" height="789" alt="Screenshot 2026-03-19 at 6 39 07 PM" src="https://github.com/user-attachments/assets/9a80d1ea-7ef1-4194-8e85-ee776b112305" />
 
-<img width="1461" alt="Screenshot 2025-04-13 at 8 49 27 PM" src="https://github.com/user-attachments/assets/d9ac64ab-3391-4e00-affb-2a1725c047ab" />
+---
+
+<img width="1452" height="547" alt="Screenshot 2026-03-19 at 6 37 36 PM" src="https://github.com/user-attachments/assets/2e1f5240-6c6e-48e8-89cf-c346e0ff5468" />
 
 ---
 
@@ -309,7 +311,7 @@ Authorization: Bearer <your_token_here>
 
 ---
 
-<img width="1461" alt="Screenshot 2025-04-21 at 9 25 56 AM" src="https://github.com/user-attachments/assets/e81eef55-c55f-46ca-beac-5c38a03f53df" />
+<img width="1457" height="731" alt="Screenshot 2026-03-19 at 6 37 50 PM" src="https://github.com/user-attachments/assets/3ca86f2e-9312-478f-9163-80fa74681f09" />
 
 ---
 
