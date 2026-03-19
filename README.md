@@ -59,29 +59,29 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ### Technology Stack:
 
-#### Frontend
-- React for the user interface
-- JavaScript (ES6+)
-- Chart.js for data visualization
-- Leaflet for map-based visualization
-- Bootstrap for styling
-- Axios for API requests
+#### Frontend (Interactive UI + Visualization)
+- **React** (SPA architecture, component-driven UI)
+- **JavaScript (ES6+)** (modern async patterns and state management)
+- **Chart.js** (KPI and trend visualizations)
+- **Leaflet** (geospatial mapping and network overlays)
+- **Bootstrap** (responsive layout and UI primitives)
+- **Axios** (typed REST client + auth headers)
 
-#### Backend
-- Java with Spring Boot
-- Spring Data JPA with Hibernate for ORM
-- Spring Security with JWT for authentication
-- RESTful API design
+#### Backend (API + Security)
+- **Java + Spring Boot** (REST services, service-layer architecture)
+- **Spring Data JPA + Hibernate** (ORM + repository pattern)
+- **Spring Security + JWT** (stateless authentication)
+- **RESTful API Design** (resource-first endpoints)
 
-#### Database
-- PostgreSQL
+#### Data Layer
+- **PostgreSQL** (relational persistence, indexed queries)
 
 #### Deployment & DevOps
-- Git/GitHub for version control
-- Docker for backend containerization (multi-stage build)
-- Render for cloud hosting (Blueprint IaC deployment)
-- Render PostgreSQL for managed database
-- Environment-based configuration (no hardcoded secrets)
+- **Docker** (multi-stage builds for optimized images)
+- **Render Blueprint (IaC)** (repeatable cloud deployment)
+- **Render PostgreSQL** (managed DB service)
+- **Git/GitHub** (source control + release workflow)
+- **Environment-based configuration** (no hardcoded secrets)
 
 ---
 
