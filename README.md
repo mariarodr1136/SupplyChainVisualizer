@@ -31,8 +31,6 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - [Demo & Guest Mode](#-demo--guest-mode)
 - [API Documentation](#-api-documentation)
 - [Deployment](#-deployment)
-- [Development](#-development)
-- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [Contact](#contact-)
 
@@ -453,52 +451,7 @@ The project uses a `render.yaml` Blueprint that provisions all three services in
 # Build and start the containers
 docker-compose up -d
 ```
-
 ---
-
-### 🔧 Development
-
-#### Adding New Features
-
-To add a new feature to the supply chain visualizer:
-
-1. **Backend**: 
-   - Create a new entity model
-   - Create a repository interface
-   - Create a service interface and implementation
-   - Create a controller with REST endpoints
-
-2. **Frontend**:
-   - Create an API service
-   - Create the UI components
-   - Add the feature to the relevant page
-   - Update the navigation as needed
-
-#### Running Tests
-
-```bash
-# Backend tests
-cd backend
-cd supply-chain-visualizer
-mvn test
-
-# Frontend tests
-cd frontend
-npm test
-```
-
----
-
-### Troubleshooting
-
-Common issues and their solutions:
-
-- **Database connection errors**: Verify your PostgreSQL service is running and credentials are correct in application.properties
-- **JWT authentication issues**: Check that the secret key is properly configured
-- **CORS errors**: Ensure that the backend is properly configured to accept requests from the frontend origin
-
----
-
 
 ### Contributing 
 Feel free to submit issues or pull requests for improvements or bug fixes. You can also open issues to discuss potential changes or enhancements. All contributions are welcome to enhance the app’s features or functionality!
