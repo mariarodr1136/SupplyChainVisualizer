@@ -17,9 +17,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 <img width="1459" alt="Screenshot 2025-04-13 at 7 27 45 PM" src="https://github.com/user-attachments/assets/fdd400b2-4966-49f3-a4cb-e4109f0ff6c5" />
 <img width="1463" alt="Screenshot 2025-04-21 at 9 39 21 AM" src="https://github.com/user-attachments/assets/b4dc09c4-bc41-4d2c-b2e6-7b3256f897a1" />
 
-
 ---
-
 
 ### Table of Contents
 - [Features](#features)
@@ -54,6 +52,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - **Guest Mode**: Instant demo access with seeded data for tours and presentations
 
 ---
+
 <img width="1459" alt="Screenshot 2025-04-21 at 9 25 05 AM" src="https://github.com/user-attachments/assets/669736d9-dfa7-46b4-96c6-843adeac9c01" />
 
 ---
@@ -185,54 +184,16 @@ supply-chain-visualizer/
 
 ### 📊 Core Components
 
-#### Supply Chain Map
-The interactive map shows your supply chain network with:
-- Nodes representing facilities (factories, warehouses, stores)
-- Connections showing transportation routes
-- Color coding to indicate performance status
-
-#### Inventory Dashboard
-Track and manage inventory across your network:
-- Current stock levels by location
-- Historical inventory trends
-- Low stock alerts
-
-#### Shipment Tracker
-Monitor the movement of goods:
-- Active shipments with status indicators
-- Delivery timelines and delays
-- Historical shipment data
-
-#### Performance Metrics
-Measure the efficiency of your supply chain:
-- On-time delivery rates
-- Inventory turnover
-- Fulfillment times
-- Cost metrics
-
-#### Analytics Workspace
-Advanced analytics built for operations leaders:
-- SLA compliance by lane and facility
-- Cost trend rollups (transport vs. warehousing)
-- Lead‑time variance by segment
-
-#### Forecasting Suite
-Demand planning and inventory readiness:
-- Near‑term demand forecasts by SKU
-- Seasonality signals and market notes
-- Safety stock suggestions by location
-
-#### Live Alerts Feed
-Operational exceptions in a single stream:
-- Delay and disruption alerts
-- Inventory‑driven risk flags
-- Exception and escalation tracking
-
-#### Orders Hub
-Order execution visibility:
-- Purchase vs. sales order tracking
-- Status and value rollups
-- Lifecycle monitoring from approval to delivery
+| Component | What It Covers |
+|---|---|
+| **Supply Chain Map** | Facility nodes, transport connections, and performance status overlays |
+| **Inventory Dashboard** | Stock levels by location, thresholds, and low‑stock visibility |
+| **Shipment Tracker** | Active shipments, timelines, and delivery status |
+| **Performance Metrics** | On‑time delivery, turnover, fulfillment time, and cost KPIs |
+| **Analytics Workspace** | SLA compliance, cost trends, and lead‑time variance |
+| **Forecasting Suite** | Demand forecasts, seasonality signals, and safety stock guidance |
+| **Live Alerts Feed** | Exceptions, delays, and operational risk signals |
+| **Orders Hub** | Purchase/sales order lifecycle tracking |
 
 ---
 
