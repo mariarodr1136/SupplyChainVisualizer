@@ -87,6 +87,7 @@ const ShipmentDetailsModal = ({ show, onHide, shipment, onUpdateStatus }) => {
       centered
       backdrop="static"
       keyboard={false}
+      contentClassName="dark-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>Shipment Details - #{shipment.id}</Modal.Title>
