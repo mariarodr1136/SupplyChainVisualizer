@@ -1,5 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import { isGuestUser } from './guest-utils';
+import { guestDataApi } from '../data/guestData';
 
 const API_URL = (process.env.REACT_APP_API_URL || '') + '/api/products/';
 
@@ -23,6 +25,9 @@ const toApiProduct = (product) => ({
 
 class ProductService {
   getAllProducts() {
+    if (isGuestUser()) {
+      return Promise.resolve({ data: guestDataApi.getProducts() });
+    }
     return axios.get(API_URL, { headers: authHeader() }).then((res) => ({
       ...res,
       data: Array.isArray(res.data) ? res.data.map(fromApiProduct) : res.data
@@ -30,6 +35,9 @@ class ProductService {
   }
 
   getProductById(id) {
+    if (isGuestUser()) {
+      return Promise.resolve({ data: guestDataApi.getProductById(id) });
+    }
     return axios.get(API_URL + id, { headers: authHeader() }).then((res) => ({
       ...res,
       data: res.data ? fromApiProduct(res.data) : res.data
@@ -37,6 +45,9 @@ class ProductService {
   }
 
   createProduct(product) {
+    if (isGuestUser()) {
+      return Promise.resolve({ data: guestDataApi.createProduct(product) });
+    }
     return axios.post(API_URL, toApiProduct(product), { headers: authHeader() }).then((res) => ({
       ...res,
       data: res.data ? fromApiProduct(res.data) : res.data
@@ -44,6 +55,9 @@ class ProductService {
   }
 
   updateProduct(id, product) {
+    if (isGuestUser()) {
+      return Promise.resolve({ data: guestDataApi.updateProduct(id, product) });
+    }
     return axios.put(API_URL + id, toApiProduct(product), { headers: authHeader() }).then((res) => ({
       ...res,
       data: res.data ? fromApiProduct(res.data) : res.data
@@ -51,10 +65,18 @@ class ProductService {
   }
 
   deleteProduct(id) {
+    if (isGuestUser()) {
+      return Promise.resolve({ data: guestDataApi.deleteProduct(id) });
+    }
     return axios.delete(API_URL + id, { headers: authHeader() });
   }
 
   getProductsByStatus(status) {
+    if (isGuestUser()) {
+      return Promise.resolve({
+        data: guestDataApi.getProducts().filter((product) => product.status === status)
+      });
+    }
     return axios.get(API_URL + 'status/' + status, { headers: authHeader() }).then((res) => ({
       ...res,
       data: Array.isArray(res.data) ? res.data.map(fromApiProduct) : res.data
@@ -62,6 +84,11 @@ class ProductService {
   }
 
   getProductBySku(sku) {
+    if (isGuestUser()) {
+      return Promise.resolve({
+        data: guestDataApi.getProducts().find((product) => product.sku === sku) || null
+      });
+    }
     return axios.get(API_URL + 'sku/' + sku, { headers: authHeader() }).then((res) => ({
       ...res,
       data: res.data ? fromApiProduct(res.data) : res.data

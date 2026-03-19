@@ -154,6 +154,7 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
       backdrop="static"
       keyboard={false}
       size="lg"
+      contentClassName="dark-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>Create New Shipment</Modal.Title>
@@ -287,7 +288,7 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
           
           {formData.items.length === 0 ? (
             <div className="text-center text-muted my-4">
-              <p>No items added yet. Add at least one item to the shipment.</p>
+              <p className="text-white">No items added yet. Add at least one item to the shipment.</p>
             </div>
           ) : (
             <Table responsive bordered hover>

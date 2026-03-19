@@ -69,6 +69,7 @@ const ConnectionModal = ({ show, onHide, connection, nodes, onSave, isNew }) => 
       backdrop="static"
       keyboard={false}
       size="lg"
+      contentClassName="dark-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>{isNew ? 'Add New Connection' : 'Edit Connection'}</Modal.Title>

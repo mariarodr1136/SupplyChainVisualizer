@@ -17,8 +17,19 @@ class AuthService {
       });
   }
 
+  loginAsGuest() {
+    const guestUser = {
+      id: 'guest',
+      username: 'Guest',
+      isGuest: true
+    };
+    localStorage.setItem('user', JSON.stringify(guestUser));
+    return Promise.resolve(guestUser);
+  }
+
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
   }
 
   register(username, password) {
@@ -29,7 +40,11 @@ class AuthService {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
+    try {
+      return JSON.parse(localStorage.getItem('user'));
+    } catch (err) {
+      return null;
+    }
   }
 }
 

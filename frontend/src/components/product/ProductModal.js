@@ -55,6 +55,7 @@ const ProductModal = ({ show, onHide, product, onSave, isNew }) => {
       centered
       backdrop="static"
       keyboard={false}
+      contentClassName="dark-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>{isNew ? 'Add Product' : 'Edit Product'}</Modal.Title>

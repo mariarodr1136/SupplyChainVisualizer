@@ -174,7 +174,7 @@ const Connections = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className="connections-page">
       <PageHeader title="Network Connections" />
       
       <Row className="mb-4">
@@ -182,8 +182,8 @@ const Connections = () => {
           <Card>
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <div className="d-flex align-items-center">
-                  <Form.Group className="me-3">
+                <div className="d-flex align-items-center toolbar-filters">
+                  <Form.Group className="me-3 search-group">
                     <div className="position-relative">
                       <Form.Control
                         type="text"
@@ -224,11 +224,11 @@ const Connections = () => {
                   </Form.Group>
                 </div>
                 
-                <div>
-                  <Button variant="outline-secondary" className="me-2" onClick={loadConnectionsData}>
+                <div className="toolbar-actions">
+                  <Button variant="outline-secondary" size="sm" className="me-2" onClick={loadConnectionsData}>
                     <FaSyncAlt /> Refresh
                   </Button>
-                  <Button variant="primary" onClick={handleAddNew}>
+                  <Button variant="primary" size="sm" onClick={handleAddNew}>
                     <FaPlus /> Add Connection
                   </Button>
                 </div>

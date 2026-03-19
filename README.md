@@ -27,6 +27,8 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - [Installation](#getting-started)
 - [Project Structure](#project-structure)
 - [Core Components](#-core-components)
+- [Experience & UI](#-experience--ui)
+- [Demo & Guest Mode](#-demo--guest-mode)
 - [API Documentation](#-api-documentation)
 - [Deployment](#-deployment)
 - [Development](#-development)
@@ -44,6 +46,12 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - **Performance Metrics**: View key performance indicators for your supply chain
 - **Data Management**: Add and update supply chain nodes, connections, and inventory data
 - **Basic Optimization**: Get suggestions for improving your supply chain efficiency
+- **Analytics Workspace**: KPIs, cost trends, SLA performance, and lead‑time variance
+- **Forecasting Suite**: Demand forecasts, seasonality signals, and safety stock guidance
+- **Live Alerts Feed**: Exceptions, delays, low stock, and route issues in one stream
+- **Orders Hub**: Purchase/sales order lifecycle visibility
+- **Network Connections**: Dedicated view to manage and analyze transport links
+- **Guest Mode**: Instant demo access with seeded data for tours and presentations
 
 ---
 <img width="1459" alt="Screenshot 2025-04-21 at 9 25 05 AM" src="https://github.com/user-attachments/assets/669736d9-dfa7-46b4-96c6-843adeac9c01" />
@@ -201,6 +209,50 @@ Measure the efficiency of your supply chain:
 - Inventory turnover
 - Fulfillment times
 - Cost metrics
+
+#### Analytics Workspace
+Advanced analytics built for operations leaders:
+- SLA compliance by lane and facility
+- Cost trend rollups (transport vs. warehousing)
+- Lead‑time variance by segment
+
+#### Forecasting Suite
+Demand planning and inventory readiness:
+- Near‑term demand forecasts by SKU
+- Seasonality signals and market notes
+- Safety stock suggestions by location
+
+#### Live Alerts Feed
+Operational exceptions in a single stream:
+- Delay and disruption alerts
+- Inventory‑driven risk flags
+- Exception and escalation tracking
+
+#### Orders Hub
+Order execution visibility:
+- Purchase vs. sales order tracking
+- Status and value rollups
+- Lifecycle monitoring from approval to delivery
+
+---
+
+### 🧭 Experience & UI
+
+- **Dark‑mode dashboard styling** for long‑session readability
+- **Sticky header + guest banner** to keep session context visible
+- **Consistent toolbar layout** with balanced spacing and sizing
+- **Dark modals & popups** for uniform contrast in overlays
+- **Dark map tiles** with tuned contrast for clearer geospatial focus
+
+---
+
+### 🧪 Demo & Guest Mode
+
+For demos and stakeholder walkthroughs, the app supports a **Guest Mode**:
+- **One‑click guest access** (no credentials required)
+- **Static in‑memory dataset** (nodes, products, inventory, shipments, connections)
+- **Safe experimentation**: changes are session‑scoped and reset on refresh
+- **Consistent visual narrative** for rapid project overviews
 
 ---
 

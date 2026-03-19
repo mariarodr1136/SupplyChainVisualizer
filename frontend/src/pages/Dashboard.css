@@ -8,7 +8,29 @@
     transform: translateY(-5px);
   }
   
-  .dashboard-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
+.dashboard-icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.dashboard-section-title {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.dashboard-table thead th {
+  color: #cbd5e1;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-table {
+  background-color: transparent;
+}
+
+.dashboard-table thead {
+  background-color: #141e31;
+}
+
+.dashboard-table tbody td {
+  color: #e2e8f0;
+}

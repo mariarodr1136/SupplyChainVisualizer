@@ -79,6 +79,14 @@ const NodeDetails = () => {
     setShowDeleteModal(true);
   };
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/nodes');
+    }
+  };
+
   const handleUpdateNode = async (updatedNode) => {
     try {
       await NodeService.updateNode(id, updatedNode);
@@ -217,7 +225,7 @@ const NodeDetails = () => {
           <Alert variant="warning">
             <Alert.Heading>Node Not Found</Alert.Heading>
             <p>The node you're looking for could not be found.</p>
-            <Button variant="outline-secondary" onClick={() => navigate('/nodes')}>
+            <Button variant="outline-secondary" onClick={handleBack}>
               Back to Nodes
             </Button>
           </Alert>
@@ -227,14 +235,14 @@ const NodeDetails = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className="node-details-page">
       <PageHeader title={node.name}>
         <Button 
           variant="outline-secondary" 
-          onClick={() => navigate('/nodes')}
+          onClick={handleBack}
           className="me-2"
         >
-          <FaArrowLeft /> Back to Nodes
+          <FaArrowLeft /> Back
         </Button>
         <Button 
           variant="outline-primary" 
@@ -394,11 +402,7 @@ const NodeDetails = () => {
                         <tbody>
                           {inventory.map(item => (
                             <tr key={item.id}>
-                              <td>
-                                <Link to={`/products/${item.productId}`}>
-                                  {item.productName}
-                                </Link>
-                              </td>
+                            <td>{item.productName}</td>
                               <td>{item.quantity}</td>
                               <td>{item.minThreshold || '-'}</td>
                               <td>{item.maxThreshold || '-'}</td>

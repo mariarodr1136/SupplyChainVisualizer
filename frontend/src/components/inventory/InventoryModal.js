@@ -70,6 +70,7 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
       centered
       backdrop="static"
       keyboard={false}
+      contentClassName="dark-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>{isNew ? 'Add Inventory' : 'Edit Inventory'}</Modal.Title>
@@ -136,7 +137,7 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
                   onChange={handleNumberChange}
                   placeholder="Optional"
                 />
-                <Form.Text className="text-muted">
+                <Form.Text className="text-white">
                   Triggers low stock alert when quantity falls below this value
                 </Form.Text>
               </Form.Group>
@@ -152,7 +153,7 @@ const InventoryModal = ({ show, onHide, inventoryItem, nodes, products, onSave, 
                   onChange={handleNumberChange}
                   placeholder="Optional"
                 />
-                <Form.Text className="text-muted">
+                <Form.Text className="text-white">
                   Triggers excess stock alert when quantity exceeds this value
                 </Form.Text>
               </Form.Group>

@@ -163,7 +163,7 @@ const Products = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className="products-page">
       <PageHeader title="Products">
         <div className="stats-summary">
           <div className="stat-item">

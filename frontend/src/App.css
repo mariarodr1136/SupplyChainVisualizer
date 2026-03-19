@@ -2,12 +2,35 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: #101827;
+    color: #e8eef8;
   }
   
-  .content-container {
-    display: flex;
-    flex: 1;
-  }
+.content-container {
+  display: flex;
+  flex: 1;
+}
+
+.guest-banner {
+  background: #6b4f00;
+  color: #e2e8f0;
+  border-bottom: 1px solid rgba(255, 214, 102, 0.4);
+  padding: 10px 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+}
+
   
   .main-content {
     flex: 1;
@@ -15,6 +38,7 @@
     transition: margin-left 0.3s;
     overflow-y: auto;
     margin-left: 250px;
+    background: #101827;
   }
   
   .main-content.sidebar-closed {
@@ -23,18 +47,156 @@
   
   .card {
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #182235;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
     margin-bottom: 20px;
   }
   
   .card-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
+    background-color: #141e31;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding: 15px 20px;
   }
   
   .card-body {
     padding: 20px;
+  }
+
+  .main-content h1,
+  .main-content h2,
+  .main-content h3,
+  .main-content .h3,
+  .main-content .h4 {
+    color: #e2e8f0;
+  }
+
+  .title-white {
+    color: #ffffff;
+  }
+
+  .sla-list,
+  .seasonality-list {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .seasonality-item {
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    text-align: center;
+  }
+
+  .seasonality-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .seasonality-month {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .seasonality-badge {
+    font-weight: 600;
+  }
+
+  .seasonality-note {
+    color: #ffffff;
+    font-size: 0.9rem;
+  }
+
+  .seasonality-list .text-muted {
+    color: #ffffff !important;
+  }
+
+  .table {
+    color: #e2e8f0;
+    background-color: transparent;
+  }
+
+  .table > :not(caption) > * > * {
+    background-color: transparent;
+  }
+
+  .table > :not(caption) > * > * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .table-hover > tbody > tr:hover > * {
+    background-color: rgba(148, 163, 184, 0.16);
+  }
+
+  .toolbar-filters {
+    gap: 6px;
+    padding: 6px 0;
+    margin-left: 8px;
+  }
+
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    margin-right: 12px;
+  }
+
+  .toolbar-action-btn {
+    min-width: 160px;
+    min-height: 38px;
+    justify-content: center;
+  }
+
+  .search-group .position-relative {
+    width: 100%;
+  }
+
+  .search-group .form-control {
+    padding-right: 2.25rem;
+    width: 100%;
+  }
+
+  .search-icon {
+    pointer-events: none;
+  }
+
+
+  .dark-modal {
+    background-color: #141e31;
+    color: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .dark-modal .modal-header,
+  .dark-modal .modal-footer {
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
+  .dark-modal .form-label,
+  .dark-modal .form-text,
+  .dark-modal .modal-title,
+  .dark-modal .table,
+  .dark-modal .table th,
+  .dark-modal .table td {
+    color: #ffffff;
+  }
+
+  .dark-modal .form-control,
+  .dark-modal .form-select {
+    background-color: #1f2937;
+    border-color: rgba(148, 163, 184, 0.3);
+    color: #ffffff;
+  }
+
+  .dark-modal .form-control::placeholder {
+    color: rgba(226, 232, 240, 0.65);
   }
   
   .btn-primary {

@@ -139,7 +139,7 @@ const Inventory = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className="inventory-page">
       <PageHeader title="Inventory Management" />
       
       <Row className="mb-4">
@@ -147,7 +147,7 @@ const Inventory = () => {
           <Card>
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center toolbar-filters">
                   <Form.Group className="me-3 search-group">
                     <div className="position-relative">
                       <Form.Control
@@ -190,11 +190,11 @@ const Inventory = () => {
                   </Form.Group>
                 </div>
                 
-                <div>
-                  <Button variant="outline-secondary" className="me-2" onClick={loadInventoryData}>
+                <div className="toolbar-actions">
+                  <Button variant="outline-secondary" size="sm" className="me-2 toolbar-action-btn" onClick={loadInventoryData}>
                     <FaSyncAlt /> Refresh
                   </Button>
-                  <Button variant="primary" onClick={handleAddNew}>
+                  <Button variant="primary" size="sm" className="toolbar-action-btn" onClick={handleAddNew}>
                     <FaPlus /> Add Inventory
                   </Button>
                 </div>
@@ -225,9 +225,7 @@ const Inventory = () => {
                             </Link>
                           </td>
                           <td>
-                            <Link to={`/products/${item.productId}`}>
-                              {item.productName}
-                            </Link>
+                            {item.productName}
                           </td>
                           <td>{item.quantity}</td>
                           <td>{item.minThreshold || '-'}</td>

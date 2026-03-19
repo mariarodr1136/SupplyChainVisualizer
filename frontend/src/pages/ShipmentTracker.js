@@ -179,7 +179,7 @@ const ShipmentTracker = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className="shipment-tracker-page">
       <PageHeader title="Shipment Tracker" />
       
       <Row className="mb-4">
@@ -187,7 +187,7 @@ const ShipmentTracker = () => {
           <Card>
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center toolbar-filters">
                   <Form.Group className="me-3 search-group">
                     <div className="position-relative">
                       <Form.Control
@@ -215,11 +215,11 @@ const ShipmentTracker = () => {
                   </Form.Group>
                 </div>
                 
-                <div>
-                  <Button variant="outline-secondary" className="me-2" onClick={loadShipmentData}>
+                <div className="toolbar-actions">
+                  <Button variant="outline-secondary" size="sm" className="me-2 toolbar-action-btn" onClick={loadShipmentData}>
                     <FaSyncAlt /> Refresh
                   </Button>
-                  <Button variant="primary" onClick={handleAddNew}>
+                  <Button variant="primary" size="sm" className="toolbar-action-btn" onClick={handleAddNew}>
                     <FaPlus /> New Shipment
                   </Button>
                 </div>

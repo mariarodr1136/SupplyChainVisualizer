@@ -13,6 +13,10 @@
   z-index: 1;
 }
 
+.map-tiles-light .leaflet-tile {
+  filter: brightness(1.15) contrast(0.95);
+}
+
 /* Fix for marker icons */
 .leaflet-marker-icon {
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
@@ -22,15 +26,29 @@
 .leaflet-popup-content {
   margin: 10px 10px;
   line-height: 1.4;
+  color: #ffffff;
 }
 
 .leaflet-popup-content h6 {
   margin-top: 0;
   margin-bottom: 8px;
+  color: #ffffff;
 }
 
 .leaflet-popup-content p {
   margin: 0 0 5px 0;
+  color: #ffffff;
+}
+
+.leaflet-popup-content a {
+  color: #93c5fd;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #141e31;
+  color: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 /* Make sure the map takes up full height */

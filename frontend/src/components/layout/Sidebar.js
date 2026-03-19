@@ -8,7 +8,11 @@ import {
   FaTruck, 
   FaNetworkWired,
   FaLink,
-  FaShoppingCart
+  FaShoppingCart,
+  FaChartLine,
+  FaChartBar,
+  FaBell,
+  FaClipboardList
 } from 'react-icons/fa';
 import './Sidebar.css';
 
@@ -21,18 +25,19 @@ const Sidebar = ({ isOpen }) => {
   const menuItems = [
     { path: '/', name: 'Dashboard', icon: <FaHome /> },
     { path: '/map', name: 'Supply Chain Map', icon: <FaMapMarkedAlt /> },
+    { path: '/analytics', name: 'Analytics', icon: <FaChartLine /> },
+    { path: '/forecasting', name: 'Forecasting', icon: <FaChartBar /> },
+    { path: '/alerts', name: 'Live Alerts', icon: <FaBell /> },
+    { path: '/orders', name: 'Orders', icon: <FaClipboardList /> },
     { path: '/inventory', name: 'Inventory', icon: <FaBoxes /> },
     { path: '/shipments', name: 'Shipment Tracker', icon: <FaTruck /> },
     { path: '/nodes', name: 'Nodes', icon: <FaNetworkWired />, admin: true },
-    { path: '/connections', name: 'Connections', icon: <FaLink />, admin: true },
+    { path: '/connections', name: 'Network Connections', icon: <FaLink /> },
     { path: '/products', name: 'Products', icon: <FaShoppingCart />, admin: true }
   ];
 
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-      <div className="sidebar-header">
-        <h3>Menu</h3>
-      </div>
       <div className="sidebar-menu">
         <ul>
           {menuItems.map((item) => (

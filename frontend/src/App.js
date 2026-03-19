@@ -13,6 +13,10 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import SupplyChainMap from './pages/SupplyChainMap';
+import Analytics from './pages/Analytics';
+import Forecasting from './pages/Forecasting';
+import LiveAlerts from './pages/LiveAlerts';
+import Orders from './pages/Orders';
 import Inventory from './pages/Inventory';
 import ShipmentTracker from './pages/ShipmentTracker';
 import Nodes from './pages/Nodes';
@@ -53,9 +57,18 @@ function App() {
               <div className="content-container">
                 <Sidebar isOpen={sidebarOpen} />
                 <main className={`main-content ${sidebarOpen ? '' : 'sidebar-closed'}`}>
+                  {currentUser?.isGuest && (
+                    <div className="guest-banner" role="status">
+                      Guest Mode
+                    </div>
+                  )}
                   <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/map" element={<SupplyChainMap />} />
+                    <Route path="/analytics" element={<Analytics />} />
+                    <Route path="/forecasting" element={<Forecasting />} />
+                    <Route path="/alerts" element={<LiveAlerts />} />
+                    <Route path="/orders" element={<Orders />} />
                     <Route path="/inventory" element={<Inventory />} />
                     <Route path="/shipments" element={<ShipmentTracker />} />
                     <Route path="/nodes" element={<Nodes />} />

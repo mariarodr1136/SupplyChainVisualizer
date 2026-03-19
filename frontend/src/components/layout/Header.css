@@ -3,6 +3,10 @@
   padding: 0 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  background: linear-gradient(90deg, #0f172a 0%, #111827 60%, #0b1220 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: sticky;
+  top: 0;
 }
 
 .sidebar-toggle {
@@ -12,4 +16,14 @@
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0 15px 0 0;
+}
+
+.header .navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.header .nav-link,
+.header .dropdown-toggle {
+  color: #e2e8f0 !important;
 }

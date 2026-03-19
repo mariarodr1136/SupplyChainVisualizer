@@ -43,6 +43,28 @@ const Login = () => {
       });
   };
 
+  const handleGuestLogin = () => {
+    setMessage('');
+    setLoading(true);
+
+    AuthService.loginAsGuest()
+      .then((data) => {
+        setCurrentUser(data);
+        navigate('/');
+      })
+      .catch((error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setLoading(false);
+        setMessage(resMessage);
+      });
+  };
+
   return (
     <div className="auth-wrapper">
       <Container>
@@ -93,6 +115,18 @@ const Login = () => {
                         className="sign-in-button"
                       >
                         {loading ? 'Loading...' : 'Sign In'}
+                      </Button>
+                    </div>
+
+                    <div className="button-spacing guest-button-wrap">
+                      <Button
+                        variant="outline-secondary"
+                        className="guest-button"
+                        onClick={handleGuestLogin}
+                        disabled={loading}
+                        type="button"
+                      >
+                        Continue as Guest
                       </Button>
                     </div>
 

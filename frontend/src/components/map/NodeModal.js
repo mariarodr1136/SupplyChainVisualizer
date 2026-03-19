@@ -58,6 +58,7 @@ const NodeModal = ({ show, onHide, node, onSave, isNew }) => {
       backdrop="static"
       keyboard={false}
       size="lg"
+      contentClassName="dark-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>{isNew ? 'Add New Node' : 'Edit Node'}</Modal.Title>
@@ -102,7 +103,7 @@ const NodeModal = ({ show, onHide, node, onSave, isNew }) => {
                   onChange={handleNumberChange}
                   required
                 />
-                <Form.Text className="text-muted">
+                <Form.Text className="text-white">
                   Between -90 and 90
                 </Form.Text>
               </Form.Group>
@@ -118,7 +119,7 @@ const NodeModal = ({ show, onHide, node, onSave, isNew }) => {
                   onChange={handleNumberChange}
                   required
                 />
-                <Form.Text className="text-muted">
+                <Form.Text className="text-white">
                   Between -180 and 180
                 </Form.Text>
               </Form.Group>

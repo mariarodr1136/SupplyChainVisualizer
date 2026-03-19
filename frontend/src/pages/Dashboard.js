@@ -33,6 +33,10 @@ ChartJS.register(
   Legend
 );
 
+// Global chart styling for dark theme
+ChartJS.defaults.color = '#e2e8f0';
+ChartJS.defaults.borderColor = 'rgba(148, 163, 184, 0.2)';
+
 const Dashboard = () => {
   const [nodes, setNodes] = useState([]);
   const [shipments, setShipments] = useState([]);
@@ -78,20 +82,44 @@ const Dashboard = () => {
         label: 'Shipment Status',
         data: [pendingShipments, inTransitShipments, deliveredShipments, delayedShipments],
         backgroundColor: [
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
+          'rgba(250, 204, 21, 0.55)',
+          'rgba(59, 130, 246, 0.55)',
+          'rgba(34, 197, 94, 0.55)',
+          'rgba(248, 113, 113, 0.55)',
         ],
         borderColor: [
-          'rgba(255, 206, 86, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(255, 99, 132, 1)',
+          'rgba(250, 204, 21, 0.95)',
+          'rgba(59, 130, 246, 0.95)',
+          'rgba(34, 197, 94, 0.95)',
+          'rgba(248, 113, 113, 0.95)',
         ],
         borderWidth: 1,
       },
     ],
+  };
+
+  const chartTextColor = '#e2e8f0';
+  const chartGridColor = 'rgba(148, 163, 184, 0.2)';
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          color: chartTextColor
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color: chartTextColor },
+        grid: { color: chartGridColor }
+      },
+      y: {
+        ticks: { color: chartTextColor },
+        grid: { color: chartGridColor }
+      }
+    }
   };
 
   // Mock data for shipment trends - in a real app, you would get this from the API
@@ -102,7 +130,9 @@ const Dashboard = () => {
         label: 'Shipments',
         data: [65, 78, 90, 85, 95, 110],
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(147, 197, 253)',
+        pointBackgroundColor: 'rgb(147, 197, 253)',
+        pointBorderColor: 'rgb(15, 23, 42)',
         tension: 0.1,
       },
     ],
@@ -180,20 +210,20 @@ const Dashboard = () => {
         <Col lg={6} className="mb-4 mb-lg-0">
           <Card>
             <Card.Header>
-              <h5 className="m-0">Shipment Status</h5>
+              <h5 className="m-0 dashboard-section-title">Shipment Status</h5>
             </Card.Header>
             <Card.Body>
-              <Bar data={shipmentStatusData} options={{ responsive: true }} />
+              <Bar data={shipmentStatusData} options={chartOptions} />
             </Card.Body>
           </Card>
         </Col>
         <Col lg={6}>
           <Card>
             <Card.Header>
-              <h5 className="m-0">Shipment Trends (Last 6 Months)</h5>
+              <h5 className="m-0 dashboard-section-title">Shipment Trends (Last 6 Months)</h5>
             </Card.Header>
             <Card.Body>
-              <Line data={shipmentTrendsData} options={{ responsive: true }} />
+              <Line data={shipmentTrendsData} options={chartOptions} />
             </Card.Body>
           </Card>
         </Col>
@@ -204,7 +234,7 @@ const Dashboard = () => {
         <Col>
           <Card>
             <Card.Header className="d-flex justify-content-between align-items-center">
-              <h5 className="m-0">Low Stock Alerts</h5>
+              <h5 className="m-0 dashboard-section-title">Low Stock Alerts</h5>
               <Link to="/inventory" className="btn btn-sm btn-primary">View All</Link>
             </Card.Header>
             <Card.Body>
@@ -212,7 +242,7 @@ const Dashboard = () => {
                 <p className="text-center text-muted">No low stock alerts</p>
               ) : (
                 <div className="table-responsive">
-                  <table className="table table-hover">
+                  <table className="table table-hover dashboard-table">
                     <thead>
                       <tr>
                         <th>Location</th>
