@@ -44,9 +44,9 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - **Performance Metrics**: View key performance indicators for your supply chain
 - **Data Management**: Add and update supply chain nodes, connections, and inventory data
 - **Basic Optimization**: Get suggestions for improving your supply chain efficiency
-- **Analytics Workspace**: KPIs, cost trends, SLA performance, and lead‑time variance
-- **Forecasting Suite**: Demand forecasts, seasonality signals, and safety stock guidance
-- **Live Alerts Feed**: Exceptions, delays, low stock, and route issues in one stream
+- **Analytics Workspace**: Real KPIs (on‑time rate, avg lead time, exception rate), SLA by lane, and lead‑time variance computed from live shipment data
+- **Forecasting Suite**: Demand forecasts and safety stock guidance sourced from real inventory levels; seasonality signals for upcoming months
+- **Live Alerts Feed**: Auto-refreshing feed (every 30 s) of delayed shipments and low-stock alerts pulled from live data
 - **Orders Hub**: Purchase/sales order lifecycle visibility
 - **Network Connections**: Dedicated view to manage and analyze transport links
 - **Guest Mode**: Instant demo access with seeded data for tours and presentations
@@ -172,7 +172,7 @@ supply-chain-visualizer/
 │   │   │   └── resources/
 │   │   │       ├── application-render.properties  # Production config
 │   │   │       └── data.sql                       # Seed data
-│   │   └── test/               # Test code
+│   │   └── test/               # Unit tests (ShipmentService, InventoryService)
 │   └── pom.xml                 # Maven dependencies
 │
 ├── render.yaml                 # Render Blueprint (IaC)
@@ -308,6 +308,7 @@ Authorization: Bearer <your_token_here>
 | **Products**         | POST   | `/api/products`                 | Create a new product               |
 |                      | GET    | `/api/products`                 | List all products                  |
 |                      | GET    | `/api/products/sku/:sku`        | Retrieve a product by SKU          |
+| **Analytics**        | GET    | `/api/analytics/summary`        | KPIs, SLA by lane, lead-time variance |
 
 ---
 
@@ -419,6 +420,35 @@ Authorization: Bearer <your_token_here>
 GET /api/products/sku/LT-X-001
 Authorization: Bearer <your_token_here>
 ```
+
+### 3.8 Get Analytics Summary
+
+```bash
+GET /api/analytics/summary
+Authorization: Bearer <your_token_here>
+```
+
+<details>
+<summary>Sample Response</summary>
+
+```json
+{
+  "onTimeDeliveryRate": 93.4,
+  "avgLeadTimeDays": 4.6,
+  "exceptionRate": 2.1,
+  "totalShipments": 48,
+  "deliveredShipments": 41,
+  "slaByLane": [
+    { "lane": "Pacific Components Factory → Central Warehouse", "slaRate": 96.0 },
+    { "lane": "Central Warehouse → Northeast DC", "slaRate": 88.0 }
+  ],
+  "leadTimeBySegment": [
+    { "segment": "Factory → Warehouse", "targetDays": 3.5, "actualDays": 4.1, "variance": "+0.6" }
+  ]
+}
+```
+
+</details>
 
 ---
 

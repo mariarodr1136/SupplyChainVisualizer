@@ -122,13 +122,26 @@ const Dashboard = () => {
     }
   };
 
-  // Mock data for shipment trends - in a real app, you would get this from the API
+  // Count shipments by departure month from real data
+  const now = new Date();
+  const monthlyShipmentCounts = recentMonths.map((_, i) => {
+    const offset = 5 - i;
+    const targetDate = new Date(now.getFullYear(), now.getMonth() - offset, 1);
+    const targetMonth = targetDate.getMonth();
+    const targetYear = targetDate.getFullYear();
+    return shipments.filter((s) => {
+      if (!s.departureDate) return false;
+      const d = new Date(s.departureDate);
+      return d.getMonth() === targetMonth && d.getFullYear() === targetYear;
+    }).length;
+  });
+
   const shipmentTrendsData = {
     labels: recentMonths,
     datasets: [
       {
         label: 'Shipments',
-        data: [65, 78, 90, 85, 95, 110],
+        data: monthlyShipmentCounts,
         fill: false,
         borderColor: 'rgb(147, 197, 253)',
         pointBackgroundColor: 'rgb(147, 197, 253)',

@@ -78,6 +78,10 @@ const Login = () => {
                     <p className="auth-subtitle">Sign in to your account</p>
                   </div>
 
+                  <Alert variant="info" className="mb-3 small">
+                    The backend is hosted on Render's free tier and may take 30–60 seconds to wake up after inactivity. If login is slow, please wait a moment and try again.
+                  </Alert>
+
                   <Form onSubmit={handleLogin}>
                     {message && (
                       <Alert variant="danger" className="mb-4">
