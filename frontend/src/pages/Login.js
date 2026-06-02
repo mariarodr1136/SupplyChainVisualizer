@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import { FaClock } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/auth.service';
@@ -78,9 +79,10 @@ const Login = () => {
                     <p className="auth-subtitle">Sign in to your account</p>
                   </div>
 
-                  <Alert variant="info" className="mb-3 small">
-                    The backend is hosted on Render's free tier and may take 30–60 seconds to wake up after inactivity. If login is slow, please wait a moment and try again.
-                  </Alert>
+                  <div className="render-notice">
+                    <FaClock className="render-notice-icon" />
+                    <span>Hosted on Render's free tier — first login after inactivity may take 30–60 s to wake up.</span>
+                  </div>
 
                   <Form onSubmit={handleLogin}>
                     {message && (

@@ -92,6 +92,27 @@
   color: #32155a;
 }
 
+.render-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  background-color: #f5f3fb;
+  border-left: 3px solid #9b7fd4;
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-bottom: 24px;
+  color: #6b6b80;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.render-notice-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #9b7fd4;
+  font-size: 0.7rem;
+}
+
 @media (max-width: 768px) {
   .login-content {
     padding: 25px;
