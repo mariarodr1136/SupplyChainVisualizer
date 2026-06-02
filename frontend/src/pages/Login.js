@@ -81,7 +81,7 @@ const Login = () => {
 
                   <div className="render-notice">
                     <FaClock className="render-notice-icon" />
-                    <span>Hosted on Render's free tier —<br />first login after inactivity may take 30–60 s to wake up.</span>
+                    <span>Hosted on Render's free tier<br />First login after inactivity may take 30–60s to wake up.</span>
                   </div>
 
                   <Form onSubmit={handleLogin}>

@@ -94,23 +94,24 @@
 
 .render-notice {
   display: flex;
-  align-items: flex-start;
-  gap: 7px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   background-color: #f5f3fb;
   border-left: 3px solid #9b7fd4;
   border-radius: 4px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   margin-bottom: 24px;
   color: #6b6b80;
   font-size: 0.75rem;
   line-height: 1.4;
+  text-align: center;
 }
 
 .render-notice-icon {
-  flex-shrink: 0;
-  margin-top: 2px;
   color: #9b7fd4;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 768px) {
