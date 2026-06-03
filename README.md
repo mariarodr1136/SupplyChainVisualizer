@@ -16,8 +16,10 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1460" height="703" alt="Screenshot 2026-03-19 at 6 36 29 PM" src="https://github.com/user-attachments/assets/8e3f5d3e-67f0-4033-a2d9-e21eac48858e" />
-<img width="1456" height="700" alt="Screenshot 2026-03-19 at 6 48 51 PM" src="https://github.com/user-attachments/assets/fd8d68d1-3ab1-4f21-8f7d-1ad7332a581d" />
+<img width="1459" height="786" alt="Screenshot 2026-06-03 at 9 53 33 AM" src="https://github.com/user-attachments/assets/c73dfbe7-3d19-4c25-93bd-8d6c58563fc8" />
+
+
+<img width="1456" height="751" alt="Screenshot 2026-06-03 at 9 53 44 AM" src="https://github.com/user-attachments/assets/227d2e41-e306-4504-9110-9b98166a0fae" />
 
 ---
 
@@ -53,7 +55,8 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1449" height="776" alt="Screenshot 2026-03-19 at 6 37 20 PM" src="https://github.com/user-attachments/assets/f9efc70f-810b-4ba1-b5a4-50eb39f00fcf" />
+<img width="1466" height="788" alt="Screenshot 2026-06-03 at 9 54 07 AM" src="https://github.com/user-attachments/assets/63fdd112-2cdc-4fe9-a30f-d15551eccc2e" />
+
 
 ---
 
@@ -139,7 +142,11 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-https://github.com/user-attachments/assets/d026daa0-4a84-47b3-aeba-5d84c75e36e6
+
+
+https://github.com/user-attachments/assets/75fe4c3f-4d84-4bfe-89da-3f9094dc6dcc
+
+
 
 ---
 
@@ -217,11 +224,13 @@ For demos and stakeholder walkthroughs, the app supports a **Guest Mode**:
 
 ---
 
-<img width="1450" height="789" alt="Screenshot 2026-03-19 at 6 39 07 PM" src="https://github.com/user-attachments/assets/9a80d1ea-7ef1-4194-8e85-ee776b112305" />
+<img width="1464" height="794" alt="Screenshot 2026-06-03 at 9 54 17 AM" src="https://github.com/user-attachments/assets/cb21b1b8-7596-4c20-aa90-d77d3fe7f520" />
+
 
 ---
 
-<img width="1452" height="547" alt="Screenshot 2026-03-19 at 6 37 36 PM" src="https://github.com/user-attachments/assets/2e1f5240-6c6e-48e8-89cf-c346e0ff5468" />
+<img width="1462" height="780" alt="Screenshot 2026-06-03 at 9 54 26 AM" src="https://github.com/user-attachments/assets/e2437b0a-b657-4fee-a132-d7d239703343" />
+
 
 ---
 
