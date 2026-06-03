@@ -1,50 +1,22 @@
 .search-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-  }
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
 
-.connections-page {
-    color: #e2e8f0;
-  }
-
-.connections-page .card,
-.connections-page .table,
-.connections-page .table th,
-.connections-page .table td {
-    color: #e2e8f0;
-  }
-
-.connections-page .form-control,
-.connections-page .form-select {
-    background-color: #1f2937;
-    border-color: rgba(148, 163, 184, 0.3);
-    color: #e2e8f0;
-  }
-
-.connections-page .form-control::placeholder {
-    color: rgba(226, 232, 240, 0.65);
-  }
-
-  .table th, .table td {
-    vertical-align: middle;
-  }
+.table th, .table td {
+  vertical-align: middle;
+}
 
 .connections-page .search-group {
-    min-width: 380px;
-  }
+  min-width: 380px;
+}
 
 .connections-page .toolbar-actions .btn {
-    min-width: 160px;
-    min-height: 38px;
-    justify-content: center;
-  }
-  
-  /* Status badge styles */
-  .badge {
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.35em 0.65em;
-  }
+  min-width: 160px;
+  min-height: 36px;
+  justify-content: center;
+}

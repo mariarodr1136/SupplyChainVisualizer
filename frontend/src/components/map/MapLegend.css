@@ -5,129 +5,95 @@
   width: 200px;
   max-width: 100%;
   z-index: 1000;
-  opacity: 0.9;
 }
-  
+
+.map-legend .card {
+  background: rgba(11, 17, 32, 0.92) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
 .map-legend .card-body {
-  padding: 0.75rem !important;
+  padding: 12px 14px !important;
 }
-  
+
 .legend-title {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
 }
-  
+
 .legend-items {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 7px;
 }
-  
+
 .legend-item {
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
-  color: #ffffff;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
 }
-  
+
 .legend-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.5rem;
-  font-size: 0.7rem;
+  margin-right: 8px;
+  font-size: 0.65rem;
+  flex-shrink: 0;
 }
-  
-.factory-icon {
-  background-color: #4dabf7;
-  color: white;
-}
-  
-.warehouse-icon {
-  background-color: #748ffc;
-  color: white;
-}
-  
-.store-icon {
-  background-color: #20c997;
-  color: white;
-}
-  
-.supplier-icon {
-  background-color: #ff922b;
-  color: white;
-}
-  
+
+.factory-icon { background: rgba(77, 171, 247, 0.2); color: #4dabf7; }
+.warehouse-icon { background: rgba(116, 143, 252, 0.2); color: #748ffc; }
+.store-icon { background: rgba(32, 201, 151, 0.2); color: #20c997; }
+.supplier-icon { background: rgba(255, 146, 43, 0.2); color: #ff922b; }
+
 .legend-color {
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  margin-right: 0.5rem;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
-  
-.risk-low,
-.performance-high {
-  background-color: #2ecc71;
-}
-  
-.risk-medium,
-.performance-medium {
-  background-color: #ffa502;
-}
-  
-.risk-high,
-.performance-low {
-  background-color: #ff6b6b;
-}
-  
+
+.risk-low, .performance-high { background-color: #34d399; }
+.risk-medium, .performance-medium { background-color: #fbbf24; }
+.risk-high, .performance-low { background-color: #f87171; }
+
 .legend-line {
   height: 3px;
-  width: 24px;
-  margin-right: 0.5rem;
+  width: 22px;
+  border-radius: 2px;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
-  
-.normal-line {
-  background-color: #3498db;
-}
-  
-.delayed-line {
-  background-color: #ff6b6b;
-}
-  
-.capacity-line {
-  background-color: #ffa502;
-}
-  
-.risk-low-line,
-.performance-high-line {
-  background-color: #2ecc71;
-}
-  
-.risk-medium-line,
-.performance-medium-line {
-  background-color: #ffa502;
-}
-  
-.risk-high-line,
-.performance-low-line {
-  background-color: #ff6b6b;
-}
-  
+
+.normal-line { background-color: #60a5fa; }
+.delayed-line { background-color: #f87171; }
+.capacity-line { background-color: #fbbf24; }
+.risk-low-line, .performance-high-line { background-color: #34d399; }
+.risk-medium-line, .performance-medium-line { background-color: #fbbf24; }
+.risk-high-line, .performance-low-line { background-color: #f87171; }
+
 .legend-divider {
   height: 1px;
-  background-color: #dee2e6;
-  margin: 0.5rem 0;
+  background: var(--border);
+  margin: 8px 0;
 }
 
 @media (max-width: 768px) {
   .map-legend {
     bottom: 10px;
     right: 10px;
-    width: 180px;
+    width: 170px;
   }
 }

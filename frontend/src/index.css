@@ -1,34 +1,65 @@
+:root {
+  --bg-deep: #07090f;
+  --bg-base: #0b0f1c;
+  --bg-card: #0f1628;
+  --bg-surface: #141e35;
+  --bg-elevated: #192340;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --border-muted: rgba(255, 255, 255, 0.04);
+  --border-accent: rgba(99, 102, 241, 0.35);
+
+  --text-primary: #e8eef8;
+  --text-secondary: #94a3b8;
+  --text-muted: #5a6a82;
+
+  --accent: #6366f1;
+  --accent-soft: #818cf8;
+  --accent-glow: rgba(99, 102, 241, 0.18);
+
+  --indigo-bg: rgba(99, 102, 241, 0.12);
+  --sky-bg: rgba(14, 165, 233, 0.12);
+  --emerald-bg: rgba(16, 185, 129, 0.12);
+  --rose-bg: rgba(239, 68, 68, 0.12);
+  --amber-bg: rgba(245, 158, 11, 0.12);
+
+  --indigo-text: #818cf8;
+  --sky-text: #38bdf8;
+  --emerald-text: #34d399;
+  --rose-text: #f87171;
+  --amber-text: #fbbf24;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.marker-cluster-small {
-  background-color: rgba(181, 226, 140, 0.6);
-}
-.marker-cluster-small div {
-  background-color: rgba(110, 204, 57, 0.6);
-}
-
-.marker-cluster-medium {
-  background-color: rgba(241, 211, 87, 0.6);
-}
-.marker-cluster-medium div {
-  background-color: rgba(240, 194, 12, 0.6);
-}
-
-.marker-cluster-large {
-  background-color: rgba(253, 156, 115, 0.6);
-}
-.marker-cluster-large div {
-  background-color: rgba(241, 128, 23, 0.6);
-}
+/* Map cluster markers */
+.marker-cluster-small { background-color: rgba(181, 226, 140, 0.6); }
+.marker-cluster-small div { background-color: rgba(110, 204, 57, 0.6); }
+.marker-cluster-medium { background-color: rgba(241, 211, 87, 0.6); }
+.marker-cluster-medium div { background-color: rgba(240, 194, 12, 0.6); }
+.marker-cluster-large { background-color: rgba(253, 156, 115, 0.6); }
+.marker-cluster-large div { background-color: rgba(241, 128, 23, 0.6); }

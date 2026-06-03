@@ -1,72 +1,38 @@
 .search-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-  }
-
-.inventory-page {
-    color: #e2e8f0;
-  }
-
-.inventory-page .form-label,
-.inventory-page .card,
-.inventory-page .table,
-.inventory-page .table th,
-.inventory-page .table td {
-    color: #e2e8f0;
-  }
-
-.inventory-page .form-control,
-.inventory-page .form-select {
-    background-color: #1f2937;
-    border-color: rgba(148, 163, 184, 0.3);
-    color: #e2e8f0;
-  }
-
-.inventory-page .form-control::placeholder {
-    color: rgba(226, 232, 240, 0.65);
-  }
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
 
 .search-group {
-    min-width: 200px;
-    width: 240px;
-    max-width: 240px;
-  }
+  min-width: 200px;
+  width: 240px;
+  max-width: 240px;
+}
 
 .inventory-page .toolbar-filters {
-    gap: 10px;
-  }
+  gap: 10px;
+}
 
 .inventory-page .toolbar-filters .form-select {
-    width: 160px;
+  width: 160px;
+}
+
+@media (min-width: 992px) {
+  .search-group {
+    min-width: 260px;
+    width: 300px;
+    max-width: 300px;
   }
 
-.inventory-page .toolbar-filters .me-3 {
-    margin-right: 8px !important;
+  .inventory-page .toolbar-filters .form-select {
+    width: 180px;
   }
+}
 
-  @media (min-width: 992px) {
-    .search-group {
-      min-width: 260px;
-      width: 300px;
-      max-width: 300px;
-    }
-
-    .inventory-page .toolbar-filters .form-select {
-      width: 180px;
-    }
-
-  }
-  
-  .table th, .table td {
-    vertical-align: middle;
-  }
-  
-  /* Status badge styles */
-  .badge {
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.35em 0.65em;
-  }
+.table th, .table td {
+  vertical-align: middle;
+}

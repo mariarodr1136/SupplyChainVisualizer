@@ -1,9 +1,9 @@
-.map-container { 
-  height: calc(100vh - 220px); 
-  min-height: 600px; 
-  width: 100%; 
-  border-radius: 4px; 
-  overflow: hidden; 
+.map-container {
+  height: calc(100vh - 220px);
+  min-height: 600px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
   position: relative;
 }
 
@@ -13,73 +13,61 @@
   z-index: 1;
 }
 
-.map-tiles-light .leaflet-tile {
-  filter: brightness(1.15) contrast(0.95);
-}
-
-/* Fix for marker icons */
 .leaflet-marker-icon {
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
 }
 
-/* Fix for popup content */
 .leaflet-popup-content {
-  margin: 10px 10px;
-  line-height: 1.4;
-  color: #ffffff;
+  margin: 12px;
+  line-height: 1.5;
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
 }
 
 .leaflet-popup-content h6 {
   margin-top: 0;
   margin-bottom: 8px;
-  color: #ffffff;
+  color: #f1f5f9;
+  font-weight: 700;
 }
 
 .leaflet-popup-content p {
   margin: 0 0 5px 0;
-  color: #ffffff;
+  color: #94a3b8;
 }
 
 .leaflet-popup-content a {
-  color: #93c5fd;
+  color: #818cf8;
 }
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: #141e31;
-  color: #ffffff;
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Make sure the map takes up full height */
+/* Map card body needs no padding */
 .card-body {
   padding: 0 !important;
 }
 
-/* Override for filter card body */
 .filters-card .card-body {
-  padding: 0.75rem !important;
+  padding: 12px 16px !important;
 }
 
-/* Fix for filters section */
 .filters-card {
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
 }
 
-/* Responsive adjustments */
 @media (max-height: 700px) {
-  .map-container {
-    height: 500px;
-  }
+  .map-container { height: 500px; }
 }
 
 @media (max-width: 768px) {
-  .map-container {
-    height: 400px;
-  }
-  
-  .filters-card .row [class*='col-'] {
-    margin-bottom: 10px;
-  }
+  .map-container { height: 400px; }
+  .filters-card .row [class*='col-'] { margin-bottom: 10px; }
 }

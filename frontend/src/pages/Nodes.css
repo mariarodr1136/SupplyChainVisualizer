@@ -1,18 +1,12 @@
 .search-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-  }
-  
-  .table th, .table td {
-    vertical-align: middle;
-  }
-  
-  /* Status badge styles */
-  .badge {
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.35em 0.65em;
-  }
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
