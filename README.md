@@ -31,6 +31,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - [Core Components](#-core-components)
 - [Experience & UI](#-experience--ui)
 - [Demo & Guest Mode](#-demo--guest-mode)
+- [Testing](#-testing)
 - [API Documentation](#-api-documentation)
 - [Deployment](#-deployment)
 - [Contributing](#contributing)
@@ -179,7 +180,7 @@ supply-chain-visualizer/
 │   │   │   └── resources/
 │   │   │       ├── application-render.properties  # Production config
 │   │   │       └── data.sql                       # Seed data
-│   │   └── test/               # Unit tests (ShipmentService, InventoryService)
+│   │   └── test/               # 57 unit tests: NodeService, ProductService, InventoryService, ShipmentService, AnalyticsService, JwtUtils
 │   └── pom.xml                 # Maven dependencies
 │
 ├── render.yaml                 # Render Blueprint (IaC)
@@ -231,6 +232,28 @@ For demos and stakeholder walkthroughs, the app supports a **Guest Mode**:
 
 <img width="1462" height="780" alt="Screenshot 2026-06-03 at 9 54 26 AM" src="https://github.com/user-attachments/assets/e2437b0a-b657-4fee-a132-d7d239703343" />
 
+
+---
+
+### 🧪 Testing
+
+The backend includes a suite of **57 unit tests** covering the core service and security layers, written with JUnit 5, Mockito, and AssertJ.
+
+| Test Class | Coverage |
+|---|---|
+| `NodeServiceImplTest` | CRUD ops, filter by type/status — 11 tests |
+| `ProductServiceImplTest` | CRUD ops, filter by status, lookup by SKU — 12 tests |
+| `InventoryServiceImplTest` | CRUD ops, status thresholds (critical/low/optimal/excess) — 11 tests |
+| `ShipmentServiceImplTest` | Status transitions, inventory adjustment on delivery — 8 tests |
+| `AnalyticsServiceImplTest` | On-time rate, exception rate, avg lead time, SLA by lane, lead-time variance — 8 tests |
+| `JwtUtilsTest` | Token generation, username extraction, validation (valid/expired/malformed) — 7 tests |
+
+Run the full suite from the backend directory:
+
+```bash
+cd backend/supply-chain-visualizer
+mvn test
+```
 
 ---
 
