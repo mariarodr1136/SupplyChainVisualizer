@@ -16,10 +16,10 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1459" height="786" alt="Screenshot 2026-06-03 at 9 53 33 AM" src="https://github.com/user-attachments/assets/c73dfbe7-3d19-4c25-93bd-8d6c58563fc8" />
+<img width="1463" height="795" alt="Screenshot 2026-06-07 at 6 59 41 PM" src="https://github.com/user-attachments/assets/56e43226-349a-4b63-beb0-7ea4042d6e72" />
 
 
-<img width="1456" height="751" alt="Screenshot 2026-06-03 at 9 53 44 AM" src="https://github.com/user-attachments/assets/227d2e41-e306-4504-9110-9b98166a0fae" />
+<img width="1443" height="797" alt="Screenshot 2026-06-07 at 6 59 52 PM" src="https://github.com/user-attachments/assets/84fbed23-68f9-4926-9204-72a8c7a9ffd4" />
 
 ---
 
@@ -56,7 +56,8 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1466" height="788" alt="Screenshot 2026-06-03 at 9 54 07 AM" src="https://github.com/user-attachments/assets/63fdd112-2cdc-4fe9-a30f-d15551eccc2e" />
+<img width="1466" height="798" alt="Screenshot 2026-06-07 at 7 10 26 PM" src="https://github.com/user-attachments/assets/7f1da841-e7a0-4538-a69f-1f21d780c05e" />
+
 
 
 ---
@@ -144,9 +145,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 ---
 
 
-
-https://github.com/user-attachments/assets/75fe4c3f-4d84-4bfe-89da-3f9094dc6dcc
-
+https://github.com/user-attachments/assets/7240b371-e1ee-4ecd-99e0-13f07537b5dc
 
 
 ---
@@ -225,12 +224,12 @@ For demos and stakeholder walkthroughs, the app supports a **Guest Mode**:
 
 ---
 
-<img width="1464" height="794" alt="Screenshot 2026-06-03 at 9 54 17 AM" src="https://github.com/user-attachments/assets/cb21b1b8-7596-4c20-aa90-d77d3fe7f520" />
+<img width="1467" height="800" alt="Screenshot 2026-06-07 at 7 10 37 PM" src="https://github.com/user-attachments/assets/060745eb-2ea0-4304-8c5a-7387b8caa765" />
 
 
 ---
 
-<img width="1462" height="780" alt="Screenshot 2026-06-03 at 9 54 26 AM" src="https://github.com/user-attachments/assets/e2437b0a-b657-4fee-a132-d7d239703343" />
+<img width="1457" height="799" alt="Screenshot 2026-06-07 at 7 10 51 PM" src="https://github.com/user-attachments/assets/50fd791e-e546-4090-99e3-1b92ca6bb61b" />
 
 
 ---
@@ -344,9 +343,6 @@ Authorization: Bearer <your_token_here>
 
 ---
 
-<img width="1457" height="731" alt="Screenshot 2026-03-19 at 6 37 50 PM" src="https://github.com/user-attachments/assets/3ca86f2e-9312-478f-9163-80fa74681f09" />
-
----
 
 ## 3. Sample Requests
 
