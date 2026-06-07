@@ -102,6 +102,16 @@ body, .navbar, .btn, .form-control, .form-select, .table, .card, input, select, 
   color: #e2e8f0 !important;
 }
 
+.table tbody a {
+  color: var(--text-primary) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.table tbody a:hover {
+  color: #ffffff !important;
+}
+
 .table thead th {
   color: #cbd5e1 !important;
   font-size: 0.72rem;

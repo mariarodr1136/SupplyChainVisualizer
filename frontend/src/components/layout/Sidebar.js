@@ -55,9 +55,14 @@ const Sidebar = ({ isOpen }) => {
   const { currentUser } = useContext(AuthContext);
 
   const isAdmin = currentUser?.roles?.includes('ROLE_ADMIN');
+  const initials = currentUser?.username
+    ? currentUser.username.slice(0, 2).toUpperCase()
+    : '??';
+  const roleLabel = isAdmin ? 'Admin' : currentUser?.isGuest ? 'Guest' : 'Member';
 
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+
       <nav className="sidebar-menu">
         {sections.map((section) => {
           const visibleItems = section.items.filter(item => !item.admin || isAdmin);
@@ -82,6 +87,15 @@ const Sidebar = ({ isOpen }) => {
           );
         })}
       </nav>
+      <div className="sidebar-footer">
+        <div className="sidebar-footer-user">
+          <div className="sidebar-footer-avatar">{initials}</div>
+          <div className="sidebar-footer-info">
+            <div className="sidebar-footer-name">{currentUser?.username}</div>
+            <div className="sidebar-footer-role">{roleLabel}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

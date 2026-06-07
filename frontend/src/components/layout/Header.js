@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaBars, FaSignOutAlt } from 'react-icons/fa';
 import { AuthContext } from '../../context/AuthContext';
+import logo from '../../assets/logo.png';
 import './Header.css';
 
 const Header = ({ toggleSidebar, logOut }) => {
@@ -18,8 +19,12 @@ const Header = ({ toggleSidebar, logOut }) => {
         <button className="sidebar-toggle" onClick={toggleSidebar} aria-label="Toggle sidebar">
           <FaBars />
         </button>
-        <Navbar.Brand as={Link} to="/">
-          Supply Chain Visualizer
+        <Navbar.Brand as={Link} to="/" className="header-brand">
+          <img src={logo} alt="Nexus logo" className="header-brand-logo" />
+          <div>
+            <span className="header-brand-name">Nexus</span>
+            <span className="header-brand-sub">Supply Chain Visualizer</span>
+          </div>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="header-nav" />
         <Navbar.Collapse id="header-nav" className="justify-content-end">

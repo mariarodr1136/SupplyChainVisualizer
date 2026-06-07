@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import AuthService from '../services/auth.service';
 import './Auth.css';
 
@@ -60,8 +61,9 @@ const Register = () => {
               <Card.Body>
                 <div className="login-content">
                   <div className="text-center header-spacing">
-                    <h2 className="auth-title">Supply Chain Visualizer</h2>
-                    <p className="auth-subtitle">Create a new account</p>
+                    <div className="auth-logo-mark"><img src={logo} alt="Nexus logo" /></div>
+                    <h2 className="auth-title">Nexus</h2>
+                    <p className="auth-brand-sub">Supply Chain Visualizer</p>
                   </div>
 
                   {message && (

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import { FaClock } from 'react-icons/fa';
+import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/auth.service';
@@ -75,8 +76,9 @@ const Login = () => {
               <Card.Body>
                 <div className="login-content">
                   <div className="text-center header-spacing">
-                    <h2 className="auth-title">Supply Chain Visualizer</h2>
-                    <p className="auth-subtitle">Sign in to your account</p>
+                    <div className="auth-logo-mark"><img src={logo} alt="Nexus logo" /></div>
+                    <h2 className="auth-title">Nexus</h2>
+                    <p className="auth-brand-sub">Supply Chain Visualizer</p>
                   </div>
 
                   <div className="render-notice">

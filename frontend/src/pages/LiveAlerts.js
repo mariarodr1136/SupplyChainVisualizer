@@ -87,7 +87,7 @@ const LiveAlerts = () => {
                 <FaExclamationTriangle className="me-2 text-danger" />
                 <h5 className="m-0 dashboard-section-title">Exceptions Feed</h5>
                 {lastUpdated && (
-                  <small className="text-muted ms-3">
+                  <small className="ms-3" style={{ color: 'var(--text-primary)' }}>
                     Updated {relativeTime(lastUpdated.toISOString())}
                   </small>
                 )}
