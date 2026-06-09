@@ -16,7 +16,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1468" height="797" alt="Screenshot 2026-06-09 at 6 05 15 PM" src="https://github.com/user-attachments/assets/63c00936-4f3f-411e-8aab-05a08de96d98" />
+<img width="1470" height="799" alt="Screenshot 2026-06-09 at 6 13 39 PM" src="https://github.com/user-attachments/assets/1ee78067-cec2-4d67-b49f-5d3b5b41ca57" />
 
 
 <img width="1470" height="803" alt="Screenshot 2026-06-09 at 6 05 25 PM" src="https://github.com/user-attachments/assets/b2651c2a-eca2-4e13-a804-cb42a972c756" />
