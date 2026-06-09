@@ -144,7 +144,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-https://github.com/user-attachments/assets/e5d8af77-6da9-4bec-b573-b7fafea53042
+https://github.com/user-attachments/assets/159df350-ea89-4768-91db-ce4e89663928
 
 ---
 
