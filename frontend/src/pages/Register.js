@@ -62,8 +62,6 @@ const Register = () => {
                 <div className="login-content">
                   <div className="text-center header-spacing">
                     <div className="auth-logo-mark"><img src={logo} alt="Nexus logo" /></div>
-                    <h2 className="auth-title">Nexus</h2>
-                    <p className="auth-brand-sub">Supply Chain Visualizer</p>
                   </div>
 
                   {message && (

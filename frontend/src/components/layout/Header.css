@@ -42,10 +42,12 @@
 }
 
 .header-brand-logo {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
   flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .header-brand > div {
