@@ -1,46 +1,38 @@
-.dashboard-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
-  height: 100%;
-}
-
-.dashboard-card:hover {
-  transform: translateY(-3px);
-}
-
 .dashboard-section-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .dashboard-table {
   background-color: transparent !important;
 }
 
-.dashboard-table thead {
-  background-color: transparent;
-}
-
 .dashboard-table thead th {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted) !important;
-  border-bottom-color: var(--border) !important;
+  border-bottom-color: rgba(255,255,255,0.05) !important;
   padding: 10px 16px;
 }
 
 .dashboard-table tbody td {
-  color: var(--text-primary) !important;
-  padding: 12px 16px;
-  font-size: 0.85rem;
+  color: #dde5f5 !important;
+  padding: 13px 16px;
+  font-size: 0.83rem;
 }
 
 .dashboard-table tbody tr {
-  border-color: var(--border) !important;
+  border-color: rgba(255,255,255,0.04) !important;
+  transition: background var(--transition-fast);
+}
+
+.dashboard-table tbody tr:hover td {
+  background: rgba(99, 102, 241, 0.05) !important;
 }
 
 .dashboard-table tbody tr:last-child td {

@@ -1,16 +1,18 @@
 .sidebar {
   width: 240px;
-  background: var(--bg-deep);
-  height: calc(100vh - 64px);
+  background: rgba(4, 6, 16, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  height: calc(100vh - 60px);
   color: var(--text-primary);
-  transition: width 0.3s ease, transform 0.3s ease;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   position: fixed;
-  top: 64px;
+  top: 60px;
   left: 0;
   bottom: 0;
   z-index: 900;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
 }
@@ -19,53 +21,20 @@
   transform: translateX(-240px);
 }
 
-/* ── Project name header ── */
-
-.sidebar-project-header {
-  flex-shrink: 0;
-  padding: 14px 16px 13px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.sidebar-project-name {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-}
-
-.sidebar-project-label {
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.01em;
-}
-
 /* ── Scrollable nav area ── */
 
 .sidebar-menu {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 10px 10px 16px;
+  padding: 12px 10px 16px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
 }
 
-.sidebar-menu::-webkit-scrollbar {
-  width: 3px;
-}
-.sidebar-menu::-webkit-scrollbar-track {
-  background: transparent;
-}
-.sidebar-menu::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 4px;
-}
+.sidebar-menu::-webkit-scrollbar { width: 2px; }
+.sidebar-menu::-webkit-scrollbar-track { background: transparent; }
+.sidebar-menu::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 4px; }
 
 .sidebar-menu ul {
   list-style: none;
@@ -76,12 +45,12 @@
 /* ── Section labels ── */
 
 .sidebar-section-label {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 20px 12px 6px;
+  padding: 20px 12px 5px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -91,11 +60,15 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--border);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 1px;
 }
 
 /* ── Nav items ── */
+
+.sidebar-menu li {
+  position: relative;
+}
 
 .sidebar-menu li a {
   display: flex;
@@ -107,11 +80,27 @@
   margin: 1px 0;
   gap: 10px;
   font-weight: 500;
-  font-size: 0.84rem;
+  font-size: 0.83rem;
   letter-spacing: 0.01em;
   border: 1px solid transparent;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+  transition: background var(--transition-fast), color var(--transition-fast), transform 0.12s ease;
   position: relative;
+}
+
+.sidebar-menu li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 60%;
+  background: linear-gradient(180deg, #818cf8, #6366f1);
+  border-radius: 0 3px 3px 0;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+  opacity: 0;
+  margin-left: -10px;
+  border-radius: 3px;
 }
 
 .sidebar-menu li a:hover {
@@ -121,37 +110,40 @@
 }
 
 .sidebar-menu li a.active {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0.07) 100%);
-  border-color: rgba(99, 102, 241, 0.22);
-  color: #a5b4fc !important;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14) 0%, rgba(99, 102, 241, 0.06) 100%);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: var(--accent-bright) !important;
   font-weight: 600;
-  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.1);
+}
+
+.sidebar-menu li a.active::before {
+  transform: translateY(-50%) scaleY(1);
+  opacity: 1;
 }
 
 .sidebar-menu li a svg {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   flex-shrink: 0;
-  opacity: 0.7;
-  transition: opacity 0.15s, color 0.15s, filter 0.15s;
+  opacity: 0.55;
+  transition: opacity var(--transition-fast), color var(--transition-fast), filter var(--transition-fast);
 }
 
 .sidebar-menu li a:hover svg {
-  opacity: 1;
+  opacity: 0.85;
 }
 
 .sidebar-menu li a.active svg {
   opacity: 1;
   color: #818cf8;
-  filter: drop-shadow(0 0 5px rgba(129, 140, 248, 0.5));
+  filter: drop-shadow(0 0 6px rgba(129, 140, 248, 0.55));
 }
 
 /* ── User footer ── */
 
 .sidebar-footer {
   flex-shrink: 0;
-  padding: 10px;
-  border-top: 1px solid var(--border);
-  background: rgba(7, 9, 15, 0.6);
+  padding: 8px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .sidebar-footer-user {
@@ -159,14 +151,15 @@
   align-items: center;
   gap: 9px;
   padding: 8px 10px;
-  border-radius: 9px;
+  border-radius: 10px;
   border: 1px solid transparent;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  cursor: default;
 }
 
 .sidebar-footer-user:hover {
   background: rgba(255, 255, 255, 0.04);
-  border-color: var(--border);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .sidebar-footer-avatar {
@@ -177,11 +170,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-size: 0.63rem;
+  font-weight: 800;
   color: white;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
 }
 
 .sidebar-footer-info {
@@ -190,7 +183,7 @@
 }
 
 .sidebar-footer-name {
-  font-size: 0.78rem;
+  font-size: 0.77rem;
   font-weight: 600;
   color: var(--text-primary);
   white-space: nowrap;
@@ -200,9 +193,9 @@
 }
 
 .sidebar-footer-role {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   line-height: 1.3;
 }
