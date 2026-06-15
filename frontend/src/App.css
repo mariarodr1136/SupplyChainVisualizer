@@ -21,13 +21,13 @@ body, .navbar, .btn, .form-control, .form-select, .table, .card, input, select, 
 .content-container {
   display: flex;
   flex: 1;
+  padding-top: 60px;
 }
 
 .main-content {
   flex: 1;
   padding: 28px 32px;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
   margin-left: 240px;
   background: transparent;
   min-height: calc(100vh - 60px);
