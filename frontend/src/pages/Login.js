@@ -69,6 +69,11 @@ const Login = () => {
 
   return (
     <div className="auth-wrapper">
+      <div className="auth-back-nav">
+        <Link to="/" className="auth-back-link">
+          ← Back
+        </Link>
+      </div>
       <Container>
         <Row className="justify-content-center">
           <Col md={6} lg={5}>

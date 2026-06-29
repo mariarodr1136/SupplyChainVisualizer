@@ -1,5 +1,5 @@
 {
-    "name": "supply-chain-visualizer",
+    "name": "nexus",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

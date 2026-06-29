@@ -1,9 +1,38 @@
+.auth-back-nav {
+  position: fixed;
+  top: 20px;
+  left: 28px;
+  z-index: 10;
+}
+
+.auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.auth-back-link:hover {
+  color: var(--text-primary) !important;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
 .auth-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 32px 16px 32px 96px;
+  padding: 32px 16px;
   background:
     radial-gradient(ellipse 90% 70% at 50% -10%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
     radial-gradient(ellipse 60% 40% at 85% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
