@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   FaGlobeAmericas,
   FaExclamationTriangle,
@@ -11,8 +11,6 @@ import {
   FaCheckCircle,
 } from 'react-icons/fa';
 import logo from '../assets/logo.png';
-import { AuthContext } from '../context/AuthContext';
-import AuthService from '../services/auth.service';
 import HeroMap from '../components/common/HeroMap';
 import './LandingPage.css';
 
@@ -81,20 +79,6 @@ const STATS = [
 ];
 
 export default function LandingPage() {
-  const [guestLoading, setGuestLoading] = useState(false);
-  const { setCurrentUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleGuest = () => {
-    setGuestLoading(true);
-    AuthService.loginAsGuest()
-      .then((data) => {
-        setCurrentUser(data);
-        navigate('/');
-      })
-      .catch(() => setGuestLoading(false));
-  };
-
   return (
     <div className="landing-wrapper">
       {/* ── Navbar ── */}
