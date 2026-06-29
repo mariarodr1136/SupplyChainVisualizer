@@ -16,33 +16,10 @@ const FEATURES = [
 ];
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading]   = useState(false);
-  const [message, setMessage]   = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
   const { setCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setMessage('');
-    setLoading(true);
-
-    if (!username || !password) {
-      setMessage('Username and password are required');
-      setLoading(false);
-      return;
-    }
-
-    AuthService.login(username, password)
-      .then((data) => { setCurrentUser(data); navigate('/'); })
-      .catch((error) => {
-        setLoading(false);
-        setMessage(
-          (error.response?.data?.message) || error.message || error.toString()
-        );
-      });
-  };
 
   const handleGuestLogin = () => {
     setMessage('');
@@ -111,22 +88,22 @@ const Login = () => {
             </span>
           </div>
 
-          <Form onSubmit={handleLogin} className="login-form">
+          <Form className="login-form">
             {message && (
               <Alert variant="danger" className="mb-4">
                 {message}
               </Alert>
             )}
 
+            <p className="lf-demo-hint">Pre-filled demo credentials — no changes needed</p>
+
             <Form.Group className="lf-group">
               <Form.Label className="lf-label">Username</Form.Label>
               <Form.Control
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                className="lf-input"
-                autoComplete="username"
+                value="guest"
+                readOnly
+                className="lf-input lf-input--locked"
               />
             </Form.Group>
 
@@ -134,37 +111,20 @@ const Login = () => {
               <Form.Label className="lf-label">Password</Form.Label>
               <Form.Control
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="lf-input"
-                autoComplete="current-password"
+                value="guest"
+                readOnly
+                className="lf-input lf-input--locked"
               />
             </Form.Group>
 
             <Button
-              type="submit"
-              disabled={loading}
-              className="lf-btn-primary"
-            >
-              {loading ? 'Signing in…' : <>Sign In <FaArrowRight className="lf-btn-arrow" /></>}
-            </Button>
-
-            <div className="lf-divider"><span>or</span></div>
-
-            <Button
               type="button"
               disabled={loading}
-              className="lf-btn-ghost"
+              className="lf-btn-demo"
               onClick={handleGuestLogin}
             >
-              Continue as Guest
+              {loading ? 'Loading…' : <>Sign In for Free Demo <FaArrowRight className="lf-btn-arrow" /></>}
             </Button>
-
-            <p className="lf-signup-link">
-              Don't have an account?{' '}
-              <Link to="/register">Create one</Link>
-            </p>
           </Form>
         </div>
       </div>

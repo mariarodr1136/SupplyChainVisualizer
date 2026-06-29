@@ -304,45 +304,53 @@
   background: rgba(255, 255, 255, 0.07);
 }
 
-.lf-btn-ghost {
-  width: 100%;
-  padding: 13px 20px !important;
-  font-size: 0.875rem !important;
-  font-weight: 600 !important;
-  border-radius: 11px !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: var(--text-secondary) !important;
-  transition: all var(--transition-fast) !important;
-  backdrop-filter: blur(8px);
-}
-
-.lf-btn-ghost:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.07) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
-  color: var(--text-primary) !important;
-}
-
-.lf-btn-ghost:disabled {
-  opacity: 0.45;
-}
-
-.lf-signup-link {
-  font-size: 0.8rem;
+.lf-demo-hint {
+  font-size: 0.72rem;
   color: var(--text-muted);
   text-align: center;
-  margin: 24px 0 0;
+  margin: 0 0 22px;
+  letter-spacing: 0.01em;
 }
 
-.lf-signup-link a {
-  color: var(--accent-soft);
-  font-weight: 600;
-  text-decoration: none;
+.lf-input--locked {
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  pointer-events: none;
 }
 
-.lf-signup-link a:hover {
-  color: var(--accent-bright);
-  text-decoration: underline;
+.lf-btn-demo {
+  width: 100%;
+  padding: 14px 20px !important;
+  font-size: 0.925rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  border-radius: 11px !important;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 22px rgba(249, 115, 22, 0.4), inset 0 1px 0 rgba(255,255,255,0.12);
+  transition: all var(--transition-fast) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-top: 8px;
+}
+
+.lf-btn-demo:hover:not(:disabled) {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%) !important;
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.58) !important;
+  transform: translateY(-1px);
+}
+
+.lf-btn-demo:disabled {
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none !important;
+}
+
+.lf-btn-demo:hover .lf-btn-arrow {
+  transform: translateX(2px);
 }
 
 /* ── Responsive ─────────────────────────────────────── */
