@@ -16,7 +16,8 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1470" height="798" alt="Screenshot 2026-06-15 at 3 41 28 PM" src="https://github.com/user-attachments/assets/3953a5c3-38d9-4534-96c4-f67936b94be7" />
+<img width="1470" height="802" alt="Screenshot 2026-06-29 at 9 49 04 AM" src="https://github.com/user-attachments/assets/0bdb0f7b-2a0e-4d67-9a78-ecdf6ec11a12" />
+
 
 <img width="1464" height="797" alt="Screenshot 2026-06-15 at 3 41 41 PM" src="https://github.com/user-attachments/assets/3586b3a9-de32-4c77-8e02-d95035a28e60" />
 
@@ -143,9 +144,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 ---
 
 
-
-https://github.com/user-attachments/assets/226ad88e-ae98-4734-8278-6fd66df26eaf
-
+https://github.com/user-attachments/assets/4a367724-c676-47d2-9c53-71d56e742f7a
 
 
 ---
