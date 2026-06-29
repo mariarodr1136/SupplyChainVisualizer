@@ -1,23 +1,30 @@
 import React, { useState, useContext } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
-import { FaClock } from 'react-icons/fa';
+import { Form, Button, Alert } from 'react-bootstrap';
+import { FaClock, FaGlobeAmericas, FaTruck, FaChartLine, FaBell, FaArrowRight } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/auth.service';
+import HeroMap from '../components/common/HeroMap';
 import './Auth.css';
+
+const FEATURES = [
+  { icon: <FaGlobeAmericas />, text: 'Live global supply chain map across all tiers' },
+  { icon: <FaTruck />,         text: 'Real-time shipment tracking and delay alerts' },
+  { icon: <FaChartLine />,     text: 'AI-powered demand and disruption forecasting' },
+  { icon: <FaBell />,          text: 'Instant alerts before issues become crises' },
+];
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [loading, setLoading]   = useState(false);
+  const [message, setMessage]   = useState('');
   const { setCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
     setMessage('');
     setLoading(true);
 
@@ -28,131 +35,140 @@ const Login = () => {
     }
 
     AuthService.login(username, password)
-      .then((data) => {
-        setCurrentUser(data);
-        navigate('/');
-      })
+      .then((data) => { setCurrentUser(data); navigate('/'); })
       .catch((error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
         setLoading(false);
-        setMessage(resMessage);
+        setMessage(
+          (error.response?.data?.message) || error.message || error.toString()
+        );
       });
   };
 
   const handleGuestLogin = () => {
     setMessage('');
     setLoading(true);
-
     AuthService.loginAsGuest()
-      .then((data) => {
-        setCurrentUser(data);
-        navigate('/');
-      })
+      .then((data) => { setCurrentUser(data); navigate('/'); })
       .catch((error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
         setLoading(false);
-        setMessage(resMessage);
+        setMessage(
+          (error.response?.data?.message) || error.message || error.toString()
+        );
       });
   };
 
   return (
-    <div className="auth-wrapper">
-      <div className="auth-back-nav">
-        <Link to="/" className="auth-back-link">
-          ← Back
-        </Link>
+    <div className="login-page">
+
+      {/* ── Left panel — branding ── */}
+      <div className="login-left">
+        <HeroMap />
+        <div className="login-left-overlay" />
+
+        <div className="login-left-content">
+          <Link to="/" className="login-back-link">← Back</Link>
+
+          <div className="login-brand">
+            <img src={logo} alt="Nexus" className="login-brand-wordmark" />
+          </div>
+
+          <div className="login-left-body">
+            <h2 className="login-left-headline">
+              Your entire supply chain,<br />
+              <span className="login-headline-accent">in one place.</span>
+            </h2>
+            <p className="login-left-sub">
+              From raw materials to last-mile delivery — Nexus gives you
+              full visibility and the intelligence to act.
+            </p>
+
+            <ul className="login-features">
+              {FEATURES.map((f) => (
+                <li key={f.text} className="login-feature-item">
+                  <span className="login-feature-icon">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
-      <Container>
-        <Row className="justify-content-center">
-          <Col md={6} lg={5}>
-            <Card className="auth-card">
-              <Card.Body>
-                <div className="login-content">
-                  <div className="text-center header-spacing">
-                    <div className="auth-logo-mark"><img src={logo} alt="Nexus logo" /></div>
-                  </div>
 
-                  <div className="render-notice">
-                    <FaClock className="render-notice-icon" />
-                    <span>Hosted on Render's free tier<br />First login after inactivity may take 30–60s to wake up.</span>
-                  </div>
+      {/* ── Right panel — form ── */}
+      <div className="login-right">
+        <div className="login-form-wrap">
 
-                  <Form onSubmit={handleLogin}>
-                    {message && (
-                      <Alert variant="danger" className="mb-4">
-                        {message}
-                      </Alert>
-                    )}
+          <div className="login-form-header">
+            <h1 className="login-form-title">Welcome back</h1>
+            <p className="login-form-sub">Sign in to your Nexus account</p>
+          </div>
 
-                    <Form.Group className="form-group-spacing">
-                      <Form.Label>Username</Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        className="form-input"
-                      />
-                    </Form.Group>
+          <div className="render-notice">
+            <FaClock className="render-notice-icon" />
+            <span>
+              Hosted on Render's free tier — first login after inactivity
+              may take 30–60s to wake the server.
+            </span>
+          </div>
 
-                    <Form.Group className="form-group-spacing">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="form-input"
-                      />
-                    </Form.Group>
+          <Form onSubmit={handleLogin} className="login-form">
+            {message && (
+              <Alert variant="danger" className="mb-4">
+                {message}
+              </Alert>
+            )}
 
-                    <div className="button-spacing">
-                      <Button 
-                        variant="primary" 
-                        type="submit" 
-                        disabled={loading}
-                        className="sign-in-button"
-                      >
-                        {loading ? 'Loading...' : 'Sign In'}
-                      </Button>
-                    </div>
+            <Form.Group className="lf-group">
+              <Form.Label className="lf-label">Username</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                className="lf-input"
+                autoComplete="username"
+              />
+            </Form.Group>
 
-                    <div className="button-spacing guest-button-wrap">
-                      <Button
-                        variant="outline-secondary"
-                        className="guest-button"
-                        onClick={handleGuestLogin}
-                        disabled={loading}
-                        type="button"
-                      >
-                        Continue as Guest
-                      </Button>
-                    </div>
+            <Form.Group className="lf-group">
+              <Form.Label className="lf-label">Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="lf-input"
+                autoComplete="current-password"
+              />
+            </Form.Group>
 
-                    <div className="text-center footer-spacing">
-                      <p>
-                        Don't have an account? <Link to="/register">Sign up</Link>
-                      </p>
-                    </div>
-                  </Form>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="lf-btn-primary"
+            >
+              {loading ? 'Signing in…' : <>Sign In <FaArrowRight className="lf-btn-arrow" /></>}
+            </Button>
+
+            <div className="lf-divider"><span>or</span></div>
+
+            <Button
+              type="button"
+              disabled={loading}
+              className="lf-btn-ghost"
+              onClick={handleGuestLogin}
+            >
+              Continue as Guest
+            </Button>
+
+            <p className="lf-signup-link">
+              Don't have an account?{' '}
+              <Link to="/register">Create one</Link>
+            </p>
+          </Form>
+        </div>
+      </div>
+
     </div>
   );
 };

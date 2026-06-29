@@ -13,6 +13,7 @@ import {
 import logo from '../assets/logo.png';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/auth.service';
+import HeroMap from '../components/common/HeroMap';
 import './LandingPage.css';
 
 const FEATURES = [
@@ -101,7 +102,6 @@ export default function LandingPage() {
         <div className="landing-nav-inner">
           <div className="landing-nav-brand">
             <img src={logo} alt="Nexus" className="landing-nav-logo" />
-            <span className="landing-nav-name">Nexus</span>
           </div>
           <Link to="/login" className="landing-nav-login">
             Sign In <FaArrowRight className="landing-nav-arrow" />
@@ -111,7 +111,8 @@ export default function LandingPage() {
 
       {/* ── Hero ── */}
       <section className="landing-hero">
-        <div className="landing-hero-glow" />
+        <HeroMap />
+        <div className="landing-hero-overlay" />
         <div className="landing-hero-content">
           <div className="landing-badge">Supply Chain Intelligence Platform</div>
           <h1 className="landing-h1">
@@ -126,16 +127,9 @@ export default function LandingPage() {
             <Link to="/login" className="btn-lp-primary">
               Get Started <FaArrowRight />
             </Link>
-            <button
-              className="btn-lp-ghost"
-              onClick={handleGuest}
-              disabled={guestLoading}
-            >
-              {guestLoading ? 'Loading…' : 'Continue as Guest'}
-            </button>
           </div>
           <div className="landing-hero-proof">
-            {['No credit card required', 'Guest mode available', 'Free to explore'].map((t) => (
+            {['No credit card required', 'Free to explore', 'Full platform access'].map((t) => (
               <span key={t} className="landing-proof-item">
                 <FaCheckCircle className="proof-check" /> {t}
               </span>
@@ -201,19 +195,12 @@ export default function LandingPage() {
           <div className="landing-cta-glow" />
           <h2 className="landing-cta-h2">Ready to take control of your supply chain?</h2>
           <p className="landing-cta-sub">
-            Start with a free account or explore immediately in guest mode — no setup required.
+            Start with a free account and get full access to your supply chain platform — no setup required.
           </p>
           <div className="landing-cta-btns">
             <Link to="/login" className="btn-lp-primary btn-lp-primary--lg">
               Get Started <FaArrowRight />
             </Link>
-            <button
-              className="btn-lp-ghost btn-lp-ghost--lg"
-              onClick={handleGuest}
-              disabled={guestLoading}
-            >
-              {guestLoading ? 'Loading…' : 'Explore as Guest'}
-            </button>
           </div>
         </div>
       </section>
@@ -223,7 +210,6 @@ export default function LandingPage() {
         <div className="landing-footer-inner">
           <div className="landing-footer-brand">
             <img src={logo} alt="Nexus" className="footer-logo" />
-            <span className="footer-name">Nexus</span>
           </div>
           <p className="footer-copy">© 2025 Nexus. Built for supply chain professionals.</p>
         </div>
