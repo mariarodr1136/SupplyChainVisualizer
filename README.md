@@ -53,7 +53,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - **Live Alerts Feed**: Auto-refreshing feed (every 30 s) of delayed shipments and low-stock alerts pulled from live data
 - **Orders Hub**: Purchase/sales order lifecycle visibility
 - **Network Connections**: Dedicated view to manage and analyze transport links
-- **Guest Mode**: Instant demo access with seeded data for tours and presentations
+- **Guest Mode**: Instant demo access via the login page — pre-filled credentials and a single click to explore the full platform
 
 ---
 
@@ -215,11 +215,12 @@ supply-chain-visualizer/
 
 ### 🧪 Demo & Guest Mode
 
-For demos and stakeholder walkthroughs, the app supports a **Guest Mode**:
-- **One‑click guest access** (no credentials required)
-- **Static in‑memory dataset** (nodes, products, inventory, shipments, connections)
+The app is designed for easy recruiter and stakeholder walkthroughs — no account creation needed:
+- **Marketing landing page** introduces the platform before asking for any login
+- **Pre-filled demo credentials** on the login page (`guest` / `guest`) — read-only, one click to enter
+- **Prominent orange "Sign In for Free Demo" button** makes the entry point unmissable
+- **Static in‑memory dataset** (nodes, products, inventory, shipments, connections) powers the guest session
 - **Safe experimentation**: changes are session‑scoped and reset on refresh
-- **Consistent visual narrative** for rapid project overviews
 
 ---
 

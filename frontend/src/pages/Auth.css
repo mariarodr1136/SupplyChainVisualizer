@@ -68,7 +68,9 @@
 }
 
 .login-brand {
-  margin-bottom: auto;
+  position: absolute;
+  top: 210px;
+  left: 28px;
 }
 
 .login-brand-wordmark {
@@ -78,8 +80,9 @@
 }
 
 .login-left-body {
+  margin-top: 180px;
   padding-bottom: 8px;
-  padding-top: 20px;
+  padding-top: 0;
 }
 
 .login-left-headline {
