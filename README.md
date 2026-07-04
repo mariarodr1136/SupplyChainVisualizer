@@ -1,6 +1,6 @@
 # Nexus: Supply Chain Visualizer ⛓️
 
-![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F) ![Java](https://img.shields.io/badge/Java-Programming_Language-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3) ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED) ![Render](https://img.shields.io/badge/Render-Deployment-46E3B7)
+[![CI](https://github.com/mariarodr1136/SupplyChainVisualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/mariarodr1136/SupplyChainVisualizer/actions/workflows/ci.yml) ![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Vite](https://img.shields.io/badge/Vite-Build_Tool-646CFF) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F) ![Java](https://img.shields.io/badge/Java-17-007396) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Flyway](https://img.shields.io/badge/Flyway-Migrations-CC0200) ![Chart.js](https://img.shields.io/badge/Chart.js-Visualization-FF6384) ![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900) ![Bootstrap](https://img.shields.io/badge/Bootstrap-Styling-7952B3) ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED) ![Render](https://img.shields.io/badge/Render-Deployment-46E3B7)
 
 The **Supply Chain Visualizer** is a comprehensive **web application** designed to provide powerful visualization and analysis of supply chain networks. By combining **React** frontend technology with a robust **Spring Boot/Java backend**, this platform enables businesses to **interactively map their supply chains**, **track inventory levels**, and **monitor shipment status** in real-time. 
 
@@ -64,21 +64,24 @@ Live Application: https://supply-chain-visualizer.onrender.com
 ### Technology Stack:
 
 #### Frontend (Interactive UI + Visualization)
-- **React** (SPA architecture, component-driven UI)
+- **React 18 + Vite** (SPA architecture, component-driven UI, instant dev server)
 - **JavaScript (ES6+)** (modern async patterns and state management)
 - **Chart.js** (KPI and trend visualizations)
 - **Leaflet** (geospatial mapping and network overlays)
 - **Bootstrap** (responsive layout and UI primitives)
 - **Axios** (typed REST client + auth headers)
+- **Vitest + React Testing Library** (unit and component tests)
 
 #### Backend (API + Security)
-- **Java + Spring Boot** (REST services, service-layer architecture)
+- **Java 17 + Spring Boot 3.5** (REST services, service-layer architecture)
 - **Spring Data JPA + Hibernate** (ORM + repository pattern)
 - **Spring Security + JWT** (stateless authentication)
+- **springdoc-openapi** (live Swagger UI documentation)
 - **RESTful API Design** (resource-first endpoints)
 
 #### Data Layer
 - **PostgreSQL** (relational persistence, indexed queries)
+- **Flyway** (versioned schema migrations + idempotent seed data)
 
 #### Deployment & DevOps
 - **Docker** (multi-stage builds for optimized images)
@@ -92,10 +95,12 @@ Live Application: https://supply-chain-visualizer.onrender.com
 ### Getting Started:
 
 #### Prerequisites
-- Node.js (v14+)
-- Java 11+ with Maven
+- Node.js (v18+)
+- Java 17+ with Maven
 - PostgreSQL
 - Git
+
+> **Shortcut:** if you have Docker installed, `docker-compose up -d` starts the full stack (PostgreSQL + API + frontend) with no other setup — see [Local Deployment with Docker](#local-deployment-with-docker).
 
 #### Setting Up the Backend:
 
@@ -124,7 +129,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
    mvn clean install
    mvn spring-boot:run
    ```
-   The backend server will start on http://localhost:3000
+   The backend server will start on http://localhost:8080, and Flyway will create the schema and seed data automatically.
 
 #### Setting Up the Frontend
 
@@ -134,7 +139,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
    npm install
    ```
 
-2. **Start the development server**:
+2. **Start the development server** (Vite, with `/api` proxied to the backend):
    ```bash
    npm start
    ```
@@ -153,15 +158,17 @@ https://github.com/user-attachments/assets/4a367724-c676-47d2-9c53-71d56e742f7a
 
 ```
 supply-chain-visualizer/
-├── frontend/                   # React frontend
-│   ├── public/                 # Static files
+├── frontend/                   # React frontend (Vite)
+│   ├── index.html              # Vite entry HTML
+│   ├── vite.config.js          # Dev server, proxy, build, and test config
+│   ├── Dockerfile              # Multi-stage build served by nginx
 │   └── src/
 │       ├── components/         # Reusable components
 │       ├── pages/              # Page components
-│       ├── services/           # API services
+│       ├── services/           # API services (with guest-mode fallback)
 │       ├── context/            # React context providers
-│       ├── App.js              # Main App component
-│       └── index.js            # Entry point
+│       ├── App.jsx             # Main App component
+│       └── main.jsx            # Entry point
 │
 ├── backend/                    # Java Spring Boot backend
 │   ├── Dockerfile              # Multi-stage Docker build
@@ -169,18 +176,22 @@ supply-chain-visualizer/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
+│   │   │   │   ├── config/     # OpenAPI (Swagger) config
 │   │   │   │   ├── controller/ # API controllers
 │   │   │   │   ├── dto/        # Data Transfer Objects
+│   │   │   │   ├── exception/  # Global exception handler
 │   │   │   │   ├── model/      # Entity models
 │   │   │   │   ├── repository/ # JPA repositories
 │   │   │   │   ├── security/   # JWT and security config
 │   │   │   │   └── service/    # Business logic
 │   │   │   └── resources/
 │   │   │       ├── application-render.properties  # Production config
-│   │   │       └── data.sql                       # Seed data
+│   │   │       └── db/migration/                  # Flyway migrations (schema + seed)
 │   │   └── test/               # 57 unit tests: NodeService, ProductService, InventoryService, ShipmentService, AnalyticsService, JwtUtils
 │   └── pom.xml                 # Maven dependencies
 │
+├── .github/workflows/ci.yml   # CI: backend + frontend tests on every push
+├── docker-compose.yml          # Local full-stack: PostgreSQL + API + frontend
 ├── render.yaml                 # Render Blueprint (IaC)
 ├── .gitignore                  # Git ignore file
 └── README.md                   # Project documentation
@@ -236,6 +247,10 @@ The app is designed for easy recruiter and stakeholder walkthroughs — no accou
 
 ### 🧪 Testing
 
+Both test suites run automatically in **GitHub Actions CI** on every push and pull request.
+
+#### Backend
+
 The backend includes a suite of **57 unit tests** covering the core service and security layers, written with JUnit 5, Mockito, and AssertJ.
 
 | Test Class | Coverage |
@@ -254,9 +269,20 @@ cd backend/supply-chain-visualizer
 mvn test
 ```
 
+#### Frontend
+
+The frontend uses **Vitest + React Testing Library** for the service layer (guest-mode vs. API branching, auth headers, analytics KPIs) and component rendering:
+
+```bash
+cd frontend
+npm test
+```
+
 ---
 
 ### 📝 API Documentation
+
+Interactive **Swagger UI** is available at [`/swagger-ui.html`](http://localhost:8080/swagger-ui.html) when the backend is running (generated by springdoc-openapi, with JWT bearer auth support via the **Authorize** button). The raw OpenAPI spec is served at `/v3/api-docs`.
 
 This section describes how to authenticate and interact with the Supply Chain Visualizer backend.
 
@@ -504,11 +530,20 @@ The project uses a `render.yaml` Blueprint that provisions all three services in
 4. Click **Apply** to provision all services
 5. After deployment, update `CORS_ALLOWED_ORIGINS` on the backend and `REACT_APP_API_URL` on the frontend to match the actual Render-assigned URLs
 
-#### Local Deployment with Docker (Optional)
+#### Local Deployment with Docker
+The included `docker-compose.yml` provisions the full stack locally — PostgreSQL, the Spring Boot API (with Flyway migrations), and the frontend served by nginx:
 ```bash
 # Build and start the containers
 docker-compose up -d
+
+# Frontend: http://localhost:3000 | API: http://localhost:8080 | Swagger: http://localhost:8080/swagger-ui.html
 ```
+---
+
+#### A Note on Data
+
+Registered accounts share a single demo workspace — nodes, shipments, and inventory are common to all users, which keeps the live demo populated and interactive. Guest mode is fully isolated: it runs on an in-memory dataset in the browser and resets on refresh.
+
 ---
 
 ### Contributing 
