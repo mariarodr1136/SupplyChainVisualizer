@@ -1,9 +1,9 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-import { isGuestUser } from './guest-utils';
+import { guestOr } from './guest-utils';
 import { guestDataApi } from '../data/guestData';
 
-const API_URL = (process.env.REACT_APP_API_URL || '') + '/api/analytics/';
+const API_URL = (import.meta.env.VITE_API_URL || '') + '/api/analytics/';
 
 const computeGuestSummary = () => {
   const shipments = guestDataApi.getShipments();
@@ -57,7 +57,7 @@ const computeGuestSummary = () => {
     avgLeadTimeDays: avgLeadTime,
     exceptionRate,
     totalShipments: shipments.length,
-    deliveredShipments: delivered.size,
+    deliveredShipments: delivered.length,
     slaByLane,
     leadTimeBySegment: [],
   };
@@ -65,10 +65,10 @@ const computeGuestSummary = () => {
 
 class AnalyticsService {
   getSummary() {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: computeGuestSummary() });
-    }
-    return axios.get(API_URL + 'summary', { headers: authHeader() });
+    return guestOr(
+      () => computeGuestSummary(),
+      () => axios.get(API_URL + 'summary', { headers: authHeader() })
+    );
   }
 }
 

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-import { isGuestUser } from './guest-utils';
+import { guestOr } from './guest-utils';
 import { guestDataApi } from '../data/guestData';
 
-const API_URL = (process.env.REACT_APP_API_URL || '') + '/api/products/';
+const API_URL = (import.meta.env.VITE_API_URL || '') + '/api/products/';
 
 const fromApiProduct = (product) => ({
   ...product,
@@ -23,76 +23,64 @@ const toApiProduct = (product) => ({
   status: product.status ?? 'active',
 });
 
+const mapOne = (res) => ({
+  ...res,
+  data: res.data ? fromApiProduct(res.data) : res.data
+});
+
+const mapMany = (res) => ({
+  ...res,
+  data: Array.isArray(res.data) ? res.data.map(fromApiProduct) : res.data
+});
+
 class ProductService {
   getAllProducts() {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.getProducts() });
-    }
-    return axios.get(API_URL, { headers: authHeader() }).then((res) => ({
-      ...res,
-      data: Array.isArray(res.data) ? res.data.map(fromApiProduct) : res.data
-    }));
+    return guestOr(
+      () => guestDataApi.getProducts(),
+      () => axios.get(API_URL, { headers: authHeader() }).then(mapMany)
+    );
   }
 
   getProductById(id) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.getProductById(id) });
-    }
-    return axios.get(API_URL + id, { headers: authHeader() }).then((res) => ({
-      ...res,
-      data: res.data ? fromApiProduct(res.data) : res.data
-    }));
+    return guestOr(
+      () => guestDataApi.getProductById(id),
+      () => axios.get(API_URL + id, { headers: authHeader() }).then(mapOne)
+    );
   }
 
   createProduct(product) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.createProduct(product) });
-    }
-    return axios.post(API_URL, toApiProduct(product), { headers: authHeader() }).then((res) => ({
-      ...res,
-      data: res.data ? fromApiProduct(res.data) : res.data
-    }));
+    return guestOr(
+      () => guestDataApi.createProduct(product),
+      () => axios.post(API_URL, toApiProduct(product), { headers: authHeader() }).then(mapOne)
+    );
   }
 
   updateProduct(id, product) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.updateProduct(id, product) });
-    }
-    return axios.put(API_URL + id, toApiProduct(product), { headers: authHeader() }).then((res) => ({
-      ...res,
-      data: res.data ? fromApiProduct(res.data) : res.data
-    }));
+    return guestOr(
+      () => guestDataApi.updateProduct(id, product),
+      () => axios.put(API_URL + id, toApiProduct(product), { headers: authHeader() }).then(mapOne)
+    );
   }
 
   deleteProduct(id) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.deleteProduct(id) });
-    }
-    return axios.delete(API_URL + id, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.deleteProduct(id),
+      () => axios.delete(API_URL + id, { headers: authHeader() })
+    );
   }
 
   getProductsByStatus(status) {
-    if (isGuestUser()) {
-      return Promise.resolve({
-        data: guestDataApi.getProducts().filter((product) => product.status === status)
-      });
-    }
-    return axios.get(API_URL + 'status/' + status, { headers: authHeader() }).then((res) => ({
-      ...res,
-      data: Array.isArray(res.data) ? res.data.map(fromApiProduct) : res.data
-    }));
+    return guestOr(
+      () => guestDataApi.getProducts().filter((product) => product.status === status),
+      () => axios.get(API_URL + 'status/' + status, { headers: authHeader() }).then(mapMany)
+    );
   }
 
   getProductBySku(sku) {
-    if (isGuestUser()) {
-      return Promise.resolve({
-        data: guestDataApi.getProducts().find((product) => product.sku === sku) || null
-      });
-    }
-    return axios.get(API_URL + 'sku/' + sku, { headers: authHeader() }).then((res) => ({
-      ...res,
-      data: res.data ? fromApiProduct(res.data) : res.data
-    }));
+    return guestOr(
+      () => guestDataApi.getProducts().find((product) => product.sku === sku) || null,
+      () => axios.get(API_URL + 'sku/' + sku, { headers: authHeader() }).then(mapOne)
+    );
   }
 }
 

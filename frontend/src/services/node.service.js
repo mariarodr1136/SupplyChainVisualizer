@@ -1,62 +1,58 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-import { isGuestUser } from './guest-utils';
+import { guestOr } from './guest-utils';
 import { guestDataApi } from '../data/guestData';
 
-const API_URL = (process.env.REACT_APP_API_URL || '') + '/api/nodes/';
+const API_URL = (import.meta.env.VITE_API_URL || '') + '/api/nodes/';
 
 class NodeService {
   getAllNodes() {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.getNodes() });
-    }
-    return axios.get(API_URL, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.getNodes(),
+      () => axios.get(API_URL, { headers: authHeader() })
+    );
   }
 
   getNodeById(id) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.getNodeById(id) });
-    }
-    return axios.get(API_URL + id, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.getNodeById(id),
+      () => axios.get(API_URL + id, { headers: authHeader() })
+    );
   }
 
   createNode(node) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.createNode(node) });
-    }
-    return axios.post(API_URL, node, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.createNode(node),
+      () => axios.post(API_URL, node, { headers: authHeader() })
+    );
   }
 
   updateNode(id, node) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.updateNode(id, node) });
-    }
-    return axios.put(API_URL + id, node, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.updateNode(id, node),
+      () => axios.put(API_URL + id, node, { headers: authHeader() })
+    );
   }
 
   deleteNode(id) {
-    if (isGuestUser()) {
-      return Promise.resolve({ data: guestDataApi.deleteNode(id) });
-    }
-    return axios.delete(API_URL + id, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.deleteNode(id),
+      () => axios.delete(API_URL + id, { headers: authHeader() })
+    );
   }
 
   getNodesByType(type) {
-    if (isGuestUser()) {
-      return Promise.resolve({
-        data: guestDataApi.getNodes().filter((node) => node.type === type)
-      });
-    }
-    return axios.get(API_URL + 'type/' + type, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.getNodes().filter((node) => node.type === type),
+      () => axios.get(API_URL + 'type/' + type, { headers: authHeader() })
+    );
   }
 
   getNodesByStatus(status) {
-    if (isGuestUser()) {
-      return Promise.resolve({
-        data: guestDataApi.getNodes().filter((node) => node.status === status)
-      });
-    }
-    return axios.get(API_URL + 'status/' + status, { headers: authHeader() });
+    return guestOr(
+      () => guestDataApi.getNodes().filter((node) => node.status === status),
+      () => axios.get(API_URL + 'status/' + status, { headers: authHeader() })
+    );
   }
 }
 

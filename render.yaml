@@ -21,7 +21,7 @@ services:
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/build
     envVars:
-      - key: REACT_APP_API_URL
+      - key: VITE_API_URL
         value: https://supply-chain-api.onrender.com
     routes:
       - type: rewrite
