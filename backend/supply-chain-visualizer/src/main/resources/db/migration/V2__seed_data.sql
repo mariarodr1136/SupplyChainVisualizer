@@ -1,9 +1,6 @@
--- Schema migrations
-ALTER TABLE users ALTER COLUMN email DROP NOT NULL;
-ALTER TABLE users DROP CONSTRAINT IF EXISTS users_email_key;
-
--- Seed data for Supply Chain Visualizer
--- Uses ON CONFLICT DO NOTHING so it's safe to run on every startup
+-- Seed data for Supply Chain Visualizer.
+-- Idempotent (ON CONFLICT DO NOTHING) so it is safe on databases that already contain this data,
+-- e.g. pre-Flyway deployments that are baselined at V1.
 
 -- ===================== NODES (Locations) =====================
 INSERT INTO nodes (id, name, type, latitude, longitude, capacity, status, created_at, updated_at)
