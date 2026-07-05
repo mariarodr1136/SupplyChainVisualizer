@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, Form, Row, Col, Button, Modal } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import { FaInfoCircle, FaFilter } from 'react-icons/fa';
+import { FaInfoCircle, FaFilter, FaIndustry, FaWarehouse, FaStore, FaTruckLoading, FaMapMarkerAlt } from 'react-icons/fa';
+import { renderToStaticMarkup } from 'react-dom/server';
 import L from 'leaflet';
 import NodeService from '../services/node.service';
 import ConnectionService from '../services/connection.service';
@@ -9,42 +10,31 @@ import PageHeader from '../components/common/PageHeader';
 import MapLegend from '../components/map/MapLegend';
 import './SupplyChainMap.css';
 
-// Fix for the marker icons in Leaflet with webpack
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
-
-// Custom icons for different node types
-const nodeIcons = {
-  factory: new L.Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2942/2942076.png',
-    iconSize: [36, 36],
-    iconAnchor: [18, 36],
-    popupAnchor: [0, -36],
-  }),
-  warehouse: new L.Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1554/1554401.png',
-    iconSize: [36, 36],
-    iconAnchor: [18, 36],
-    popupAnchor: [0, -36],
-  }),
-  store: new L.Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/3081/3081559.png',
-    iconSize: [36, 36],
-    iconAnchor: [18, 36],
-    popupAnchor: [0, -36],
-  }),
-  supplier: new L.Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1198/1198420.png',
-    iconSize: [36, 36],
-    iconAnchor: [18, 36],
-    popupAnchor: [0, -36],
-  }),
-  default: new L.Icon.Default(),
+// Custom markers per node type — same icons and colors as the map legend
+const nodeMarkerStyles = {
+  factory: { icon: <FaIndustry />, color: '#4dabf7' },
+  warehouse: { icon: <FaWarehouse />, color: '#748ffc' },
+  store: { icon: <FaStore />, color: '#20c997' },
+  supplier: { icon: <FaTruckLoading />, color: '#ff922b' },
+  default: { icon: <FaMapMarkerAlt />, color: '#818cf8' },
 };
+
+const makeNodeIcon = ({ icon, color }) =>
+  L.divIcon({
+    className: 'node-marker-wrap',
+    html: renderToStaticMarkup(
+      <div className="node-marker" style={{ '--marker-color': color }}>
+        {icon}
+      </div>
+    ),
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -18],
+  });
+
+const nodeIcons = Object.fromEntries(
+  Object.entries(nodeMarkerStyles).map(([type, style]) => [type, makeNodeIcon(style)])
+);
 
 // Colors for connection status
 const connectionColors = {

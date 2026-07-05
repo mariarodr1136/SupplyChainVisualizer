@@ -6,6 +6,11 @@
   text-transform: uppercase;
 }
 
+.dashboard-chart-wrap {
+  position: relative;
+  height: 260px;
+}
+
 .dashboard-table {
   background-color: transparent !important;
 }

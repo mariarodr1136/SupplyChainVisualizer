@@ -51,6 +51,8 @@
   height: auto;
   flex-shrink: 0;
   display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(129, 140, 248, 0.35));
+  opacity: 0.95;
 }
 
 .header-brand > div {

@@ -77,6 +77,8 @@
   width: 210px;
   height: auto;
   display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(129, 140, 248, 0.4));
+  opacity: 0.95;
 }
 
 .login-left-body {
@@ -396,4 +398,63 @@
   .login-form-title {
     font-size: 1.5rem;
   }
+}
+
+.auth-logo-mark img {
+  width: 170px;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 0 14px rgba(129, 140, 248, 0.4));
+  opacity: 0.95;
+}
+
+/* ── Register page (centered card) ──────────────────── */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 65%),
+    var(--bg-deep);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elevated);
+  padding: 36px 40px 32px;
+}
+
+.auth-back-link {
+  margin-bottom: 28px;
+}
+
+.auth-card .auth-logo-mark {
+  margin-bottom: 28px;
+}
+
+.auth-switch-link {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 22px 0 0;
+}
+
+.auth-switch-link a {
+  color: var(--accent-soft);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch-link a:hover {
+  color: var(--accent-bright);
+  text-decoration: underline;
 }

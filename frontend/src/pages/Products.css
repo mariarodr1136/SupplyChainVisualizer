@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.products-page .position-relative .form-control {
+  padding-right: 2.4rem;
+  min-width: 250px;
+}
+
 .table th, .table td {
   vertical-align: middle;
 }

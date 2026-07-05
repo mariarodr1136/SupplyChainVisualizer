@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -29,15 +29,8 @@ import AuthService from './services/auth.service';
 import { AuthContext } from './context/AuthContext';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(() => AuthService.getCurrentUser() || undefined);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setCurrentUser(user);
-    }
-  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);

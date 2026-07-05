@@ -13,6 +13,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from 'chart.js';
 import NodeService from '../services/node.service';
 import ShipmentService from '../services/shipment.service';
@@ -30,12 +31,14 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
 // Global chart styling for dark theme
-ChartJS.defaults.color = '#e2e8f0';
-ChartJS.defaults.borderColor = 'rgba(148, 163, 184, 0.2)';
+ChartJS.defaults.color = '#8898b3';
+ChartJS.defaults.borderColor = 'rgba(255, 255, 255, 0.06)';
+ChartJS.defaults.font.family = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
 const Dashboard = () => {
   const [nodes, setNodes] = useState([]);
@@ -79,7 +82,7 @@ const Dashboard = () => {
     labels: ['Pending', 'In Transit', 'Delivered', 'Delayed'],
     datasets: [
       {
-        label: 'Shipment Status',
+        label: 'Shipments',
         data: [pendingShipments, inTransitShipments, deliveredShipments, delayedShipments],
         backgroundColor: [
           'rgba(250, 204, 21, 0.55)',
@@ -93,33 +96,50 @@ const Dashboard = () => {
           'rgba(34, 197, 94, 0.95)',
           'rgba(248, 113, 113, 0.95)',
         ],
-        borderWidth: 1,
+        borderWidth: 1.5,
+        borderRadius: 4,
+        borderSkipped: 'bottom',
+        maxBarThickness: 56,
       },
     ],
   };
 
-  const chartTextColor = '#e2e8f0';
-  const chartGridColor = 'rgba(148, 163, 184, 0.2)';
+  const chartTickColor = '#8898b3';
+  const chartGridColor = 'rgba(255, 255, 255, 0.06)';
 
+  const darkTooltip = {
+    backgroundColor: 'rgba(10, 14, 30, 0.94)',
+    titleColor: '#eef2ff',
+    bodyColor: '#8898b3',
+    borderColor: 'rgba(255, 255, 255, 0.09)',
+    borderWidth: 1,
+    padding: 10,
+    cornerRadius: 8,
+    displayColors: false,
+  };
+
+  // Both charts show a single series, so the card title carries the
+  // identity and no legend box is needed. Counts get integer ticks.
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      legend: {
-        labels: {
-          color: chartTextColor
-        }
-      }
+      legend: { display: false },
+      tooltip: darkTooltip,
     },
     scales: {
       x: {
-        ticks: { color: chartTextColor },
-        grid: { color: chartGridColor }
+        ticks: { color: chartTickColor },
+        grid: { display: false },
+        border: { color: chartGridColor },
       },
       y: {
-        ticks: { color: chartTextColor },
-        grid: { color: chartGridColor }
-      }
-    }
+        beginAtZero: true,
+        ticks: { color: chartTickColor, precision: 0 },
+        grid: { color: chartGridColor },
+        border: { display: false },
+      },
+    },
   };
 
   // Count shipments by departure month from real data
@@ -142,11 +162,16 @@ const Dashboard = () => {
       {
         label: 'Shipments',
         data: monthlyShipmentCounts,
-        fill: false,
-        borderColor: 'rgb(147, 197, 253)',
-        pointBackgroundColor: 'rgb(147, 197, 253)',
-        pointBorderColor: 'rgb(15, 23, 42)',
-        tension: 0.1,
+        fill: true,
+        backgroundColor: 'rgba(56, 189, 248, 0.08)',
+        borderColor: '#38bdf8',
+        borderWidth: 2,
+        pointRadius: 3.5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#38bdf8',
+        pointBorderColor: '#070a18',
+        pointBorderWidth: 2,
+        tension: 0.35,
       },
     ],
   };
@@ -226,7 +251,9 @@ const Dashboard = () => {
               <h5 className="m-0 dashboard-section-title">Shipment Status</h5>
             </Card.Header>
             <Card.Body>
-              <Bar data={shipmentStatusData} options={chartOptions} />
+              <div className="dashboard-chart-wrap">
+                <Bar data={shipmentStatusData} options={chartOptions} />
+              </div>
             </Card.Body>
           </Card>
         </Col>
@@ -236,7 +263,9 @@ const Dashboard = () => {
               <h5 className="m-0 dashboard-section-title">Shipment Trends (Last 6 Months)</h5>
             </Card.Header>
             <Card.Body>
-              <Line data={shipmentTrendsData} options={chartOptions} />
+              <div className="dashboard-chart-wrap">
+                <Line data={shipmentTrendsData} options={chartOptions} />
+              </div>
             </Card.Body>
           </Card>
         </Col>

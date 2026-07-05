@@ -17,6 +17,73 @@
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
 }
 
+/* ── Node markers (divIcon) ─────────────────────────── */
+
+.node-marker-wrap {
+  background: transparent;
+  border: none;
+}
+
+.node-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--marker-color);
+  background: rgba(11, 17, 32, 0.92);
+  border: 1.5px solid var(--marker-color);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.55),
+    0 0 12px color-mix(in srgb, var(--marker-color) 35%, transparent);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.node-marker:hover {
+  transform: scale(1.15);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    0 0 18px color-mix(in srgb, var(--marker-color) 55%, transparent);
+}
+
+/* ── Dark-themed Leaflet controls ───────────────────── */
+
+.leaflet-touch .leaflet-bar,
+.leaflet-bar {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-bar a {
+  background: rgba(11, 17, 32, 0.92) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--bg-elevated) !important;
+  color: var(--accent-bright) !important;
+}
+
+.leaflet-bar a.leaflet-disabled {
+  background: rgba(11, 17, 32, 0.7) !important;
+  color: var(--text-muted) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(4, 6, 16, 0.75) !important;
+  color: var(--text-muted) !important;
+  font-size: 0.62rem;
+}
+
+.leaflet-control-attribution a {
+  color: var(--accent-soft) !important;
+}
+
 .leaflet-popup-content {
   margin: 12px;
   line-height: 1.5;

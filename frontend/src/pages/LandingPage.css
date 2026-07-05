@@ -45,6 +45,8 @@
   width: 130px;
   height: auto;
   display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(129, 140, 248, 0.35));
+  opacity: 0.95;
 }
 
 .landing-nav-login {
@@ -548,7 +550,8 @@
   width: 90px;
   height: auto;
   display: block;
-  opacity: 0.7;
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
 }
 
 .footer-copy {

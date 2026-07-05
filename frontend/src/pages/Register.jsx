@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import AuthService from '../services/auth.service';
 import './Auth.css';
@@ -53,86 +54,83 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-wrapper">
-      <Container>
-        <Row className="justify-content-center">
-          <Col md={6} lg={5}>
-            <Card className="auth-card">
-              <Card.Body>
-                <div className="login-content">
-                  <div className="text-center header-spacing">
-                    <div className="auth-logo-mark"><img src={logo} alt="Nexus logo" /></div>
-                  </div>
+    <div className="auth-page">
+      <div className="auth-card">
+        <Link to="/" className="login-back-link auth-back-link">
+          <FaArrowLeft /> Back
+        </Link>
 
-                  {message && (
-                    <Alert 
-                      variant={successful ? 'success' : 'danger'} 
-                      className="mb-4"
-                    >
-                      {message}
-                    </Alert>
-                  )}
+        <div className="auth-logo-mark">
+          <img src={logo} alt="Nexus logo" />
+        </div>
 
-                  <Form onSubmit={handleRegister}>
-                    <Form.Group className="form-group-spacing">
-                      <Form.Label>Username</Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        minLength="3"
-                        maxLength="20"
-                        className="form-input"
-                      />
-                    </Form.Group>
+        <div className="login-form-header">
+          <h1 className="login-form-title">Create your account</h1>
+          <p className="login-form-sub">Join the shared Nexus demo workspace</p>
+        </div>
 
-                    <Form.Group className="form-group-spacing">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        minLength="6"
-                        className="form-input"
-                      />
-                    </Form.Group>
+        {message && (
+          <Alert variant={successful ? 'success' : 'danger'} className="mb-4">
+            {message}
+          </Alert>
+        )}
 
-                    <Form.Group className="form-group-spacing">
-                      <Form.Label>Confirm Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        className="form-input"
-                      />
-                    </Form.Group>
+        <Form onSubmit={handleRegister} className="login-form">
+          <Form.Group className="lf-group">
+            <Form.Label className="lf-label">Username</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength="3"
+              maxLength="20"
+              autoComplete="username"
+              placeholder="Pick a username"
+              className="lf-input"
+            />
+          </Form.Group>
 
-                    <div className="button-spacing">
-                      <Button 
-                        variant="primary" 
-                        type="submit" 
-                        disabled={loading || successful}
-                        className="sign-in-button"
-                      >
-                        {loading ? 'Loading...' : 'Sign Up'}
-                      </Button>
-                    </div>
+          <Form.Group className="lf-group">
+            <Form.Label className="lf-label">Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength="6"
+              autoComplete="new-password"
+              placeholder="At least 6 characters"
+              className="lf-input"
+            />
+          </Form.Group>
 
-                    <div className="text-center footer-spacing">
-                      <p>
-                        Already have an account? <Link to="/login">Sign in</Link>
-                      </p>
-                    </div>
-                  </Form>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+          <Form.Group className="lf-group">
+            <Form.Label className="lf-label">Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              autoComplete="new-password"
+              placeholder="Repeat your password"
+              className="lf-input"
+            />
+          </Form.Group>
+
+          <Button
+            type="submit"
+            disabled={loading || successful}
+            className="lf-btn-primary"
+          >
+            {loading ? 'Creating account…' : 'Sign Up'}
+          </Button>
+
+          <p className="auth-switch-link">
+            Already have an account? <Link to="/login">Sign in</Link>
+          </p>
+        </Form>
+      </div>
     </div>
   );
 };
