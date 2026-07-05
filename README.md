@@ -16,10 +16,9 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1470" height="802" alt="Screenshot 2026-06-29 at 9 49 04 AM" src="https://github.com/user-attachments/assets/0bdb0f7b-2a0e-4d67-9a78-ecdf6ec11a12" />
+<img width="1470" height="717" alt="Screenshot 2026-07-05 at 10 24 24 AM" src="https://github.com/user-attachments/assets/05707695-bc33-4d93-9b36-74267581c5a9" />
 
-
-<img width="1464" height="797" alt="Screenshot 2026-06-15 at 3 41 41 PM" src="https://github.com/user-attachments/assets/3586b3a9-de32-4c77-8e02-d95035a28e60" />
+<img width="1470" height="796" alt="Screenshot 2026-07-05 at 10 24 46 AM" src="https://github.com/user-attachments/assets/97e6c56b-c934-4159-8bf4-2a78d719ea4c" />
 
 
 ---
@@ -57,7 +56,9 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1460" height="798" alt="Screenshot 2026-06-15 at 3 42 05 PM" src="https://github.com/user-attachments/assets/bfbf9dab-e04d-4724-93de-ba2247ff127f" />
+<img width="1454" height="779" alt="Screenshot 2026-07-05 at 10 24 37 AM" src="https://github.com/user-attachments/assets/5157f6bd-b9cd-4b25-9cba-cba274d622c6" />
+
+<img width="1470" height="798" alt="Screenshot 2026-07-05 at 10 25 06 AM" src="https://github.com/user-attachments/assets/bb6dc891-d5b2-4d79-87b3-69b8cc8e47de" />
 
 ---
 
@@ -235,13 +236,9 @@ The app is designed for easy recruiter and stakeholder walkthroughs — no accou
 
 ---
 
-<img width="1462" height="800" alt="Screenshot 2026-06-15 at 3 42 15 PM" src="https://github.com/user-attachments/assets/f978b7af-7093-459e-a833-ab29e2e9b9e4" />
+<img width="1468" height="801" alt="Screenshot 2026-07-05 at 10 25 23 AM" src="https://github.com/user-attachments/assets/c6380738-d28a-4f81-8928-90e29d43ca7b" />
 
-
----
-
-<img width="1470" height="799" alt="Screenshot 2026-06-15 at 3 42 34 PM" src="https://github.com/user-attachments/assets/0ec9c14e-496e-402a-bc75-20dcaabbe154" />
-
+<img width="1470" height="799" alt="Screenshot 2026-07-05 at 10 25 31 AM" src="https://github.com/user-attachments/assets/a0ff3b4b-7010-4f54-8ac1-625478a97b73" />
 
 ---
 
