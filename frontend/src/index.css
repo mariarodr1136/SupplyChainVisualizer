@@ -1,33 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --bg-deep: #040610;
-  --bg-base: #070a18;
-  --bg-card: rgba(11, 16, 34, 0.78);
-  --bg-surface: #0f1828;
-  --bg-elevated: #152036;
+  --bg-deep: #131110;
+  --bg-base: #1a1815;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --bg-surface: #211e1a;
+  --bg-elevated: #2a2620;
 
-  --border: rgba(255, 255, 255, 0.07);
-  --border-muted: rgba(255, 255, 255, 0.04);
-  --border-accent: rgba(99, 102, 241, 0.4);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-muted: rgba(255, 255, 255, 0.05);
+  --border-accent: rgba(255, 255, 255, 0.3);
 
-  --text-primary: #eef2ff;
-  --text-secondary: #8898b3;
-  --text-muted: #4a5a72;
+  --text-primary: #f5f3f0;
+  --text-secondary: #a09a92;
+  --text-muted: #635e57;
 
-  --accent: #6366f1;
-  --accent-soft: #818cf8;
-  --accent-bright: #a5b4fc;
-  --accent-glow: rgba(99, 102, 241, 0.22);
+  --accent: #ffffff;
+  --accent-soft: #e3e0db;
+  --accent-bright: #ffffff;
+  --accent-glow: rgba(255, 255, 255, 0.1);
 
-  --indigo-bg: rgba(99, 102, 241, 0.1);
-  --sky-bg: rgba(14, 165, 233, 0.1);
+  /* Data & brand accent — the one chromatic family in the app */
+  --data-orange: #f65a24;
+  --data-orange-soft: #fb8a5c;
+  --data-orange-bg: rgba(246, 90, 36, 0.12);
+
+  /* Warm taupe frame behind product screenshots (Cursor-style) */
+  --frame-taupe: #a8a29a;
+
+  --indigo-bg: rgba(255, 255, 255, 0.06);
+  --sky-bg: rgba(255, 255, 255, 0.06);
   --emerald-bg: rgba(16, 185, 129, 0.1);
   --rose-bg: rgba(239, 68, 68, 0.1);
   --amber-bg: rgba(245, 158, 11, 0.1);
 
-  --indigo-text: #818cf8;
-  --sky-text: #38bdf8;
+  --indigo-text: #d6d6d6;
+  --sky-text: #d6d6d6;
   --emerald-text: #34d399;
   --rose-text: #f87171;
   --amber-text: #fbbf24;
@@ -39,9 +47,9 @@
 
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   --shadow-elevated: 0 16px 56px rgba(0, 0, 0, 0.65), 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-glow-accent: 0 0 40px rgba(99, 102, 241, 0.18), 0 0 80px rgba(99, 102, 241, 0.08);
+  --shadow-glow-accent: 0 0 40px rgba(255, 255, 255, 0.06), 0 0 80px rgba(255, 255, 255, 0.03);
 
-  --glass-bg: rgba(11, 16, 34, 0.72);
+  --glass-bg: rgba(26, 24, 21, 0.72);
   --glass-border: rgba(255, 255, 255, 0.08);
 
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -50,6 +58,11 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(246, 90, 36, 0.35);
+  color: #ffffff;
 }
 
 html {

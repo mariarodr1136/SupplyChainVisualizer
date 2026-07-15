@@ -26,7 +26,7 @@
 }
 
 .dashboard-table tbody td {
-  color: #dde5f5 !important;
+  color: #e2e2e2 !important;
   padding: 13px 16px;
   font-size: 0.83rem;
 }
@@ -37,7 +37,7 @@
 }
 
 .dashboard-table tbody tr:hover td {
-  background: rgba(99, 102, 241, 0.05) !important;
+  background: rgba(246, 90, 36, 0.05) !important;
 }
 
 .dashboard-table tbody tr:last-child td {

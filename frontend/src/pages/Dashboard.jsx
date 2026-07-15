@@ -36,7 +36,7 @@ ChartJS.register(
 );
 
 // Global chart styling for dark theme
-ChartJS.defaults.color = '#8898b3';
+ChartJS.defaults.color = '#9c9c9c';
 ChartJS.defaults.borderColor = 'rgba(255, 255, 255, 0.06)';
 ChartJS.defaults.font.family = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
@@ -84,18 +84,8 @@ const Dashboard = () => {
       {
         label: 'Shipments',
         data: [pendingShipments, inTransitShipments, deliveredShipments, delayedShipments],
-        backgroundColor: [
-          'rgba(250, 204, 21, 0.55)',
-          'rgba(59, 130, 246, 0.55)',
-          'rgba(34, 197, 94, 0.55)',
-          'rgba(248, 113, 113, 0.55)',
-        ],
-        borderColor: [
-          'rgba(250, 204, 21, 0.95)',
-          'rgba(59, 130, 246, 0.95)',
-          'rgba(34, 197, 94, 0.95)',
-          'rgba(248, 113, 113, 0.95)',
-        ],
+        backgroundColor: 'rgba(246, 90, 36, 0.55)',
+        borderColor: 'rgba(246, 90, 36, 0.95)',
         borderWidth: 1.5,
         borderRadius: 4,
         borderSkipped: 'bottom',
@@ -104,13 +94,13 @@ const Dashboard = () => {
     ],
   };
 
-  const chartTickColor = '#8898b3';
+  const chartTickColor = '#9c9c9c';
   const chartGridColor = 'rgba(255, 255, 255, 0.06)';
 
   const darkTooltip = {
-    backgroundColor: 'rgba(10, 14, 30, 0.94)',
-    titleColor: '#eef2ff',
-    bodyColor: '#8898b3',
+    backgroundColor: 'rgba(24, 22, 19, 0.94)',
+    titleColor: '#f5f5f5',
+    bodyColor: '#9c9c9c',
     borderColor: 'rgba(255, 255, 255, 0.09)',
     borderWidth: 1,
     padding: 10,
@@ -163,13 +153,13 @@ const Dashboard = () => {
         label: 'Shipments',
         data: monthlyShipmentCounts,
         fill: true,
-        backgroundColor: 'rgba(56, 189, 248, 0.08)',
-        borderColor: '#38bdf8',
+        backgroundColor: 'rgba(246, 90, 36, 0.08)',
+        borderColor: '#f65a24',
         borderWidth: 2,
         pointRadius: 3.5,
         pointHoverRadius: 7,
-        pointBackgroundColor: '#38bdf8',
-        pointBorderColor: '#070a18',
+        pointBackgroundColor: '#f65a24',
+        pointBorderColor: '#131110',
         pointBorderWidth: 2,
         tension: 0.35,
       },
@@ -214,7 +204,7 @@ const Dashboard = () => {
             title="Active Locations"
             value={activeNodes}
             icon={<FaNetworkWired />}
-            color="primary"
+            color="purple"
           />
         </Col>
         <Col lg={3} md={6} sm={12} className="mb-4 mb-lg-0">
@@ -222,7 +212,7 @@ const Dashboard = () => {
             title="In Transit Shipments"
             value={inTransitShipments}
             icon={<FaTruck />}
-            color="info"
+            color="purple"
           />
         </Col>
         <Col lg={3} md={6} sm={12} className="mb-4 mb-lg-0">
@@ -230,7 +220,7 @@ const Dashboard = () => {
             title="Delivered Shipments"
             value={deliveredShipments}
             icon={<FaCheckCircle />}
-            color="success"
+            color="purple"
           />
         </Col>
         <Col lg={3} md={6} sm={12} className="mb-4 mb-lg-0">
@@ -238,7 +228,7 @@ const Dashboard = () => {
             title="Low Stock Alerts"
             value={lowStockItems.length}
             icon={<FaExclamationTriangle />}
-            color="danger"
+            color="purple"
           />
         </Col>
       </Row>

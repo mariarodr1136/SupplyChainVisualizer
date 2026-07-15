@@ -3,14 +3,19 @@ import './StatCard.css';
 
 const colorMap = {
   primary: {
-    iconBg: 'rgba(99, 102, 241, 0.15)',
-    iconColor: '#818cf8',
-    accentLine: 'linear-gradient(90deg, #6366f1, #8b5cf6)',
+    iconBg: 'rgba(255, 255, 255, 0.1)',
+    iconColor: '#f5f5f5',
+    accentLine: 'linear-gradient(90deg, #ffffff, #9c9c9c)',
+  },
+  purple: {
+    iconBg: 'rgba(246, 90, 36, 0.15)',
+    iconColor: '#fb8a5c',
+    accentLine: 'linear-gradient(90deg, #f65a24, #fb8a5c)',
   },
   info: {
-    iconBg: 'rgba(14, 165, 233, 0.15)',
-    iconColor: '#38bdf8',
-    accentLine: 'linear-gradient(90deg, #0ea5e9, #38bdf8)',
+    iconBg: 'rgba(255, 255, 255, 0.08)',
+    iconColor: '#d6d6d6',
+    accentLine: 'linear-gradient(90deg, #d4d4d4, #8a8a8a)',
   },
   success: {
     iconBg: 'rgba(16, 185, 129, 0.15)',
