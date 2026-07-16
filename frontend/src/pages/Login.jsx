@@ -1,11 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { FaClock, FaGlobeAmericas, FaTruck, FaChartLine, FaBell, FaArrowRight } from 'react-icons/fa';
-import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/auth.service';
-import HeroMap from '../components/common/HeroMap';
 import './Auth.css';
 
 const FEATURES = [
@@ -39,20 +37,13 @@ const Login = () => {
 
       {/* ── Left panel — branding ── */}
       <div className="login-left">
-        <HeroMap />
-        <div className="login-left-overlay" />
-
         <div className="login-left-content">
           <Link to="/" className="login-back-link">← Back</Link>
 
-          <div className="login-brand">
-            <img src={logo} alt="Nexus" className="login-brand-wordmark" />
-          </div>
-
           <div className="login-left-body">
             <h2 className="login-left-headline">
-              Your entire supply chain,<br />
-              <span className="login-headline-accent">in one place.</span>
+              Your entire supply chain,
+              <span className="login-headline-accent login-headline-line2">in one place.</span>
             </h2>
             <p className="login-left-sub">
               From raw materials to last-mile delivery — Nexus gives you
@@ -77,7 +68,10 @@ const Login = () => {
 
           <div className="login-form-header">
             <h1 className="login-form-title">Welcome back</h1>
-            <p className="login-form-sub">Sign in to your Nexus account</p>
+            <p className="login-form-sub">
+              Shared demo workspace — sign in with the pre-filled credentials
+              below. No account creation needed.
+            </p>
           </div>
 
           <div className="render-notice">
@@ -94,8 +88,6 @@ const Login = () => {
                 {message}
               </Alert>
             )}
-
-            <p className="lf-demo-hint">Pre-filled demo credentials — no changes needed</p>
 
             <Form.Group className="lf-group">
               <Form.Label className="lf-label">Username</Form.Label>

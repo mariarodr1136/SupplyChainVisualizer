@@ -1,3 +1,15 @@
+/* Row gutters (g-3 / g-4) own the spacing on this page, not per-card margins */
+.dashboard-page .card {
+  margin-bottom: 0;
+}
+
+/* Extra breathing room on the sides of list/legend content
+   (global .card-body padding is !important, so match it) */
+.dashboard-page .donut-card-body,
+.dashboard-page .card-body--padded {
+  padding: 24px 30px !important;
+}
+
 .dashboard-section-title {
   font-size: 0.8rem;
   font-weight: 700;
@@ -6,13 +18,24 @@
   text-transform: uppercase;
 }
 
+.dashboard-page .dashboard-chart-card-body {
+  padding: 28px 32px !important;
+}
+
 .dashboard-chart-wrap {
   position: relative;
   height: 260px;
 }
 
+.dashboard-chart-wrap--line {
+  flex: 1;
+  height: auto;
+  min-height: 250px;
+}
+
 .dashboard-table {
   background-color: transparent !important;
+  margin-bottom: 0;
 }
 
 .dashboard-table thead th {
@@ -26,9 +49,10 @@
 }
 
 .dashboard-table tbody td {
-  color: #dde5f5 !important;
+  color: #e2e2e2 !important;
   padding: 13px 16px;
   font-size: 0.83rem;
+  vertical-align: middle;
 }
 
 .dashboard-table tbody tr {
@@ -37,9 +61,367 @@
 }
 
 .dashboard-table tbody tr:hover td {
-  background: rgba(99, 102, 241, 0.05) !important;
+  background: rgba(246, 90, 36, 0.05) !important;
 }
 
 .dashboard-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* ── Performance snapshot strip ──────────────────────── */
+
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.kpi-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid var(--border-muted);
+}
+
+.kpi-chip-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  background: rgba(246, 90, 36, 0.1);
+  color: var(--data-orange-soft);
+}
+
+.kpi-chip-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.kpi-chip-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ── Donut charts ─────────────────────────────────────── */
+
+/* Container query lets the legend restack when the card (not the
+   viewport) gets too narrow to sit beside the donut. */
+.donut-card-body {
+  container-type: inline-size;
+  display: flex;
+  align-items: center;
+}
+
+.donut-layout {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.dashboard-chart-wrap--donut {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.donut-center-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.donut-center-label {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.donut-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.donut-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.donut-legend-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.donut-legend-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+@container (max-width: 379px) {
+  .donut-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .dashboard-chart-wrap--donut {
+    height: 180px;
+    width: 180px;
+  }
+
+  .donut-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 20px;
+    width: 100%;
+  }
+}
+
+/* ── Progress bars (shared dark track + brand fill) ──── */
+
+.dashboard-progress {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.dashboard-progress .progress-bar {
+  background: linear-gradient(90deg, #f65a24, #fb8a5c);
+  border-radius: 99px;
+  min-width: 4px;
+}
+
+.dashboard-progress .progress-bar.bg-success { background: linear-gradient(90deg, #10b981, #34d399) !important; }
+.dashboard-progress .progress-bar.bg-warning { background: linear-gradient(90deg, #f59e0b, #fbbf24) !important; }
+.dashboard-progress .progress-bar.bg-danger  { background: linear-gradient(90deg, #ef4444, #f87171) !important; }
+.dashboard-progress .progress-bar.bg-info    { background: linear-gradient(90deg, #0ea5e9, #38bdf8) !important; }
+
+/* ── Network overview ─────────────────────────────────── */
+
+.network-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.network-type-label {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+}
+
+.network-type-value {
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.connection-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-muted);
+}
+
+.connection-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.connection-chip--active {
+  background: rgba(16, 185, 129, 0.12);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+.connection-chip--delayed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.28);
+}
+
+.connection-chip--at_capacity {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+/* ── Recent activity feed ─────────────────────────────── */
+
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.activity-row:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  border: 1px solid;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.activity-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-title {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity-detail {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+/* ── Node capacity utilization ────────────────────────── */
+
+.utilization-row {
+  margin-bottom: 16px;
+}
+
+.utilization-row:last-child {
+  margin-bottom: 0;
+}
+
+.utilization-label {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+}
+
+.utilization-value {
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Low stock table cells ────────────────────────────── */
+
+.stock-product {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stock-location {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.stock-level-col {
+  width: 45%;
+}
+
+.stock-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.stock-bar {
+  flex: 1;
+}
+
+.stock-cell-text {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .kpi-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .kpi-strip {
+    grid-template-columns: 1fr;
+  }
 }

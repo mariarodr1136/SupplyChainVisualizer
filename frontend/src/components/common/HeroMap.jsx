@@ -107,13 +107,13 @@ export default function HeroMap() {
           </feMerge>
         </filter>
         <radialGradient id="hm-node-grad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#818cf8" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+          <stop offset="0%" stopColor="#ffb391" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#f65a24" stopOpacity="0" />
         </radialGradient>
       </defs>
 
       {/* Graticule lines every 30° */}
-      <g stroke="rgba(99,102,241,0.07)" strokeWidth="0.6" fill="none">
+      <g stroke="rgba(255,255,255,0.05)" strokeWidth="0.6" fill="none">
         {[-60, -30, 0, 30, 60].map(lat => {
           const y = (90 - lat) * (H / 180);
           return <line key={`lat-${lat}`} x1="0" y1={y} x2={W} y2={y} />;
@@ -126,8 +126,8 @@ export default function HeroMap() {
 
       {/* Continent fills */}
       <g
-        fill="rgba(99,102,241,0.065)"
-        stroke="rgba(139,92,246,0.16)"
+        fill="rgba(255,255,255,0.05)"
+        stroke="rgba(251, 138, 92,0.18)"
         strokeWidth="0.8"
         strokeLinejoin="round"
       >
@@ -143,7 +143,7 @@ export default function HeroMap() {
             key={`arc-base-${i}`}
             d={arcPath(x1, y1, x2, y2)}
             fill="none"
-            stroke="rgba(99,102,241,0.14)"
+            stroke="rgba(251, 138, 92,0.16)"
             strokeWidth="1"
           />
         );
@@ -157,7 +157,7 @@ export default function HeroMap() {
         return (
           <g key={`particle-${i}`}>
             {/* Outer glow halo */}
-            <circle r="7" fill="rgba(99,102,241,0.3)" filter="url(#hm-glow-lg)">
+            <circle r="7" fill="rgba(246, 90, 36,0.35)" filter="url(#hm-glow-lg)">
               <animateMotion
                 dur={`${r.dur}s`}
                 begin={`${r.delay}s`}
@@ -166,7 +166,7 @@ export default function HeroMap() {
               />
             </circle>
             {/* Mid glow */}
-            <circle r="4" fill="rgba(129,140,248,0.5)" filter="url(#hm-glow-md)">
+            <circle r="4" fill="rgba(251, 138, 92,0.55)" filter="url(#hm-glow-md)">
               <animateMotion
                 dur={`${r.dur}s`}
                 begin={`${r.delay}s`}
@@ -175,7 +175,7 @@ export default function HeroMap() {
               />
             </circle>
             {/* Bright core dot */}
-            <circle r="2" fill="#e0e7ff" filter="url(#hm-glow-sm)">
+            <circle r="2" fill="#ffffff" filter="url(#hm-glow-sm)">
               <animateMotion
                 dur={`${r.dur}s`}
                 begin={`${r.delay}s`}
@@ -195,7 +195,7 @@ export default function HeroMap() {
             {/* Outer pulse ring */}
             <circle
               cx={x} cy={y} r="10"
-              fill="rgba(99,102,241,0.2)"
+              fill="rgba(246, 90, 36,0.25)"
               className="hm-pulse"
               style={{ '--hm-pulse-delay': `${(i * 0.38).toFixed(2)}s` }}
             />
@@ -203,13 +203,13 @@ export default function HeroMap() {
             <circle
               cx={x} cy={y} r="4.5"
               fill="none"
-              stroke="rgba(129,140,248,0.55)"
+              stroke="rgba(255, 179, 145,0.55)"
               strokeWidth="1"
             />
             {/* Core */}
             <circle
               cx={x} cy={y} r="2.5"
-              fill="#818cf8"
+              fill="#ffffff"
               filter="url(#hm-glow-sm)"
             />
           </g>
@@ -228,7 +228,7 @@ export default function HeroMap() {
               x={x}
               y={above ? y - 12 : y - 11}
               textAnchor="middle"
-              fill="rgba(165,180,252,0.6)"
+              fill="rgba(255,255,255,0.55)"
               fontSize="8"
               fontFamily="Inter, -apple-system, sans-serif"
               fontWeight="500"

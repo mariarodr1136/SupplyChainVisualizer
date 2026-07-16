@@ -12,7 +12,6 @@ import Sidebar from './components/layout/Sidebar';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
-import Register from './pages/Register';
 import SupplyChainMap from './pages/SupplyChainMap';
 import Analytics from './pages/Analytics';
 import Forecasting from './pages/Forecasting';
@@ -78,7 +77,6 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           )}

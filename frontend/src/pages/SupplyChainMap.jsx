@@ -16,7 +16,7 @@ const nodeMarkerStyles = {
   warehouse: { icon: <FaWarehouse />, color: '#748ffc' },
   store: { icon: <FaStore />, color: '#20c997' },
   supplier: { icon: <FaTruckLoading />, color: '#ff922b' },
-  default: { icon: <FaMapMarkerAlt />, color: '#818cf8' },
+  default: { icon: <FaMapMarkerAlt />, color: '#e5e5e5' },
 };
 
 const makeNodeIcon = ({ icon, color }) =>
@@ -38,9 +38,9 @@ const nodeIcons = Object.fromEntries(
 
 // Colors for connection status
 const connectionColors = {
-  active: '#3388ff',
-  inactive: '#999999',
-  delayed: '#ff6b6b',
+  active: '#60a5fa',
+  inactive: '#6e6e6e',
+  delayed: '#f87171',
 };
 
 const SupplyChainMap = () => {
@@ -169,10 +169,10 @@ const SupplyChainMap = () => {
   const getConnectionColor = (connection) => {
     if (viewMode === 'risk') {
       const riskLevel = connection.riskLevel || 'low';
-      return riskLevel === 'high' ? '#ff6b6b' : riskLevel === 'medium' ? '#ffa502' : '#2ecc71';
+      return riskLevel === 'high' ? '#f87171' : riskLevel === 'medium' ? '#fbbf24' : '#34d399';
     } else if (viewMode === 'performance') {
       const perfLevel = connection.performanceLevel || 'medium';
-      return perfLevel === 'low' ? '#ff6b6b' : perfLevel === 'medium' ? '#ffa502' : '#2ecc71';
+      return perfLevel === 'low' ? '#f87171' : perfLevel === 'medium' ? '#fbbf24' : '#34d399';
     } else {
       return connectionColors[connection.status] || connectionColors.active;
     }
@@ -322,10 +322,15 @@ const SupplyChainMap = () => {
               }}
             >
               <TileLayer
-                url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-                className="map-tiles-light"
-                opacity={0.85}
+                className="map-tiles-dark"
+                opacity={1}
+              />
+              <TileLayer
+                url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
+                className="map-tiles-labels"
+                opacity={0.75}
               />
               
               {/* Render connections */}
@@ -347,8 +352,8 @@ const SupplyChainMap = () => {
                     key={connection.id}
                     positions={positions}
                     color={color}
-                    weight={3}
-                    opacity={0.7}
+                    weight={2.5}
+                    opacity={0.75}
                   />
                 );
               })}

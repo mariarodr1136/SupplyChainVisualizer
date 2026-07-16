@@ -3,29 +3,34 @@ import './StatCard.css';
 
 const colorMap = {
   primary: {
-    iconBg: 'rgba(99, 102, 241, 0.15)',
-    iconColor: '#818cf8',
-    accentLine: 'linear-gradient(90deg, #6366f1, #8b5cf6)',
+    iconBg: '#3a3733',
+    iconColor: '#f5f5f5',
+    accentLine: '#9c9c9c',
+  },
+  purple: {
+    iconBg: '#472c1e',
+    iconColor: '#fb8a5c',
+    accentLine: '#f65a24',
   },
   info: {
-    iconBg: 'rgba(14, 165, 233, 0.15)',
-    iconColor: '#38bdf8',
-    accentLine: 'linear-gradient(90deg, #0ea5e9, #38bdf8)',
+    iconBg: '#3a3733',
+    iconColor: '#d6d6d6',
+    accentLine: '#8a8a8a',
   },
   success: {
-    iconBg: 'rgba(16, 185, 129, 0.15)',
+    iconBg: '#1e3d33',
     iconColor: '#34d399',
-    accentLine: 'linear-gradient(90deg, #10b981, #34d399)',
+    accentLine: '#10b981',
   },
   danger: {
-    iconBg: 'rgba(239, 68, 68, 0.15)',
+    iconBg: '#432323',
     iconColor: '#f87171',
-    accentLine: 'linear-gradient(90deg, #ef4444, #f87171)',
+    accentLine: '#ef4444',
   },
   warning: {
-    iconBg: 'rgba(245, 158, 11, 0.15)',
+    iconBg: '#40331b',
     iconColor: '#fbbf24',
-    accentLine: 'linear-gradient(90deg, #f59e0b, #fbbf24)',
+    accentLine: '#f59e0b',
   },
 };
 
@@ -36,18 +41,18 @@ const StatCard = ({ title, value, icon, color }) => {
     <div className="stat-card">
       <div className="stat-card-accent" style={{ background: theme.accentLine }} />
       <div className="stat-card-body">
-        <div className="stat-card-top">
-          {icon && (
-            <div
-              className="stat-icon-pill"
-              style={{ background: theme.iconBg, color: theme.iconColor }}
-            >
-              {React.cloneElement(icon, { size: 17 })}
-            </div>
-          )}
+        <div className="stat-card-text">
+          <div className="stat-value">{value ?? '—'}</div>
+          <div className="stat-label">{title}</div>
         </div>
-        <div className="stat-value">{value ?? '—'}</div>
-        <div className="stat-label">{title}</div>
+        {icon && (
+          <div
+            className="stat-icon-pill"
+            style={{ background: theme.iconBg, color: theme.iconColor }}
+          >
+            {React.cloneElement(icon, { size: 17 })}
+          </div>
+        )}
       </div>
     </div>
   );

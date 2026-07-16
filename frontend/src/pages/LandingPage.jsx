@@ -11,63 +11,73 @@ import {
   FaCheckCircle,
 } from 'react-icons/fa';
 import logo from '../assets/logo.png';
-import HeroMap from '../components/common/HeroMap';
+import shotDashboard from '../assets/screens/dashboard.png';
+import shotMap from '../assets/screens/map.png';
+import shotShipments from '../assets/screens/shipments.png';
+import shotAnalytics from '../assets/screens/analytics.png';
 import './LandingPage.css';
+
+const SURFACES = [
+  {
+    title: 'Dashboard',
+    desc: 'Every shipment, stock level, and alert on one live overview.',
+    linkLabel: 'Open the dashboard',
+    img: shotDashboard,
+    alt: 'Nexus dashboard with shipment status and trend charts',
+  },
+  {
+    title: 'Supply Chain Map',
+    desc: 'Your whole network on a live world map — nodes, routes, and delays.',
+    linkLabel: 'Explore the map',
+    img: shotMap,
+    alt: 'Live supply chain map with routes and facility markers',
+  },
+  {
+    title: 'Shipment Tracker',
+    desc: 'Follow every shipment door to door with live status and progress.',
+    linkLabel: 'Track shipments',
+    img: shotShipments,
+    alt: 'Shipment tracker table with statuses and progress bars',
+  },
+  {
+    title: 'Analytics',
+    desc: 'Delivery performance, SLAs, and seasonality — measured, not guessed.',
+    linkLabel: 'See analytics',
+    img: shotAnalytics,
+    alt: 'Analytics page with KPI cards',
+  },
+];
 
 const FEATURES = [
   {
     icon: <FaGlobeAmericas />,
-    color: 'indigo',
     title: 'Interactive Supply Chain Map',
-    desc: 'Visualize every supplier, warehouse, and distribution node on a live global map. Understand your network at a glance.',
+    desc: 'Visualize every supplier, warehouse, and distribution node on a live global map.',
   },
   {
     icon: <FaExclamationTriangle />,
-    color: 'amber',
     title: 'Risk Detection',
-    desc: 'Surface vulnerabilities across your supply chain before they escalate. Monitor supplier health and flag anomalies in real time.',
+    desc: 'Surface vulnerabilities before they escalate. Monitor supplier health and flag anomalies in real time.',
   },
   {
     icon: <FaTruck />,
-    color: 'sky',
     title: 'Shipment Tracking',
-    desc: 'Follow every shipment from origin to destination with live status updates, delay alerts, and carrier-level detail.',
+    desc: 'Follow every shipment from origin to destination with live status updates and delay alerts.',
   },
   {
     icon: <FaChartLine />,
-    color: 'emerald',
     title: 'AI-Powered Forecasting',
-    desc: 'Predict demand shifts and disruption risks with machine-learning models trained on your historical supply data.',
+    desc: 'Predict demand shifts and disruption risks with models trained on your historical supply data.',
   },
   {
     icon: <FaBell />,
-    color: 'rose',
     title: 'Live Alerts',
-    desc: 'Instant notifications for stockouts, late shipments, threshold breaches, and supplier incidents — before they become crises.',
+    desc: 'Instant notifications for stockouts, late shipments, and threshold breaches — before they become crises.',
   },
   {
     icon: <FaBoxes />,
-    color: 'purple',
     title: 'Inventory Intelligence',
-    desc: 'Track stock levels, reorder points, and turnover across all locations from a single unified inventory dashboard.',
-  },
-];
-
-const STEPS = [
-  {
-    num: '01',
-    title: 'Map Your Network',
-    desc: 'Connect your suppliers, warehouses, and distribution centres. Nexus builds a live graph of your entire supply chain.',
-  },
-  {
-    num: '02',
-    title: 'Monitor in Real Time',
-    desc: 'Track shipments, inventory levels, and node health continuously. Alerts fire the moment something looks off.',
-  },
-  {
-    num: '03',
-    title: 'Act With Confidence',
-    desc: 'Use AI forecasts and analytics to make proactive decisions — reroute shipments, rebalance stock, mitigate risk.',
+    desc: 'Track stock levels, reorder points, and turnover across all locations from one place.',
   },
 ];
 
@@ -78,6 +88,21 @@ const STATS = [
   { value: 'Multi-tier', label: 'Supplier Mapping' },
 ];
 
+/* Cursor-style framed product screenshot: warm taupe mat, dark window
+   with traffic-light dots, image bleeding off the bottom-right. */
+function ShotFrame({ img, alt, hero = false }) {
+  return (
+    <div className={hero ? 'shot-frame shot-frame--hero' : 'shot-frame'}>
+      <div className="shot-window">
+        <div className="shot-dots">
+          <span /><span /><span />
+        </div>
+        <img src={img} alt={alt} loading="lazy" />
+      </div>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div className="landing-wrapper">
@@ -87,38 +112,61 @@ export default function LandingPage() {
           <div className="landing-nav-brand">
             <img src={logo} alt="Nexus" className="landing-nav-logo" />
           </div>
-          <Link to="/login" className="landing-nav-login">
-            Sign In <FaArrowRight className="landing-nav-arrow" />
-          </Link>
+          <div className="landing-nav-right">
+            <Link to="/login" className="landing-nav-signin">Sign in</Link>
+            <Link to="/login" className="landing-nav-cta">Get Started</Link>
+          </div>
         </div>
       </nav>
 
       {/* ── Hero ── */}
       <section className="landing-hero">
-        <HeroMap />
-        <div className="landing-hero-overlay" />
-        <div className="landing-hero-content">
-          <div className="landing-badge">Supply Chain Intelligence Platform</div>
-          <h1 className="landing-h1">
-            Full Visibility Into<br />
-            <span className="landing-h1-accent">Your Supply Chain</span>
-          </h1>
-          <p className="landing-hero-sub">
-            Nexus gives you a real-time view of every node, shipment, and risk across
-            your entire supply network — so you can act before disruptions happen.
-          </p>
-          <div className="landing-hero-ctas">
-            <Link to="/login" className="btn-lp-primary">
-              Get Started <FaArrowRight />
-            </Link>
+        <div className="hero-glow" aria-hidden="true" />
+        <div className="landing-container landing-hero-grid">
+          <div className="landing-hero-copy">
+            <div className="hero-eyebrow">
+              <span className="hero-eyebrow-dot" />
+              Live supply chain intelligence
+            </div>
+            <h1 className="landing-h1">
+              Full visibility into your supply chain.
+              <span className="landing-h1-dim landing-h1-line2">Every node, shipment, and risk — live.</span>
+            </h1>
+            <p className="landing-hero-sub">
+              Nexus connects your suppliers, warehouses, and shipments into one
+              real-time view, so you can act before disruptions happen.
+            </p>
+            <div className="landing-hero-ctas">
+              <Link to="/login" className="btn-lp-primary">
+                Get Started — Explore the Live Demo <FaArrowRight />
+              </Link>
+            </div>
+            <div className="hero-trust">
+              <FaCheckCircle /> No signup required — jump straight into the live guest demo
+            </div>
           </div>
-          <div className="landing-hero-proof">
-            {['No credit card required', 'Free to explore', 'Full platform access'].map((t) => (
-              <span key={t} className="landing-proof-item">
-                <FaCheckCircle className="proof-check" /> {t}
-              </span>
-            ))}
+
+          <div className="hero-float-cards" aria-hidden="true">
+            <div className="hero-float-card hero-float-card--alert">
+              <div className="hero-float-card-row">
+                <span className="hero-float-dot hero-float-dot--warn" />
+                <span className="hero-float-label">Risk Alert</span>
+              </div>
+              <p className="hero-float-title">Warehouse 3 — low stock on 4 SKUs</p>
+              <span className="hero-float-meta">2 min ago</span>
+            </div>
+            <div className="hero-float-card hero-float-card--shipment">
+              <div className="hero-float-card-row">
+                <span className="hero-float-dot hero-float-dot--ok" />
+                <span className="hero-float-label">Shipment #4821</span>
+              </div>
+              <p className="hero-float-title">Rotterdam → Chicago · On time</p>
+              <span className="hero-float-meta">Live tracking</span>
+            </div>
           </div>
+        </div>
+        <div className="landing-container">
+          <ShotFrame img={shotDashboard} alt="The Nexus dashboard" hero />
         </div>
       </section>
 
@@ -132,21 +180,22 @@ export default function LandingPage() {
         ))}
       </div>
 
-      {/* ── How It Works ── */}
-      <section className="landing-section landing-how">
-        <div className="landing-section-inner">
-          <span className="section-eyebrow">HOW IT WORKS</span>
-          <h2 className="section-h2">One Platform. Your Entire Supply Chain.</h2>
-          <p className="section-sub">
-            Nexus connects every layer of your supply network into a single, actionable view.
-          </p>
-          <div className="steps-grid">
-            {STEPS.map((s, i) => (
-              <div key={s.num} className="step-card">
-                <div className="step-num">{s.num}</div>
-                <h3 className="step-title">{s.title}</h3>
-                <p className="step-desc">{s.desc}</p>
-                {i < STEPS.length - 1 && <div className="step-connector" />}
+      {/* ── Product surfaces (Cursor-style cards) ── */}
+      <section className="landing-section">
+        <div className="landing-container">
+          <h2 className="section-title">
+            Everything in one place.
+            <span className="section-title-dim"> One platform across your whole network.</span>
+          </h2>
+          <div className="surfaces-grid">
+            {SURFACES.map((s) => (
+              <div key={s.title} className="surface-card">
+                <h3 className="surface-title">{s.title}</h3>
+                <p className="surface-desc">{s.desc}</p>
+                <Link to="/login" className="lp-link surface-link">
+                  {s.linkLabel} <FaArrowRight className="lp-link-arrow" />
+                </Link>
+                <ShotFrame img={s.img} alt={s.alt} />
               </div>
             ))}
           </div>
@@ -154,17 +203,17 @@ export default function LandingPage() {
       </section>
 
       {/* ── Features ── */}
-      <section className="landing-section landing-features">
-        <div className="landing-section-inner">
-          <span className="section-eyebrow">CAPABILITIES</span>
-          <h2 className="section-h2">Everything You Need to Stay Ahead</h2>
-          <p className="section-sub">
-            Built for supply chain teams who need more than just a dashboard.
-          </p>
+      <section className="landing-section landing-section--tight-top">
+        <div className="landing-container">
+          <div className="section-divider" />
+          <h2 className="section-title">
+            Built to stay ahead.
+            <span className="section-title-dim"> More than just a dashboard.</span>
+          </h2>
           <div className="features-grid">
             {FEATURES.map((f) => (
-              <div key={f.title} className={`feature-card feature-card--${f.color}`}>
-                <div className={`feature-icon feature-icon--${f.color}`}>{f.icon}</div>
+              <div key={f.title} className="feature-card">
+                <div className="feature-icon">{f.icon}</div>
                 <h3 className="feature-title">{f.title}</h3>
                 <p className="feature-desc">{f.desc}</p>
               </div>
@@ -175,18 +224,10 @@ export default function LandingPage() {
 
       {/* ── CTA Banner ── */}
       <section className="landing-cta-section">
-        <div className="landing-cta-inner">
-          <div className="landing-cta-glow" />
-          <h2 className="landing-cta-h2">Ready to take control of your supply chain?</h2>
-          <p className="landing-cta-sub">
-            Start with a free account and get full access to your supply chain platform — no setup required.
-          </p>
-          <div className="landing-cta-btns">
-            <Link to="/login" className="btn-lp-primary btn-lp-primary--lg">
-              Get Started <FaArrowRight />
-            </Link>
-          </div>
-        </div>
+        <h2 className="landing-cta-h2">Get started with Nexus.</h2>
+        <Link to="/login" className="btn-lp-primary btn-lp-primary--lg">
+          Explore the Live Demo <FaArrowRight />
+        </Link>
       </section>
 
       {/* ── Footer ── */}
