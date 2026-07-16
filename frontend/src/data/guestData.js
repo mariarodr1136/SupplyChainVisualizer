@@ -278,6 +278,32 @@ const initialShipments = [
     items: [
       { productId: 4, productName: 'Packaging Set', quantity: 300 }
     ]
+  },
+  {
+    id: 9005,
+    sourceId: 1,
+    destinationId: 3,
+    status: 'delivered',
+    createdAt: '2026-01-15T07:30:00Z',
+    departureDate: '2026-01-15',
+    estimatedArrival: '2026-01-22',
+    actualArrival: '2026-01-25T11:20:00Z',
+    items: [
+      { productId: 5, productName: 'Motor Assembly', quantity: 45 }
+    ]
+  },
+  {
+    id: 9006,
+    sourceId: 5,
+    destinationId: 1,
+    status: 'delivered',
+    createdAt: '2026-01-05T06:00:00Z',
+    departureDate: '2026-01-05',
+    estimatedArrival: '2026-01-08',
+    actualArrival: '2026-01-07T09:45:00Z',
+    items: [
+      { productId: 1, productName: 'Lithium Battery Pack', quantity: 60 }
+    ]
   }
 ];
 

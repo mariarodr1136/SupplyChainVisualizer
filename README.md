@@ -73,7 +73,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - **Chart.js** (KPI and trend visualizations)
 - **Leaflet** (geospatial mapping and network overlays)
 - **Bootstrap** (responsive layout and UI primitives)
-- **Axios** (typed REST client + auth headers)
+- **Axios** (REST client with JWT auth headers)
 - **Vitest + React Testing Library** (unit and component tests)
 
 #### Backend (API + Security)
@@ -84,13 +84,14 @@ Live Application: https://supply-chain-visualizer.onrender.com
 - **RESTful API Design** (resource-first endpoints)
 
 #### Data Layer
-- **PostgreSQL** (relational persistence, indexed queries)
+- **PostgreSQL** (relational persistence, indexed queries — local & Docker stack)
 - **Flyway** (versioned schema migrations + idempotent seed data)
+- **H2 (embedded)** (file-based `h2` profile powering the free-tier live demo)
 
 #### Deployment & DevOps
 - **Docker** (multi-stage builds for optimized images)
 - **Render Blueprint (IaC)** (repeatable cloud deployment)
-- **Render PostgreSQL** (managed DB service)
+- **GitHub Actions CI** (backend + frontend test suites on every push)
 - **Git/GitHub** (source control + release workflow)
 - **Environment-based configuration** (no hardcoded secrets)
 
@@ -123,7 +124,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 3. **Configure database connection**:
    ```bash
    # Edit the application.properties file
-   nano backend/src/main/resources/application.properties
+   nano backend/supply-chain-visualizer/src/main/resources/application.properties
    ```
 
 4. **Build and run the backend**:
@@ -169,28 +170,32 @@ supply-chain-visualizer/
 │       ├── pages/              # Page components
 │       ├── services/           # API services (with guest-mode fallback)
 │       ├── context/            # React context providers
+│       ├── data/               # Static in-memory dataset for guest mode
 │       ├── App.jsx             # Main App component
 │       └── main.jsx            # Entry point
 │
-├── backend/                    # Java Spring Boot backend
-│   ├── Dockerfile              # Multi-stage Docker build
-│   ├── entrypoint.sh           # Container startup script
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   ├── config/     # OpenAPI (Swagger) config
-│   │   │   │   ├── controller/ # API controllers
-│   │   │   │   ├── dto/        # Data Transfer Objects
-│   │   │   │   ├── exception/  # Global exception handler
-│   │   │   │   ├── model/      # Entity models
-│   │   │   │   ├── repository/ # JPA repositories
-│   │   │   │   ├── security/   # JWT and security config
-│   │   │   │   └── service/    # Business logic
-│   │   │   └── resources/
-│   │   │       ├── application-render.properties  # Production config
-│   │   │       └── db/migration/                  # Flyway migrations (schema + seed)
-│   │   └── test/               # 57 unit tests: NodeService, ProductService, InventoryService, ShipmentService, AnalyticsService, JwtUtils
-│   └── pom.xml                 # Maven dependencies
+├── backend/
+│   └── supply-chain-visualizer/    # Java Spring Boot backend
+│       ├── Dockerfile              # Multi-stage Docker build
+│       ├── entrypoint.sh           # Container startup script
+│       ├── src/
+│       │   ├── main/
+│       │   │   ├── java/
+│       │   │   │   ├── config/     # OpenAPI (Swagger) config
+│       │   │   │   ├── controller/ # API controllers
+│       │   │   │   ├── dto/        # Data Transfer Objects
+│       │   │   │   ├── exception/  # Global exception handler
+│       │   │   │   ├── model/      # Entity models
+│       │   │   │   ├── repository/ # JPA repositories
+│       │   │   │   ├── security/   # JWT and security config
+│       │   │   │   └── service/    # Business logic
+│       │   │   └── resources/
+│       │   │       ├── application.properties         # Local config (PostgreSQL)
+│       │   │       ├── application-h2.properties      # Live demo config (embedded H2)
+│       │   │       ├── application-render.properties  # Postgres-backed production config
+│       │   │       └── db/migration/                  # Flyway migrations (schema + seed)
+│       │   └── test/               # 57 unit tests: NodeService, ProductService, InventoryService, ShipmentService, AnalyticsService, JwtUtils
+│       └── pom.xml                 # Maven dependencies
 │
 ├── .github/workflows/ci.yml   # CI: backend + frontend tests on every push
 ├── docker-compose.yml          # Local full-stack: PostgreSQL + API + frontend
@@ -352,7 +357,8 @@ Authorization: Bearer <your_token_here>
 |                      | PUT    | `/api/connections/:id`          | Update a connection                |
 |                      | DELETE | `/api/connections/:id`          | Delete a connection                |
 | **Inventory**        | GET    | `/api/inventory`                | List inventory across all nodes    |
-|                      | GET    | `/api/inventory/:nodeId`        | Inventory for a specific node      |
+|                      | GET    | `/api/inventory/node/:nodeId`   | Inventory for a specific node      |
+|                      | GET    | `/api/inventory/low-stock`      | List items at or below threshold   |
 |                      | POST   | `/api/inventory`                | Add or update inventory data       |
 | **Shipments**        | GET    | `/api/shipments`                | List all shipments                 |
 |                      | GET    | `/api/shipments/:id`            | Retrieve a specific shipment       |
@@ -362,6 +368,8 @@ Authorization: Bearer <your_token_here>
 | **Products**         | POST   | `/api/products`                 | Create a new product               |
 |                      | GET    | `/api/products`                 | List all products                  |
 |                      | GET    | `/api/products/sku/:sku`        | Retrieve a product by SKU          |
+|                      | PUT    | `/api/products/:id`             | Update a product                   |
+|                      | DELETE | `/api/products/:id`             | Delete a product                   |
 | **Analytics**        | GET    | `/api/analytics/summary`        | KPIs, SLA by lane, lead-time variance |
 
 ---
@@ -511,21 +519,21 @@ The application is deployed on **Render** using a Blueprint (`render.yaml`) for 
 
 - **Backend**: Dockerized Spring Boot API deployed as a Render Web Service
 - **Frontend**: React static site built and served via Render Static Site
-- **Database**: Managed PostgreSQL instance on Render
+- **Database**: Embedded file-based H2 (`h2` profile) running inside the backend service — the free-tier demo needs no managed database
 
 ##### How It Works
-The project uses a `render.yaml` Blueprint that provisions all three services in one click:
-1. A **PostgreSQL database** is created and connection credentials are automatically injected
-2. The **backend** is built using a multi-stage Dockerfile (Maven build → JRE runtime) with an `entrypoint.sh` that parses the database connection string into JDBC-compatible components
+The project uses a `render.yaml` Blueprint that provisions both services in one click:
+1. The **backend** is built using a multi-stage Dockerfile (Maven build → JRE runtime) and runs with `SPRING_PROFILES_ACTIVE=h2`, so the demo persists to an embedded H2 database instead of a paid managed instance
+2. To run against **PostgreSQL** instead, switch the profile to `render` and attach a database — `entrypoint.sh` automatically parses Render's connection string into JDBC-compatible components
 3. The **frontend** is built with `npm run build` and served as a static site with client-side routing support
-4. **Environment variables** handle all sensitive configuration (database credentials, JWT secrets, CORS origins) — no secrets are hardcoded or committed to version control
+4. **Environment variables** handle all sensitive configuration (JWT secrets, CORS origins, database credentials) — no secrets are hardcoded or committed to version control
 
 ##### Deploy Your Own Instance
 1. Fork this repository
 2. Go to [Render Dashboard](https://dashboard.render.com) → **New** → **Blueprint**
 3. Connect your forked repository — Render auto-detects `render.yaml`
 4. Click **Apply** to provision all services
-5. After deployment, update `CORS_ALLOWED_ORIGINS` on the backend and `REACT_APP_API_URL` on the frontend to match the actual Render-assigned URLs
+5. After deployment, update `CORS_ALLOWED_ORIGINS` on the backend and `VITE_API_URL` on the frontend to match the actual Render-assigned URLs
 
 #### Local Deployment with Docker
 The included `docker-compose.yml` provisions the full stack locally — PostgreSQL, the Spring Boot API (with Flyway migrations), and the frontend served by nginx:
@@ -539,7 +547,7 @@ docker-compose up -d
 
 #### A Note on Data
 
-Registered accounts share a single demo workspace — nodes, shipments, and inventory are common to all users, which keeps the live demo populated and interactive. Guest mode is fully isolated: it runs on an in-memory dataset in the browser and resets on refresh.
+Registered accounts share a single demo workspace — nodes, shipments, and inventory are common to all users, which keeps the live demo populated and interactive. Because the live demo runs on an embedded database, shared data may reset when the service is redeployed. Guest mode is fully isolated: it runs on an in-memory dataset in the browser and resets on refresh.
 
 ---
 

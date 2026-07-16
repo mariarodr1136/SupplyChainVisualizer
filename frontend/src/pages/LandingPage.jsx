@@ -124,10 +124,6 @@ export default function LandingPage() {
         <div className="hero-glow" aria-hidden="true" />
         <div className="landing-container landing-hero-grid">
           <div className="landing-hero-copy">
-            <div className="hero-eyebrow">
-              <span className="hero-eyebrow-dot" />
-              Live supply chain intelligence
-            </div>
             <h1 className="landing-h1">
               Full visibility into your supply chain.
               <span className="landing-h1-dim landing-h1-line2">Every node, shipment, and risk — live.</span>

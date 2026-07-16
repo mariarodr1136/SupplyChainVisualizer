@@ -5,6 +5,36 @@ import { guestDataApi } from '../data/guestData';
 
 const API_URL = (import.meta.env.VITE_API_URL || '') + '/api/analytics/';
 
+const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+
+const daysBetween = (start, end) => (new Date(end) - new Date(start)) / 86400000;
+
+const computeLeadTimeBySegment = (delivered) => {
+  const segmentMap = {};
+  delivered.forEach((s) => {
+    if (!s.departureDate || !s.estimatedArrival || !s.actualArrival) return;
+    const sourceNode = guestDataApi.getNodeById(s.sourceId);
+    const destinationNode = guestDataApi.getNodeById(s.destinationId);
+    const segment = `${capitalize(sourceNode?.type)} → ${capitalize(destinationNode?.type)}`;
+    const target = daysBetween(s.departureDate, s.estimatedArrival);
+    const actual = daysBetween(s.departureDate, s.actualArrival);
+    if (!segmentMap[segment]) segmentMap[segment] = [];
+    segmentMap[segment].push({ target, actual });
+  });
+
+  return Object.entries(segmentMap).map(([segment, rows]) => {
+    const avgTarget = rows.reduce((sum, r) => sum + r.target, 0) / rows.length;
+    const avgActual = rows.reduce((sum, r) => sum + r.actual, 0) / rows.length;
+    const variance = avgActual - avgTarget;
+    return {
+      segment,
+      targetDays: Math.round(avgTarget * 10) / 10,
+      actualDays: Math.round(avgActual * 10) / 10,
+      variance: `${variance >= 0 ? '+' : ''}${variance.toFixed(1)}`,
+    };
+  });
+};
+
 const computeGuestSummary = () => {
   const shipments = guestDataApi.getShipments();
   const delivered = shipments.filter((s) => s.status === 'delivered');
@@ -59,7 +89,7 @@ const computeGuestSummary = () => {
     totalShipments: shipments.length,
     deliveredShipments: delivered.length,
     slaByLane,
-    leadTimeBySegment: [],
+    leadTimeBySegment: computeLeadTimeBySegment(delivered),
   };
 };
 

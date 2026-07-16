@@ -161,6 +161,7 @@
   position: relative;
   height: 260px;
   display: block;
+  transform: translate(-80px, -48px);
 }
 
 .hero-float-card {

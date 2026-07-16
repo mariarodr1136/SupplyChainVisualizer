@@ -129,6 +129,8 @@ const Connections = () => {
     return matchesSearch && matchesTransportType && matchesStatus;
   });
 
+  const capitalize = (text) => (text ? text.charAt(0).toUpperCase() + text.slice(1) : text);
+
   const getStatusBadge = (status) => {
     switch (status) {
       case 'active':
@@ -262,7 +264,7 @@ const Connections = () => {
                             {connection.targetName}
                           </Link>
                         </td>
-                        <td>{connection.transportationType || 'Not specified'}</td>
+                        <td>{connection.transportationType ? capitalize(connection.transportationType) : 'Not specified'}</td>
                         <td>{connection.travelTime ? `${connection.travelTime} hours` : 'Not specified'}</td>
                         <td>{connection.distance ? `${connection.distance} km` : 'Not specified'}</td>
                         <td>{getStatusBadge(connection.status)}</td>
