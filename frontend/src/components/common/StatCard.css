@@ -24,7 +24,7 @@
 }
 
 .stat-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-elevated), 0 0 0 1px rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.12);
 }
@@ -35,46 +35,34 @@
   position: relative;
 }
 
-.stat-card-accent::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 36px;
-  background: inherit;
-  filter: blur(24px);
-  opacity: 0.12;
+.stat-card-body {
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
 }
 
-.stat-card-body {
-  padding: 18px 20px 20px;
+.stat-card-text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.stat-card-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 4px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .stat-icon-pill {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .stat-value {
-  font-size: 2.3rem;
-  font-weight: 900;
+  font-size: 1.9rem;
+  font-weight: 850;
   color: var(--text-primary);
   line-height: 1;
   letter-spacing: -0.03em;

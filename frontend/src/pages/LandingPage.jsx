@@ -8,6 +8,7 @@ import {
   FaBell,
   FaBoxes,
   FaArrowRight,
+  FaCheckCircle,
 } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import shotDashboard from '../assets/screens/dashboard.png';
@@ -120,20 +121,51 @@ export default function LandingPage() {
 
       {/* ── Hero ── */}
       <section className="landing-hero">
-        <div className="landing-container">
-          <h1 className="landing-h1">
-            Full visibility into your supply chain.
-            <span className="landing-h1-dim landing-h1-line2">Every node, shipment, and risk — live.</span>
-          </h1>
-          <p className="landing-hero-sub">
-            Nexus connects your suppliers, warehouses, and shipments into one
-            real-time view, so you can act before disruptions happen.
-          </p>
-          <div className="landing-hero-ctas">
-            <Link to="/login" className="btn-lp-primary">
-              Get Started — Explore the Live Demo <FaArrowRight />
-            </Link>
+        <div className="hero-glow" aria-hidden="true" />
+        <div className="landing-container landing-hero-grid">
+          <div className="landing-hero-copy">
+            <div className="hero-eyebrow">
+              <span className="hero-eyebrow-dot" />
+              Live supply chain intelligence
+            </div>
+            <h1 className="landing-h1">
+              Full visibility into your supply chain.
+              <span className="landing-h1-dim landing-h1-line2">Every node, shipment, and risk — live.</span>
+            </h1>
+            <p className="landing-hero-sub">
+              Nexus connects your suppliers, warehouses, and shipments into one
+              real-time view, so you can act before disruptions happen.
+            </p>
+            <div className="landing-hero-ctas">
+              <Link to="/login" className="btn-lp-primary">
+                Get Started — Explore the Live Demo <FaArrowRight />
+              </Link>
+            </div>
+            <div className="hero-trust">
+              <FaCheckCircle /> No signup required — jump straight into the live guest demo
+            </div>
           </div>
+
+          <div className="hero-float-cards" aria-hidden="true">
+            <div className="hero-float-card hero-float-card--alert">
+              <div className="hero-float-card-row">
+                <span className="hero-float-dot hero-float-dot--warn" />
+                <span className="hero-float-label">Risk Alert</span>
+              </div>
+              <p className="hero-float-title">Warehouse 3 — low stock on 4 SKUs</p>
+              <span className="hero-float-meta">2 min ago</span>
+            </div>
+            <div className="hero-float-card hero-float-card--shipment">
+              <div className="hero-float-card-row">
+                <span className="hero-float-dot hero-float-dot--ok" />
+                <span className="hero-float-label">Shipment #4821</span>
+              </div>
+              <p className="hero-float-title">Rotterdam → Chicago · On time</p>
+              <span className="hero-float-meta">Live tracking</span>
+            </div>
+          </div>
+        </div>
+        <div className="landing-container">
           <ShotFrame img={shotDashboard} alt="The Nexus dashboard" hero />
         </div>
       </section>
