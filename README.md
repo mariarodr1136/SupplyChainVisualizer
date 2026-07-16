@@ -16,10 +16,11 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1470" height="717" alt="Screenshot 2026-07-05 at 10 24 24 AM" src="https://github.com/user-attachments/assets/05707695-bc33-4d93-9b36-74267581c5a9" />
+<img width="1463" height="797" alt="Screenshot 2026-07-15 at 2 42 01 PM" src="https://github.com/user-attachments/assets/222fbab8-6ad9-43c2-9971-c94904035dcd" />
 
-<img width="1470" height="796" alt="Screenshot 2026-07-05 at 10 24 46 AM" src="https://github.com/user-attachments/assets/97e6c56b-c934-4159-8bf4-2a78d719ea4c" />
+---
 
+<img width="1470" height="801" alt="Screenshot 2026-07-15 at 2 42 14 PM" src="https://github.com/user-attachments/assets/e21d3b93-a4dc-4a08-97b5-ebae6241e7b7" />
 
 ---
 
@@ -56,9 +57,11 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-<img width="1454" height="779" alt="Screenshot 2026-07-05 at 10 24 37 AM" src="https://github.com/user-attachments/assets/5157f6bd-b9cd-4b25-9cba-cba274d622c6" />
+<img width="1470" height="798" alt="Screenshot 2026-07-15 at 2 44 21 PM" src="https://github.com/user-attachments/assets/86ca81d9-bb6b-472b-866b-6ded1f8d9ab5" />
 
-<img width="1470" height="798" alt="Screenshot 2026-07-05 at 10 25 06 AM" src="https://github.com/user-attachments/assets/bb6dc891-d5b2-4d79-87b3-69b8cc8e47de" />
+---
+
+<img width="1470" height="796" alt="Screenshot 2026-07-15 at 2 43 11 PM" src="https://github.com/user-attachments/assets/8fd23b74-31a2-4d1a-9f12-0e18ab2e30b0" />
 
 ---
 
@@ -149,9 +152,7 @@ Live Application: https://supply-chain-visualizer.onrender.com
 
 ---
 
-
-https://github.com/user-attachments/assets/4a367724-c676-47d2-9c53-71d56e742f7a
-
+https://github.com/user-attachments/assets/cdb73316-14ee-4195-8ec5-0dd58340bedd
 
 ---
 
@@ -236,9 +237,8 @@ The app is designed for easy recruiter and stakeholder walkthroughs — no accou
 
 ---
 
-<img width="1468" height="801" alt="Screenshot 2026-07-05 at 10 25 23 AM" src="https://github.com/user-attachments/assets/c6380738-d28a-4f81-8928-90e29d43ca7b" />
+<img width="1411" height="763" alt="Screenshot 2026-07-15 at 2 42 31 PM" src="https://github.com/user-attachments/assets/07b7fba7-f16d-42bf-b545-2491e94466b9" />
 
-<img width="1470" height="799" alt="Screenshot 2026-07-05 at 10 25 31 AM" src="https://github.com/user-attachments/assets/a0ff3b4b-7010-4f54-8ac1-625478a97b73" />
 
 ---
 
