@@ -34,7 +34,8 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 - **Stateless security** — Spring Security + JWT with token generation, validation, and role-based access; secrets injected via environment variables, never committed
 - **Guest mode without a backend** — the frontend service layer transparently falls back to a static in-memory dataset, so the demo works instantly even while the free-tier server cold-starts
 - **Database as code** — Flyway versioned migrations create the schema and idempotent seed data automatically on startup, across three runtime profiles (local PostgreSQL, embedded H2 demo, managed Postgres in production)
-- **Automated quality gates** — 57 backend unit tests plus frontend Vitest suites run in GitHub Actions on every push
+- **Modernized, not greenfield** — migrated the stack from Java 11 / Spring Boot 2.7 / Create React App to Java 17 / Spring Boot 3.5 / Vite, adding Flyway, OpenAPI docs, and security hardening along the way
+- **Automated quality gates** — 72 automated tests (57 backend unit tests + 15 frontend Vitest tests) run in GitHub Actions on every push
 - **Reproducible deployment** — multi-stage Docker builds, a one-command local stack via Docker Compose, and a Render Blueprint that provisions the entire cloud environment in one click
 
 <img width="1470" height="798" alt="Analytics" src="https://github.com/user-attachments/assets/86ca81d9-bb6b-472b-866b-6ded1f8d9ab5" />
@@ -203,7 +204,7 @@ Registered accounts share a single demo workspace — nodes, shipments, and inve
 
 ### Testing
 
-**57 backend unit tests** (JUnit 5, Mockito, AssertJ) cover the service and security layers — CRUD and filtering, inventory thresholds, shipment status transitions, analytics KPI calculations, and JWT generation/validation. The frontend uses **Vitest + React Testing Library** for service-layer and component tests. Both suites run in **GitHub Actions CI** on every push.
+**72 automated tests** run in **GitHub Actions CI** on every push. The **57 backend unit tests** (JUnit 5, Mockito, AssertJ) cover the service and security layers — CRUD and filtering, inventory thresholds, shipment status transitions, analytics KPI calculations, and JWT generation/validation. The **15 frontend tests** (Vitest + React Testing Library) cover the service layer — including the guest-mode fallback — and shared components.
 
 ```bash
 cd backend/supply-chain-visualizer && mvn test   # backend
