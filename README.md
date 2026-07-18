@@ -10,6 +10,8 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 
 > Hosted on Render's free tier — the backend may take 1–2 minutes to wake on first visit.
 
+---
+
 <img width="1463" height="797" alt="Dashboard" src="https://github.com/user-attachments/assets/222fbab8-6ad9-43c2-9971-c94904035dcd" />
 
 <img width="1470" height="801" alt="Supply chain map" src="https://github.com/user-attachments/assets/e21d3b93-a4dc-4a08-97b5-ebae6241e7b7" />
