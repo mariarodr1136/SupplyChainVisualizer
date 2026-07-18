@@ -6,7 +6,7 @@ A full-stack web application for mapping and analyzing supply chain networks —
 
 Built end-to-end with a **React 18** frontend and a **Spring Boot 3.5 / Java 17** REST API, secured with stateless **JWT** authentication, backed by **PostgreSQL** with versioned **Flyway** migrations, covered by CI-run test suites on both tiers, and deployed with **Docker** on **Render** via Infrastructure as Code.
 
-Live Demo:[supply-chain-visualizer.onrender.com](https://supply-chain-visualizer.onrender.com)
+Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualizer.onrender.com)
 
 > Hosted on Render's free tier — the backend may take 1–2 minutes to wake on first visit.
 
