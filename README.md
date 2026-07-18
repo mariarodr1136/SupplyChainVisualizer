@@ -2,7 +2,9 @@
 
 [![CI](https://github.com/mariarodr1136/SupplyChainVisualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/mariarodr1136/SupplyChainVisualizer/actions/workflows/ci.yml) ![React](https://img.shields.io/badge/React-18-61DAFB) ![Java](https://img.shields.io/badge/Java-17-007396) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED) ![Render](https://img.shields.io/badge/Render-Deployed-46E3B7)
 
-A full-stack web application for mapping and analyzing supply chain networks — interactive geospatial maps, live inventory and shipment tracking, and analytics computed from real operational data. Built with **React** and **Spring Boot**, secured with **JWT**, and deployed with **Docker** on **Render**.
+A full-stack web application for mapping and analyzing supply chain networks — interactive geospatial maps, live inventory and shipment tracking, and analytics computed from real operational data. Businesses can visualize their entire network on a map, monitor stock levels and deliveries in real time, and surface bottlenecks through KPIs, forecasts, and a live alerts feed.
+
+Built end-to-end with a **React 18** frontend and a **Spring Boot 3.5 / Java 17** REST API, secured with stateless **JWT** authentication, backed by **PostgreSQL** with versioned **Flyway** migrations, covered by CI-run test suites on both tiers, and deployed with **Docker** on **Render** via Infrastructure as Code.
 
 ### Live Demo
 
@@ -26,6 +28,16 @@ A full-stack web application for mapping and analyzing supply chain networks —
 - **Live Alerts Feed** — auto-refreshing feed of delayed shipments and low-stock alerts
 - **Orders Hub & Network Connections** — order lifecycle visibility and transport link management
 - **Guest Mode** — one-click, read-only demo backed by an in-memory dataset; changes reset on refresh
+- **Polished dark UI** — custom dark theme across dashboards, modals, and map tiles, designed for long-session readability
+
+### Engineering Highlights
+
+- **Layered backend architecture** — controllers, DTOs, service interfaces with implementations, and JPA repositories, plus a global exception handler for consistent API errors
+- **Stateless security** — Spring Security + JWT with token generation, validation, and role-based access; secrets injected via environment variables, never committed
+- **Guest mode without a backend** — the frontend service layer transparently falls back to a static in-memory dataset, so the demo works instantly even while the free-tier server cold-starts
+- **Database as code** — Flyway versioned migrations create the schema and idempotent seed data automatically on startup, across three runtime profiles (local PostgreSQL, embedded H2 demo, managed Postgres in production)
+- **Automated quality gates** — 57 backend unit tests plus frontend Vitest suites run in GitHub Actions on every push
+- **Reproducible deployment** — multi-stage Docker builds, a one-command local stack via Docker Compose, and a Render Blueprint that provisions the entire cloud environment in one click
 
 <img width="1470" height="798" alt="Analytics" src="https://github.com/user-attachments/assets/86ca81d9-bb6b-472b-866b-6ded1f8d9ab5" />
 
@@ -218,7 +230,13 @@ cd frontend && npm test                          # frontend
 
 ### Deployment
 
-Deployed on **Render** via a one-click Blueprint (`render.yaml`): the backend runs as a Dockerized web service (multi-stage Maven → JRE build) and the frontend as a static site. The free-tier demo uses an embedded H2 profile; switching the profile to `render` and attaching a database runs it against managed PostgreSQL. To deploy your own instance, fork the repo, create a new Blueprint in the [Render Dashboard](https://dashboard.render.com), and update the CORS/API URL environment variables after provisioning.
+Deployed on **Render** via a one-click Blueprint (`render.yaml`):
+
+- **Backend** — Dockerized Spring Boot API (multi-stage Maven → JRE build) running as a web service; the free-tier demo persists to embedded H2, and switching the profile to `render` with an attached database runs it against managed PostgreSQL (`entrypoint.sh` parses Render's connection string into JDBC components automatically)
+- **Frontend** — React production build served as a static site with client-side routing support
+- **Configuration** — JWT secrets, CORS origins, and database credentials all come from environment variables
+
+To deploy your own instance: fork the repo, create a new Blueprint in the [Render Dashboard](https://dashboard.render.com) (it auto-detects `render.yaml`), and update the CORS/API URL environment variables after provisioning.
 
 ---
 
