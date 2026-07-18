@@ -1,4 +1,4 @@
-# Nexus: Supply Chain Visualizer
+# Nexus: Supply Chain Visualizer 🚛⛓️‍💥
 
 [![CI](https://github.com/mariarodr1136/SupplyChainVisualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/mariarodr1136/SupplyChainVisualizer/actions/workflows/ci.yml) ![React](https://img.shields.io/badge/React-18-61DAFB) ![Java](https://img.shields.io/badge/Java-17-007396) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791) ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED) ![Render](https://img.shields.io/badge/Render-Deployed-46E3B7)
 
