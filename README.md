@@ -16,6 +16,20 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 
 ---
 
+### Table of Contents
+
+- [Features](#features)
+- [Engineering Highlights](#engineering-highlights)
+- [Tech Stack](#tech-stack)
+- [Quick Start](#quick-start)
+- [Architecture](#architecture)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [Contact](#contact)
+
+---
+
 ### Features
 
 - **Interactive Supply Chain Map** — facility nodes and transport connections on Leaflet with performance overlays
