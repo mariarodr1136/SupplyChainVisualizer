@@ -30,7 +30,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * Skipped automatically when no Docker daemon is available.
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// application.properties is gitignored, so JWT config must be supplied here for CI
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = {
+                "jwt.secret=integration-test-secret-that-is-at-least-64-bytes-long-for-hmac-sha512-signing!!",
+                "jwt.expiration=3600000",
+        })
 @Testcontainers(disabledWithoutDocker = true)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PostgresIntegrationTest {
