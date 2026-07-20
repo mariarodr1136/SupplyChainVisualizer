@@ -42,7 +42,7 @@ class AuthService {
   getCurrentUser() {
     try {
       return JSON.parse(localStorage.getItem('user'));
-    } catch (err) {
+    } catch {
       return null;
     }
   }

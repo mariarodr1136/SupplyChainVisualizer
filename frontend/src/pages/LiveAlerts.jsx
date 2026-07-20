@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Card, Table, Badge, Button } from 'react-bootstrap';
 import { FaExclamationTriangle, FaSyncAlt } from 'react-icons/fa';
 import PageHeader from '../components/common/PageHeader';
@@ -77,7 +77,10 @@ const LiveAlerts = () => {
 
   return (
     <Container fluid className="alerts-page">
-      <PageHeader title="Live Alerts" />
+      <PageHeader
+        title="Live Alerts"
+        subtitle="Generated from current shipment and inventory data — auto-refreshes every 30 seconds"
+      />
 
       <Row className="mb-4">
         <Col>

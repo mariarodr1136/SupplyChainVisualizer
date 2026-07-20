@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { FaClock, FaGlobeAmericas, FaTruck, FaChartLine, FaBell, FaArrowRight } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -77,7 +77,7 @@ const Login = () => {
           <div className="render-notice">
             <FaClock className="render-notice-icon" />
             <span>
-              Hosted on Render's free tier — first login after inactivity
+              Hosted on Render&apos;s free tier — first login after inactivity
               may take 30–60s to wake the server.
             </span>
           </div>

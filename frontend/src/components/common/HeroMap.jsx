@@ -1,4 +1,3 @@
-import React from 'react';
 import './HeroMap.css';
 
 const W = 1200;

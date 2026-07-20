@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Card, Form, Row, Col, Button, Modal } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import { FaInfoCircle, FaFilter, FaIndustry, FaWarehouse, FaStore, FaTruckLoading, FaMapMarkerAlt } from 'react-icons/fa';
@@ -316,10 +316,6 @@ const SupplyChainMap = () => {
               center={mapCenter} 
               zoom={mapZoom} 
               style={{ height: '100%', width: '100%' }}
-              whenCreated={(mapInstance) => {
-                // Optional: Store map instance if you need to access it later
-                // setMap(mapInstance);
-              }}
             >
               <TileLayer
                 url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"

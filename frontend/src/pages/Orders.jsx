@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Row, Col, Card, Table, Badge } from 'react-bootstrap';
 import PageHeader from '../components/common/PageHeader';
 

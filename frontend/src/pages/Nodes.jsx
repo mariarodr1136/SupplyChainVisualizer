@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Badge, Spinner, Alert } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEdit, FaTrashAlt, FaSyncAlt, FaEye } from 'react-icons/fa';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import NodeService from '../services/node.service';
 import PageHeader from '../components/common/PageHeader';
 import NodeModal from '../components/map/NodeModal';

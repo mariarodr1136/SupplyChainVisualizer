@@ -1,7 +1,7 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaBars, FaSignOutAlt, FaChevronDown, FaUserCircle } from 'react-icons/fa';
+import { FaBars, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
 import { AuthContext } from '../../context/AuthContext';
 import logo from '../../assets/logo.png';
 import './Header.css';

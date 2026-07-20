@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { FaPlus, FaSearch, FaEdit, FaTrashAlt, FaSyncAlt, FaBoxOpen } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';

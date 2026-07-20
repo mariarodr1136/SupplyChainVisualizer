@@ -1,4 +1,3 @@
-import React from 'react';
 import { Table, Pagination, Form } from 'react-bootstrap';
 import './DataTable.css';
 

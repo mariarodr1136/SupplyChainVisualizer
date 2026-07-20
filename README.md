@@ -51,7 +51,7 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 - **Guest mode without a backend** — the frontend service layer transparently falls back to a static in-memory dataset, so the demo works instantly even while the free-tier server cold-starts
 - **Database as code** — Flyway versioned migrations create the schema and idempotent seed data automatically on startup, across three runtime profiles (local PostgreSQL, embedded H2 demo, managed Postgres in production)
 - **Modernized, not greenfield** — migrated the stack from Java 11 / Spring Boot 2.7 / Create React App to Java 17 / Spring Boot 3.5 / Vite, adding Flyway, OpenAPI docs, and security hardening along the way
-- **Automated quality gates** — 72 automated tests (57 backend unit tests + 15 frontend Vitest tests) run in GitHub Actions on every push
+- **Automated quality gates** — 93 automated tests (74 backend + 19 frontend) plus ESLint run in GitHub Actions on every push, including web-layer security tests and a Testcontainers integration test against real PostgreSQL
 - **Reproducible deployment** — multi-stage Docker builds, a one-command local stack via Docker Compose, and a Render Blueprint that provisions the entire cloud environment in one click
 
 <img width="1470" height="798" alt="Analytics" src="https://github.com/user-attachments/assets/86ca81d9-bb6b-472b-866b-6ded1f8d9ab5" />
@@ -163,7 +163,7 @@ supply-chain-visualizer/
 │       │   │       ├── application-h2.properties      # Live demo config (embedded H2)
 │       │   │       ├── application-render.properties  # Postgres-backed production config
 │       │   │       └── db/migration/                  # Flyway migrations (schema + seed)
-│       │   └── test/               # 57 unit tests across services and security
+│       │   └── test/               # 74 tests: unit, web-layer, and Postgres integration
 │       └── pom.xml                 # Maven dependencies
 │
 ├── .github/workflows/ci.yml   # CI: backend + frontend tests on every push
@@ -220,11 +220,12 @@ Registered accounts share a single demo workspace — nodes, shipments, and inve
 
 ### Testing
 
-**72 automated tests** run in **GitHub Actions CI** on every push. The **57 backend unit tests** (JUnit 5, Mockito, AssertJ) cover the service and security layers — CRUD and filtering, inventory thresholds, shipment status transitions, analytics KPI calculations, and JWT generation/validation. The **15 frontend tests** (Vitest + React Testing Library) cover the service layer — including the guest-mode fallback — and shared components.
+**93 automated tests** run in **GitHub Actions CI** on every push. The **74 backend tests** (JUnit 5, Mockito, AssertJ) cover three layers: unit tests for the service and security layers (CRUD and filtering, inventory thresholds, shipment status transitions, analytics KPI calculations, JWT generation/validation), `@WebMvcTest` web-layer tests for auth rules, bean validation, and error response shapes, and a **Testcontainers** integration test that boots the app against real PostgreSQL to exercise the Flyway migrations and the register → login → authenticated request flow end to end (skipped automatically when Docker isn't available). The **19 frontend tests** (Vitest + React Testing Library) cover the service layer — including the guest-mode fallback — shared components, and guest-mode rendering of the Dashboard and Shipment Tracker pages. ESLint (react + react-hooks) runs as a CI gate alongside the tests.
 
 ```bash
 cd backend/supply-chain-visualizer && mvn test   # backend
 cd frontend && npm test                          # frontend
+cd frontend && npm run lint                      # frontend lint
 ```
 
 <details>
@@ -238,6 +239,9 @@ cd frontend && npm test                          # frontend
 | `ShipmentServiceImplTest` | Status transitions, inventory adjustment on delivery — 8 tests |
 | `AnalyticsServiceImplTest` | On-time rate, exception rate, avg lead time, SLA by lane, lead-time variance — 8 tests |
 | `JwtUtilsTest` | Token generation, username extraction, validation (valid/expired/malformed) — 7 tests |
+| `AuthControllerTest` | Login/register endpoints: JWT response shape, invalid credentials, duplicate username, field validation errors — 6 tests |
+| `NodeControllerTest` | Web-layer security (401 for anonymous requests), validation error bodies, 404 handling — 7 tests |
+| `PostgresIntegrationTest` | Full app against Testcontainers PostgreSQL: Flyway schema + seed, register → login → authenticated fetch — 4 tests |
 
 </details>
 

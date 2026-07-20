@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Card, Table, Button, Badge, Spinner, Alert, Tabs, Tab } from 'react-bootstrap';
-import { FaEdit, FaTrashAlt, FaSyncAlt, FaArrowLeft, FaPlus, FaBoxOpen, FaTruck } from 'react-icons/fa';
+import { FaEdit, FaTrashAlt, FaSyncAlt, FaArrowLeft, FaPlus } from 'react-icons/fa';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import NodeService from '../services/node.service';
 import InventoryService from '../services/inventory.service';
@@ -27,11 +27,7 @@ const NodeDetails = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  useEffect(() => {
-    loadNodeData();
-  }, [id]);
-
-  const loadNodeData = async () => {
+  const loadNodeData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -69,7 +65,11 @@ const NodeDetails = () => {
       setLoading(false);
       console.error(err);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadNodeData();
+  }, [loadNodeData]);
 
   const handleEdit = () => {
     setShowEditModal(true);
@@ -224,7 +224,7 @@ const NodeDetails = () => {
         <div className="my-5">
           <Alert variant="warning">
             <Alert.Heading>Node Not Found</Alert.Heading>
-            <p>The node you're looking for could not be found.</p>
+            <p>The node you&apos;re looking for could not be found.</p>
             <Button variant="outline-secondary" onClick={handleBack}>
               Back to Nodes
             </Button>

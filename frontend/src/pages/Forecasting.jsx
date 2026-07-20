@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Badge } from 'react-bootstrap';
 import PageHeader from '../components/common/PageHeader';
 import InventoryService from '../services/inventory.service';
@@ -40,7 +40,7 @@ const buildDemandForecast = (allInventory, products) => {
     byProduct[item.productId].count += 1;
   });
 
-  return Object.entries(byProduct).map(([productId, agg]) => {
+  return Object.entries(byProduct).map(([, agg]) => {
     const avgQty = agg.totalQty / agg.count;
     const avgMin = agg.totalMin / agg.count;
     return {
@@ -111,7 +111,10 @@ const Forecasting = () => {
 
   return (
     <Container fluid className="forecasting-page">
-      <PageHeader title="Forecasting" />
+      <PageHeader
+        title="Forecasting"
+        subtitle="Heuristic projections from current inventory levels — seasonal trend notes are illustrative"
+      />
 
       <Row className="mb-4">
         <Col lg={8} className="mb-4 mb-lg-0">

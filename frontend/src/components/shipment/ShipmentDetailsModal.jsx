@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal, Button, Badge, Table } from 'react-bootstrap';
 import { FaPrint, FaRegCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';

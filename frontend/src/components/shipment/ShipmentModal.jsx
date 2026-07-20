@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, Button, Form, Table } from 'react-bootstrap';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -21,7 +21,6 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
     productId: '',
     quantity: 1
   });
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (show) {
@@ -42,7 +41,6 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
 
   const loadProducts = async () => {
     try {
-      setLoading(true);
       const response = await ProductService.getAllProducts();
       setProducts(response.data);
       
@@ -53,11 +51,8 @@ const ShipmentModal = ({ show, onHide, nodes, onSave }) => {
           quantity: 1
         });
       }
-      
-      setLoading(false);
     } catch (err) {
       console.error('Failed to load products:', err);
-      setLoading(false);
     }
   };
 

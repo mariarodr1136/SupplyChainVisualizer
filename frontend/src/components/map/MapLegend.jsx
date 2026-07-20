@@ -1,11 +1,9 @@
-import React from 'react';
 import { Card } from 'react-bootstrap';
 import { 
   FaIndustry, 
   FaWarehouse, 
   FaStore, 
-  FaTruckLoading,
-  FaArrowRight
+  FaTruckLoading
 } from 'react-icons/fa';
 import './MapLegend.css';
 
