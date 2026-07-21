@@ -12,7 +12,11 @@ import {
   FaChartLine,
   FaChartBar,
   FaBell,
-  FaClipboardList
+  FaClipboardList,
+  FaIndustry,
+  FaFileExport,
+  FaHistory,
+  FaCog
 } from 'react-icons/fa';
 import './Sidebar.css';
 
@@ -30,6 +34,8 @@ const sections = [
       { path: '/analytics', name: 'Analytics', icon: <FaChartLine /> },
       { path: '/forecasting', name: 'Forecasting', icon: <FaChartBar /> },
       { path: '/alerts', name: 'Live Alerts', icon: <FaBell /> },
+      { path: '/reports', name: 'Reports', icon: <FaFileExport /> },
+      { path: '/audit-log', name: 'Audit Log', icon: <FaHistory /> },
     ],
   },
   {
@@ -46,6 +52,13 @@ const sections = [
       { path: '/nodes', name: 'Nodes', icon: <FaNetworkWired />, admin: true },
       { path: '/connections', name: 'Connections', icon: <FaLink /> },
       { path: '/products', name: 'Products', icon: <FaShoppingCart />, admin: true },
+      { path: '/suppliers', name: 'Suppliers', icon: <FaIndustry /> },
+    ],
+  },
+  {
+    label: 'Account',
+    items: [
+      { path: '/settings', name: 'Settings', icon: <FaCog /> },
     ],
   },
 ];

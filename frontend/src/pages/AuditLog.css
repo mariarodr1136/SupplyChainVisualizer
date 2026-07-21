@@ -1,0 +1,33 @@
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.audit-log-page .search-group {
+  min-width: 260px;
+}
+
+.audit-log-page .toolbar-filters {
+  gap: 10px;
+}
+
+.audit-type-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid;
+  font-size: 0.68rem;
+  margin-right: 8px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}

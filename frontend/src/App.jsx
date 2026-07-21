@@ -23,6 +23,10 @@ import Nodes from './pages/Nodes';
 import NodeDetails from './pages/NodeDetails';
 import Connections from './pages/Connections';
 import Products from './pages/Products';
+import Suppliers from './pages/Suppliers';
+import Reports from './pages/Reports';
+import AuditLog from './pages/AuditLog';
+import Settings from './pages/Settings';
 // Authentication services and context
 import AuthService from './services/auth.service';
 import { AuthContext } from './context/AuthContext';
@@ -68,6 +72,10 @@ function App() {
                     <Route path="/nodes/:id" element={<NodeDetails />} />
                     <Route path="/connections" element={<Connections />} />
                     <Route path="/products" element={<Products />} />
+                    <Route path="/suppliers" element={<Suppliers />} />
+                    <Route path="/reports" element={<Reports />} />
+                    <Route path="/audit-log" element={<AuditLog />} />
+                    <Route path="/settings" element={<Settings />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </main>

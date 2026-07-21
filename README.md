@@ -41,6 +41,10 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 - **Forecasting Suite** — demand forecasts, seasonality signals, and safety stock guidance from real inventory levels
 - **Live Alerts Feed** — auto-refreshing feed of delayed shipments and low-stock alerts
 - **Orders Hub & Network Connections** — order lifecycle visibility and transport link management
+- **Suppliers Directory** — supplier nodes with status, capacity, route coverage, and active shipment counts
+- **Reports** — one-click CSV export of shipments, inventory, low-stock, and product data
+- **Audit Log** — searchable, filterable history of shipment and inventory activity
+- **Settings** — per-browser notification and display preferences
 - **Guest Mode** — one-click, read-only demo backed by an in-memory dataset; changes reset on refresh
 - **Polished dark UI** — custom dark theme across dashboards, modals, and map tiles, designed for long-session readability
 

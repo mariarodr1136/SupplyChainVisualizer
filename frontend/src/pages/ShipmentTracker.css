@@ -21,6 +21,10 @@
   vertical-align: middle;
 }
 
+.shipment-tracker-page .table td:last-child {
+  white-space: nowrap;
+}
+
 .progress {
   height: 6px;
   background: var(--bg-surface);
