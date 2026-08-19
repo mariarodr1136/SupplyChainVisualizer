@@ -12,15 +12,10 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 
 ---
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/dashboard-dark.png">
-  <img width="1360" height="850" alt="Nexus dashboard — shipment trends, status donuts, and low-stock alerts" src="frontend/src/assets/screens/dashboard-light.png">
-</picture>
+<img width="1470" height="796" alt="Screenshot 2026-08-19 at 3 00 24 PM" src="https://github.com/user-attachments/assets/e180d007-8aae-4b4b-8101-c332764a7210" />
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/map-dark.png">
-  <img width="1360" height="850" alt="Supply chain map — facility nodes and routes on a live world map" src="frontend/src/assets/screens/map-light.png">
-</picture>
+
+<img width="1464" height="788" alt="Screenshot 2026-08-19 at 3 00 35 PM" src="https://github.com/user-attachments/assets/e092bd17-5516-4cf9-b86c-67fd8df5fe4d" />
 
 ---
 
@@ -63,16 +58,6 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 - **Modernized, not greenfield** — migrated the stack from Java 11 / Spring Boot 2.7 / Create React App to Java 17 / Spring Boot 3.5 / Vite, adding Flyway, OpenAPI docs, and security hardening along the way
 - **Automated quality gates** — 93 automated tests (74 backend + 19 frontend) plus ESLint run in GitHub Actions on every push, including web-layer security tests and a Testcontainers integration test against real PostgreSQL
 - **Reproducible deployment** — multi-stage Docker builds, a one-command local stack via Docker Compose, and a Render Blueprint that provisions the entire cloud environment in one click
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/analytics-dark.png">
-  <img width="1360" height="850" alt="Analytics — delivery KPIs, cost trends, SLA performance, and lead-time variance" src="frontend/src/assets/screens/analytics-light.png">
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/shipments-dark.png">
-  <img width="1360" height="850" alt="Shipment tracker — per-shipment status, progress, and delivery dates" src="frontend/src/assets/screens/shipments-light.png">
-</picture>
 
 ---
 
@@ -118,10 +103,6 @@ npm start                    # http://localhost:3000
 Database credentials are configured in `backend/supply-chain-visualizer/src/main/resources/application.properties`.
 
 </details>
-
----
-
-https://github.com/user-attachments/assets/cdb73316-14ee-4195-8ec5-0dd58340bedd
 
 ---
 
@@ -231,6 +212,14 @@ Request/response schemas and a live sandbox are available in Swagger UI.
 Registered accounts share a single demo workspace — nodes, shipments, and inventory are common to all users, which keeps the live demo populated and interactive. Because the live demo runs on an embedded database, shared data may reset when the service is redeployed. Guest mode is fully isolated: it runs on an in-memory dataset in the browser and resets on refresh.
 
 </details>
+
+---
+
+<img width="1470" height="797" alt="Screenshot 2026-08-19 at 3 00 44 PM" src="https://github.com/user-attachments/assets/a5d7c406-121a-428d-b8e1-20eca77b438b" />
+
+
+<img width="1470" height="796" alt="Screenshot 2026-08-19 at 3 00 58 PM" src="https://github.com/user-attachments/assets/5a4fcf56-9e8c-410b-b91b-91fd9f4ebfb4" />
+
 
 ---
 
