@@ -1,46 +1,27 @@
+/* Notion property card: flat surface, hairline border, label above
+   value, and a small tinted icon chip using the tag palette. */
+
 .stat-card {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.012) 100%),
-    var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-  overflow: hidden;
+  box-shadow: none;
+  transition: border-color var(--transition-base), background var(--transition-base);
   position: relative;
   height: 100%;
   margin-bottom: 0;
 }
 
-.stat-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%);
-  pointer-events: none;
-}
-
 .stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-elevated), 0 0 0 1px rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.stat-card-accent {
-  height: 2px;
-  width: 100%;
-  position: relative;
+  border-color: var(--border-strong);
 }
 
 .stat-card-body {
-  padding: 18px 20px;
+  padding: 14px 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
 }
 
 .stat-card-text {
@@ -51,27 +32,38 @@
 }
 
 .stat-icon-pill {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: var(--gray-bg);
+  color: var(--gray-text);
 }
 
 .stat-value {
-  font-size: 1.9rem;
-  font-weight: 850;
+  font-size: 1.625rem;
+  font-weight: 600;
   color: var(--text-primary);
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.03em;
 }
 
 .stat-label {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--text-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
+
+/* ── Tone variants ── */
+
+.stat-card--gray   .stat-icon-pill { background: var(--gray-bg);   color: var(--gray-text); }
+.stat-card--blue   .stat-icon-pill { background: var(--blue-bg);   color: var(--blue-text); }
+.stat-card--green  .stat-icon-pill { background: var(--green-bg);  color: var(--green-text); }
+.stat-card--red    .stat-icon-pill { background: var(--red-bg);    color: var(--red-text); }
+.stat-card--yellow .stat-icon-pill { background: var(--yellow-bg); color: var(--yellow-text); }
+.stat-card--purple .stat-icon-pill { background: var(--purple-bg); color: var(--purple-text); }

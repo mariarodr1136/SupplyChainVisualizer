@@ -30,6 +30,7 @@ import Settings from './pages/Settings';
 // Authentication services and context
 import AuthService from './services/auth.service';
 import { AuthContext } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(() => AuthService.getCurrentUser() || undefined);
@@ -45,52 +46,54 @@ function App() {
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
-      <Router>
-        <div className="app-container">
-          {currentUser ? (
-            <>
-              <Header toggleSidebar={toggleSidebar} logOut={logOut} />
-              <div className="content-container">
-                <Sidebar isOpen={sidebarOpen} />
-                <main className={`main-content ${sidebarOpen ? '' : 'sidebar-closed'}`}>
-                  {currentUser?.isGuest && (
-                    <div className="guest-banner" role="status">
-                      Guest Mode
-                    </div>
-                  )}
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/map" element={<SupplyChainMap />} />
-                    <Route path="/analytics" element={<Analytics />} />
-                    <Route path="/forecasting" element={<Forecasting />} />
-                    <Route path="/alerts" element={<LiveAlerts />} />
-                    <Route path="/orders" element={<Orders />} />
-                    <Route path="/inventory" element={<Inventory />} />
-                    <Route path="/shipments" element={<ShipmentTracker />} />
-                    <Route path="/nodes" element={<Nodes />} />
-                    <Route path="/nodes/:id" element={<NodeDetails />} />
-                    <Route path="/connections" element={<Connections />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/suppliers" element={<Suppliers />} />
-                    <Route path="/reports" element={<Reports />} />
-                    <Route path="/audit-log" element={<AuditLog />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Routes>
-                </main>
-              </div>
-            </>
-          ) : (
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          )}
-        </div>
-      </Router>
-    </AuthContext.Provider>
+    <ThemeProvider>
+      <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+        <Router>
+          <div className="app-container">
+            {currentUser ? (
+              <>
+                <Header toggleSidebar={toggleSidebar} logOut={logOut} />
+                <div className="content-container">
+                  <Sidebar isOpen={sidebarOpen} />
+                  <main className={`main-content ${sidebarOpen ? '' : 'sidebar-closed'}`}>
+                    {currentUser?.isGuest && (
+                      <div className="guest-banner" role="status">
+                        Guest Mode
+                      </div>
+                    )}
+                    <Routes>
+                      <Route path="/" element={<Dashboard />} />
+                      <Route path="/map" element={<SupplyChainMap />} />
+                      <Route path="/analytics" element={<Analytics />} />
+                      <Route path="/forecasting" element={<Forecasting />} />
+                      <Route path="/alerts" element={<LiveAlerts />} />
+                      <Route path="/orders" element={<Orders />} />
+                      <Route path="/inventory" element={<Inventory />} />
+                      <Route path="/shipments" element={<ShipmentTracker />} />
+                      <Route path="/nodes" element={<Nodes />} />
+                      <Route path="/nodes/:id" element={<NodeDetails />} />
+                      <Route path="/connections" element={<Connections />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route path="/suppliers" element={<Suppliers />} />
+                      <Route path="/reports" element={<Reports />} />
+                      <Route path="/audit-log" element={<AuditLog />} />
+                      <Route path="/settings" element={<Settings />} />
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                  </main>
+                </div>
+              </>
+            ) : (
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            )}
+          </div>
+        </Router>
+      </AuthContext.Provider>
+    </ThemeProvider>
   );
 }
 

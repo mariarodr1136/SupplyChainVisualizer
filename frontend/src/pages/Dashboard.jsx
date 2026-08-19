@@ -30,6 +30,7 @@ import InventoryService from '../services/inventory.service';
 import ConnectionService from '../services/connection.service';
 import AnalyticsService from '../services/analytics.service';
 import StatCard from '../components/common/StatCard';
+import { useChartTheme } from '../utils/chartTheme';
 import './Dashboard.css';
 
 // Register ChartJS components
@@ -45,24 +46,21 @@ ChartJS.register(
   Filler
 );
 
-// Global chart styling for dark theme
-ChartJS.defaults.color = '#9c9c9c';
-ChartJS.defaults.borderColor = 'rgba(255, 255, 255, 0.06)';
 ChartJS.defaults.font.family = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
 const SHIPMENT_STATUS_META = {
-  pending: { label: 'Pending', color: '#fbbf24', badge: 'warning', verb: 'created' },
-  in_transit: { label: 'In Transit', color: '#38bdf8', badge: 'info', verb: 'departed' },
-  delivered: { label: 'Delivered', color: '#34d399', badge: 'success', verb: 'delivered' },
-  delayed: { label: 'Delayed', color: '#f87171', badge: 'danger', verb: 'delayed' },
+  pending: { label: 'Pending', color: 'var(--yellow-line)', token: '--yellow-line', badge: 'warning', verb: 'created' },
+  in_transit: { label: 'In Transit', color: 'var(--blue-line)', token: '--blue-line', badge: 'info', verb: 'departed' },
+  delivered: { label: 'Delivered', color: 'var(--green-line)', token: '--green-line', badge: 'success', verb: 'delivered' },
+  delayed: { label: 'Delayed', color: 'var(--red-line)', token: '--red-line', badge: 'danger', verb: 'delayed' },
 };
 const SHIPMENT_STATUS_ORDER = ['pending', 'in_transit', 'delivered', 'delayed'];
 
 const INVENTORY_STATUS_META = {
-  optimal: { label: 'Optimal', color: '#34d399', badge: 'success' },
-  low: { label: 'Low', color: '#fbbf24', badge: 'warning' },
-  critical: { label: 'Critical', color: '#f87171', badge: 'danger' },
-  excess: { label: 'Excess', color: '#38bdf8', badge: 'info' },
+  optimal: { label: 'Optimal', color: 'var(--green-line)', token: '--green-line', badge: 'success' },
+  low: { label: 'Low', color: 'var(--yellow-line)', token: '--yellow-line', badge: 'warning' },
+  critical: { label: 'Critical', color: 'var(--red-line)', token: '--red-line', badge: 'danger' },
+  excess: { label: 'Excess', color: 'var(--blue-line)', token: '--blue-line', badge: 'info' },
 };
 const INVENTORY_STATUS_ORDER = ['optimal', 'low', 'critical', 'excess'];
 
@@ -89,6 +87,7 @@ function formatRelativeTime(dateStr) {
 }
 
 const Dashboard = () => {
+  const chartTheme = useChartTheme();
   const [nodes, setNodes] = useState([]);
   const [shipments, setShipments] = useState([]);
   const [inventory, setInventory] = useState([]);
@@ -174,7 +173,7 @@ const Dashboard = () => {
       key: `shipment-${s.id}`,
       timestamp: s.createdAt,
       icon: <FaTruck />,
-      color: SHIPMENT_STATUS_META[s.status]?.color || '#9c9c9c',
+      color: SHIPMENT_STATUS_META[s.status]?.color || 'var(--gray-line)',
       title: `Shipment #${s.id} ${SHIPMENT_STATUS_META[s.status]?.verb || 'updated'}`,
       detail: `${s.sourceName} → ${s.destinationName}`,
     })),
@@ -182,7 +181,7 @@ const Dashboard = () => {
       key: `inventory-${i.id}`,
       timestamp: i.updatedAt,
       icon: <FaBoxOpen />,
-      color: INVENTORY_STATUS_META[i.status]?.color || '#9c9c9c',
+      color: INVENTORY_STATUS_META[i.status]?.color || 'var(--gray-line)',
       title: `${i.productName} updated at ${i.nodeName}`,
       detail: `${i.quantity} units on hand · ${INVENTORY_STATUS_META[i.status]?.label || i.status}`,
     })),
@@ -194,16 +193,7 @@ const Dashboard = () => {
   // ── Chart data ────────────────────────────────────────
   const recentMonths = getRecentMonths(6);
 
-  const darkTooltip = {
-    backgroundColor: 'rgba(24, 22, 19, 0.94)',
-    titleColor: '#f5f5f5',
-    bodyColor: '#9c9c9c',
-    borderColor: 'rgba(255, 255, 255, 0.09)',
-    borderWidth: 1,
-    padding: 10,
-    cornerRadius: 8,
-    displayColors: false,
-  };
+  const chartTooltip = chartTheme.tooltip;
 
   const donutOptions = {
     responsive: true,
@@ -211,7 +201,7 @@ const Dashboard = () => {
     cutout: '72%',
     plugins: {
       legend: { display: false },
-      tooltip: darkTooltip,
+      tooltip: chartTooltip,
     },
   };
 
@@ -220,8 +210,8 @@ const Dashboard = () => {
     datasets: [
       {
         data: SHIPMENT_STATUS_ORDER.map((s) => shipmentStatusCounts[s]),
-        backgroundColor: SHIPMENT_STATUS_ORDER.map((s) => SHIPMENT_STATUS_META[s].color),
-        borderColor: '#1a1815',
+        backgroundColor: SHIPMENT_STATUS_ORDER.map((s) => chartTheme.series(SHIPMENT_STATUS_META[s].token)),
+        borderColor: chartTheme.surface,
         borderWidth: 2,
         hoverOffset: 6,
       },
@@ -233,23 +223,23 @@ const Dashboard = () => {
     datasets: [
       {
         data: INVENTORY_STATUS_ORDER.map((s) => inventoryStatusCounts[s]),
-        backgroundColor: INVENTORY_STATUS_ORDER.map((s) => INVENTORY_STATUS_META[s].color),
-        borderColor: '#1a1815',
+        backgroundColor: INVENTORY_STATUS_ORDER.map((s) => chartTheme.series(INVENTORY_STATUS_META[s].token)),
+        borderColor: chartTheme.surface,
         borderWidth: 2,
         hoverOffset: 6,
       },
     ],
   };
 
-  const chartTickColor = '#9c9c9c';
-  const chartGridColor = 'rgba(255, 255, 255, 0.06)';
+  const chartTickColor = chartTheme.tick;
+  const chartGridColor = chartTheme.grid;
 
   const lineChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
-      tooltip: darkTooltip,
+      tooltip: chartTooltip,
     },
     scales: {
       x: {
@@ -288,13 +278,13 @@ const Dashboard = () => {
         label: 'Shipments',
         data: monthlyShipmentCounts,
         fill: true,
-        backgroundColor: 'rgba(246, 90, 36, 0.12)',
-        borderColor: '#f65a24',
+        backgroundColor: chartTheme.accentSoft,
+        borderColor: chartTheme.accent,
         borderWidth: 2,
         pointRadius: 3.5,
         pointHoverRadius: 7,
-        pointBackgroundColor: '#f65a24',
-        pointBorderColor: '#131110',
+        pointBackgroundColor: chartTheme.accent,
+        pointBorderColor: chartTheme.surface,
         pointBorderWidth: 2,
         tension: 0.35,
       },

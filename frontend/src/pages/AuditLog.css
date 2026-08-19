@@ -15,17 +15,26 @@
   gap: 10px;
 }
 
+/* The icon and its label are one unit — keep the Type column on a single
+   line and size it to its content instead of letting the label wrap. */
+.audit-log-page .table thead th:first-child,
+.audit-log-page .table tbody td:first-child {
+  white-space: nowrap;
+  width: 1%;
+}
+
 .audit-type-icon {
+  vertical-align: middle;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
-  border-radius: 50%;
-  border: 1px solid;
-  font-size: 0.68rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 0.7rem;
   margin-right: 8px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-inset);
 }
 
 .table th, .table td {

@@ -1,13 +1,15 @@
 import { useContext, useState, useRef, useEffect } from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaBars, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaSignOutAlt, FaChevronDown, FaSun, FaMoon } from 'react-icons/fa';
 import { AuthContext } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import logo from '../../assets/logo.png';
 import './Header.css';
 
 const Header = ({ toggleSidebar, logOut }) => {
   const { currentUser } = useContext(AuthContext);
+  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -16,6 +18,7 @@ const Header = ({ toggleSidebar, logOut }) => {
     : '??';
 
   const isGuest = currentUser?.isGuest;
+  const isDark = theme === 'dark';
 
   // Close on outside click
   useEffect(() => {
@@ -46,6 +49,15 @@ const Header = ({ toggleSidebar, logOut }) => {
         </Navbar.Brand>
 
         <div className="header-right" ref={menuRef}>
+          <button
+            className="header-icon-btn"
+            onClick={toggleTheme}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDark ? <FaSun /> : <FaMoon />}
+          </button>
+
           {currentUser && (
             <>
               <button
@@ -73,6 +85,14 @@ const Header = ({ toggleSidebar, logOut }) => {
                       </span>
                     </div>
                   </div>
+
+                  <div className="header-dropdown-divider" />
+
+                  <button className="header-dropdown-item" onClick={toggleTheme}>
+                    {isDark ? <FaSun /> : <FaMoon />}
+                    {isDark ? 'Light mode' : 'Dark mode'}
+                    <span className="header-dropdown-item-hint">{isDark ? 'Dark' : 'Light'}</span>
+                  </button>
 
                   <div className="header-dropdown-divider" />
 

@@ -8,41 +8,57 @@ import {
   FaBoxes,
   FaArrowRight,
   FaCheckCircle,
+  FaSun,
+  FaMoon,
 } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 import logo from '../assets/logo.png';
-import shotDashboard from '../assets/screens/dashboard.png';
-import shotMap from '../assets/screens/map.png';
-import shotShipments from '../assets/screens/shipments.png';
-import shotAnalytics from '../assets/screens/analytics.png';
+import dashboardLight from '../assets/screens/dashboard-light.png';
+import dashboardDark from '../assets/screens/dashboard-dark.png';
+import mapLight from '../assets/screens/map-light.png';
+import mapDark from '../assets/screens/map-dark.png';
+import shipmentsLight from '../assets/screens/shipments-light.png';
+import shipmentsDark from '../assets/screens/shipments-dark.png';
+import analyticsLight from '../assets/screens/analytics-light.png';
+import analyticsDark from '../assets/screens/analytics-dark.png';
 import './LandingPage.css';
+
+/* Each product shot exists in both themes so the framed screenshots match
+   the page around them. Regenerate with scripts/capture-screens.mjs. */
+const SHOTS = {
+  dashboard: { light: dashboardLight, dark: dashboardDark },
+  map: { light: mapLight, dark: mapDark },
+  shipments: { light: shipmentsLight, dark: shipmentsDark },
+  analytics: { light: analyticsLight, dark: analyticsDark },
+};
 
 const SURFACES = [
   {
     title: 'Dashboard',
     desc: 'Every shipment, stock level, and alert on one live overview.',
     linkLabel: 'Open the dashboard',
-    img: shotDashboard,
+    shot: 'dashboard',
     alt: 'Nexus dashboard with shipment status and trend charts',
   },
   {
     title: 'Supply Chain Map',
     desc: 'Your whole network on a live world map — nodes, routes, and delays.',
     linkLabel: 'Explore the map',
-    img: shotMap,
+    shot: 'map',
     alt: 'Live supply chain map with routes and facility markers',
   },
   {
     title: 'Shipment Tracker',
     desc: 'Follow every shipment door to door with live status and progress.',
     linkLabel: 'Track shipments',
-    img: shotShipments,
+    shot: 'shipments',
     alt: 'Shipment tracker table with statuses and progress bars',
   },
   {
     title: 'Analytics',
     desc: 'Delivery performance, SLAs, and seasonality — measured, not guessed.',
     linkLabel: 'See analytics',
-    img: shotAnalytics,
+    shot: 'analytics',
     alt: 'Analytics page with KPI cards',
   },
 ];
@@ -87,22 +103,25 @@ const STATS = [
   { value: 'Multi-tier', label: 'Supplier Mapping' },
 ];
 
-/* Cursor-style framed product screenshot: warm taupe mat, dark window
-   with traffic-light dots, image bleeding off the bottom-right. */
-function ShotFrame({ img, alt, hero = false }) {
+/* Notion-style framed product shot: soft tinted mat, app window with
+   traffic-light dots, image bleeding off the bottom-right. */
+function ShotFrame({ shot, theme, alt, hero = false }) {
   return (
     <div className={hero ? 'shot-frame shot-frame--hero' : 'shot-frame'}>
       <div className="shot-window">
         <div className="shot-dots">
           <span /><span /><span />
         </div>
-        <img src={img} alt={alt} loading="lazy" />
+        <img src={SHOTS[shot][theme]} alt={alt} loading="lazy" />
       </div>
     </div>
   );
 }
 
 export default function LandingPage() {
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <div className="landing-wrapper">
       {/* ── Navbar ── */}
@@ -112,6 +131,13 @@ export default function LandingPage() {
             <img src={logo} alt="Nexus" className="landing-nav-logo" />
           </div>
           <div className="landing-nav-right">
+            <button
+              className="landing-nav-theme"
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {isDark ? <FaSun /> : <FaMoon />}
+            </button>
             <Link to="/login" className="landing-nav-signin">Sign in</Link>
             <Link to="/login" className="landing-nav-cta">Get Started</Link>
           </div>
@@ -165,7 +191,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="landing-container">
-          <ShotFrame img={shotDashboard} alt="The Nexus dashboard" hero />
+          <ShotFrame shot="dashboard" theme={theme} alt="The Nexus dashboard" hero />
         </div>
       </section>
 
@@ -194,7 +220,7 @@ export default function LandingPage() {
                 <Link to="/login" className="lp-link surface-link">
                   {s.linkLabel} <FaArrowRight className="lp-link-arrow" />
                 </Link>
-                <ShotFrame img={s.img} alt={s.alt} />
+                <ShotFrame shot={s.shot} theme={theme} alt={s.alt} />
               </div>
             ))}
           </div>

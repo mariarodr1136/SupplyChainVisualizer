@@ -1,94 +1,248 @@
+/* ══════════════════════════════════════════════════════════════
+   Nexus design system — Notion-inspired
+   ──────────────────────────────────────────────────────────────
+   Light is the default theme and lives on bare :root. Dark is a
+   full token override under [data-theme="dark"]. The attribute is
+   stamped on <html> before first paint by the inline script in
+   index.html, so there is no flash and no need for a
+   prefers-color-scheme duplicate of the token block.
+   ══════════════════════════════════════════════════════════════ */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --bg-deep: #131110;
-  --bg-base: #1a1815;
-  --bg-card: rgba(255, 255, 255, 0.025);
-  --bg-surface: #211e1a;
-  --bg-elevated: #2a2620;
+  /* ── Surfaces ───────────────────────────────────────── */
+  --bg-app: #ffffff;
+  --bg-sidebar: #f7f7f5;
+  --bg-surface: #ffffff;          /* cards, tables, panels */
+  --bg-elevated: #ffffff;         /* popovers, modals, dropdowns */
+  --bg-inset: #f7f7f5;            /* wells, inputs, code */
+  --bg-hover: rgba(55, 53, 47, 0.06);
+  --bg-active: rgba(55, 53, 47, 0.08);
+  --bg-overlay: rgba(15, 15, 15, 0.4);
 
-  --border: rgba(255, 255, 255, 0.08);
-  --border-muted: rgba(255, 255, 255, 0.05);
-  --border-accent: rgba(255, 255, 255, 0.3);
+  /* ── Text ───────────────────────────────────────────── */
+  --text-primary: rgb(55, 53, 47);
+  --text-secondary: rgba(55, 53, 47, 0.65);
+  --text-muted: rgba(55, 53, 47, 0.45);
+  --text-faint: rgba(55, 53, 47, 0.32);
+  --text-on-accent: #ffffff;
 
-  --text-primary: #f5f3f0;
-  --text-secondary: #a09a92;
-  --text-muted: #635e57;
+  /* ── Lines ──────────────────────────────────────────── */
+  --border: rgba(55, 53, 47, 0.09);
+  --border-strong: rgba(55, 53, 47, 0.16);
+  --border-input: rgba(55, 53, 47, 0.16);
 
-  --accent: #ffffff;
-  --accent-soft: #e3e0db;
-  --accent-bright: #ffffff;
-  --accent-glow: rgba(255, 255, 255, 0.1);
+  /* ── Accent (Nexus orange) ──────────────────────────────
+     Notion's structure, Nexus's brand colour: buttons, focus rings,
+     progress fills and links all resolve from these four tokens.
+     `--accent-text` runs a shade deeper than the fill so orange type
+     stays readable on a white page. */
+  --accent: #f65a24;
+  --accent-hover: #d94a17;
+  --accent-text: #d9600d;
+  --accent-soft: rgba(246, 90, 36, 0.12);
+  --accent-ring: rgba(246, 90, 36, 0.35);
 
-  /* Data & brand accent — the one chromatic family in the app */
-  --data-orange: #f65a24;
-  --data-orange-soft: #fb8a5c;
-  --data-orange-bg: rgba(246, 90, 36, 0.12);
+  /* ── Notion tag palette ─────────────────────────────── */
+  --gray-bg: rgba(227, 226, 224, 0.55);
+  --gray-text: rgb(120, 119, 116);
+  --gray-line: rgb(155, 154, 151);
 
-  /* Warm taupe frame behind product screenshots (Cursor-style) */
-  --frame-taupe: #a8a29a;
+  --brown-bg: rgb(238, 224, 218);
+  --brown-text: rgb(159, 107, 83);
 
-  --indigo-bg: rgba(255, 255, 255, 0.06);
-  --sky-bg: rgba(255, 255, 255, 0.06);
-  --emerald-bg: rgba(16, 185, 129, 0.1);
-  --rose-bg: rgba(239, 68, 68, 0.1);
-  --amber-bg: rgba(245, 158, 11, 0.1);
+  --orange-bg: rgb(250, 222, 201);
+  --orange-text: rgb(217, 115, 13);
+  --orange-line: rgb(217, 115, 13);
 
-  --indigo-text: #d6d6d6;
-  --sky-text: #d6d6d6;
-  --emerald-text: #34d399;
-  --rose-text: #f87171;
-  --amber-text: #fbbf24;
+  --yellow-bg: rgb(253, 236, 200);
+  --yellow-text: rgb(203, 145, 47);
+  --yellow-line: rgb(223, 171, 1);
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 18px;
+  --green-bg: rgb(219, 237, 219);
+  --green-text: rgb(68, 131, 97);
+  --green-line: rgb(68, 131, 97);
 
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  --shadow-elevated: 0 16px 56px rgba(0, 0, 0, 0.65), 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-glow-accent: 0 0 40px rgba(255, 255, 255, 0.06), 0 0 80px rgba(255, 255, 255, 0.03);
+  --blue-bg: rgb(211, 229, 239);
+  --blue-text: rgb(51, 126, 169);
+  --blue-line: rgb(51, 126, 169);
 
-  --glass-bg: rgba(26, 24, 21, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --purple-bg: rgb(232, 222, 238);
+  --purple-text: rgb(144, 101, 176);
+  --purple-line: rgb(144, 101, 176);
 
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --pink-bg: rgb(245, 224, 233);
+  --pink-text: rgb(193, 76, 138);
+
+  --red-bg: rgb(255, 226, 221);
+  --red-text: rgb(212, 76, 71);
+  --red-line: rgb(212, 76, 71);
+
+  /* Semantic aliases used across the app */
+  --success-bg: var(--green-bg);
+  --success-text: var(--green-text);
+  --warning-bg: var(--yellow-bg);
+  --warning-text: var(--yellow-text);
+  --danger-bg: var(--red-bg);
+  --danger-text: var(--red-text);
+  --info-bg: var(--blue-bg);
+  --info-text: var(--blue-text);
+
+  /* ── Radii (Notion keeps these small) ───────────────── */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+
+  /* ── Shadows ────────────────────────────────────────── */
+  --shadow-card: rgba(15, 15, 15, 0.04) 0 0 0 1px, rgba(15, 15, 15, 0.03) 0 2px 4px;
+  --shadow-raised: rgba(15, 15, 15, 0.05) 0 0 0 1px, rgba(15, 15, 15, 0.08) 0 2px 6px;
+  --shadow-popover: rgba(15, 15, 15, 0.05) 0 0 0 1px, rgba(15, 15, 15, 0.1) 0 3px 6px, rgba(15, 15, 15, 0.2) 0 9px 24px;
+
+  /* ── Misc ───────────────────────────────────────────── */
+  --logo-filter: brightness(0) saturate(100%);   /* logo art is light → paint it near-black */
+  --logo-opacity: 0.88;
+  --scrollbar-thumb: rgba(55, 53, 47, 0.18);
+  --scrollbar-thumb-hover: rgba(55, 53, 47, 0.3);
+
+  --transition-fast: 20ms ease-in;
+  --transition-base: 100ms ease-out;
+
+  --header-height: 45px;
+  --sidebar-width: 240px;
+
+  color-scheme: light;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Dark theme
+   ══════════════════════════════════════════════════════════════ */
+
+:root[data-theme="dark"] {
+  --bg-app: #191919;
+  --bg-sidebar: #202020;
+  --bg-surface: #202020;
+  --bg-elevated: #252525;
+  --bg-inset: #252525;
+  --bg-hover: rgba(255, 255, 255, 0.055);
+  --bg-active: rgba(255, 255, 255, 0.1);
+  --bg-overlay: rgba(15, 15, 15, 0.6);
+
+  --text-primary: rgba(255, 255, 255, 0.81);
+  --text-secondary: rgba(255, 255, 255, 0.46);
+  --text-muted: rgba(255, 255, 255, 0.34);
+  --text-faint: rgba(255, 255, 255, 0.22);
+  --text-on-accent: #ffffff;
+
+  --border: rgba(255, 255, 255, 0.094);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-input: rgba(255, 255, 255, 0.13);
+
+  --accent: #f65a24;
+  --accent-hover: #fb7444;
+  --accent-text: #fb8a5c;
+  --accent-soft: rgba(246, 90, 36, 0.18);
+  --accent-ring: rgba(246, 90, 36, 0.45);
+
+  --gray-bg: rgba(255, 255, 255, 0.094);
+  --gray-text: rgb(155, 155, 155);
+  --gray-line: rgb(155, 155, 155);
+
+  --brown-bg: rgb(74, 50, 40);
+  --brown-text: rgb(186, 133, 111);
+
+  --orange-bg: rgb(92, 59, 35);
+  --orange-text: rgb(199, 125, 72);
+  --orange-line: rgb(199, 125, 72);
+
+  --yellow-bg: rgb(86, 67, 40);
+  --yellow-text: rgb(202, 152, 73);
+  --yellow-line: rgb(202, 152, 73);
+
+  --green-bg: rgb(36, 61, 48);
+  --green-text: rgb(105, 178, 137);
+  --green-line: rgb(105, 178, 137);
+
+  --blue-bg: rgb(20, 58, 78);
+  --blue-text: rgb(112, 168, 208);
+  --blue-line: rgb(112, 168, 208);
+
+  --purple-bg: rgb(60, 45, 73);
+  --purple-text: rgb(174, 138, 208);
+  --purple-line: rgb(174, 138, 208);
+
+  --pink-bg: rgb(78, 44, 60);
+  --pink-text: rgb(207, 124, 168);
+
+  --red-bg: rgb(82, 46, 42);
+  --red-text: rgb(226, 125, 117);
+  --red-line: rgb(226, 125, 117);
+
+  --shadow-card: rgba(255, 255, 255, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 2px 4px;
+  --shadow-raised: rgba(255, 255, 255, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 2px 6px;
+  --shadow-popover: rgba(255, 255, 255, 0.07) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 6px, rgba(0, 0, 0, 0.5) 0 9px 24px;
+
+  --logo-filter: brightness(0) invert(1);
+  --logo-opacity: 0.9;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.14);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.24);
+
+  color-scheme: dark;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Base
+   ══════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 ::selection {
-  background: rgba(246, 90, 36, 0.35);
-  color: #ffffff;
+  background: rgba(246, 90, 36, 0.28);
+  color: inherit;
 }
 
 html {
-  background: var(--bg-deep);
+  background: var(--bg-app);
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); background-clip: content-box; }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg-base);
+  background: var(--bg-app);
   color: var(--text-primary);
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
   overflow-x: hidden;
 }
 
 code {
-  font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85em;
+  background: var(--gray-bg);
+  color: var(--red-text);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-xs);
+}
+
+a {
+  color: var(--accent-text);
 }
 
 /* Map cluster markers */
