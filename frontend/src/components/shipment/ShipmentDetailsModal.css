@@ -17,17 +17,17 @@
 }
 
 .route-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--text-muted);
   margin-bottom: 3px;
 }
 
 .route-value {
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
   color: var(--text-primary);
 }
 
@@ -37,9 +37,9 @@
 }
 
 .shipment-dates {
-  background: var(--bg-surface);
+  background: var(--bg-inset);
   padding: 14px 16px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
 }
 
@@ -49,10 +49,10 @@
 }
 
 .date-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--text-muted);
   margin-bottom: 3px;
 }
@@ -70,6 +70,6 @@
 }
 
 .delivered-date .date-value {
-  color: #34d399;
-  font-weight: 600;
+  color: var(--green-text);
+  font-weight: 500;
 }

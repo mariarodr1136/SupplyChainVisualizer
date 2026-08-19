@@ -8,15 +8,16 @@ import NodeService from '../services/node.service';
 import ConnectionService from '../services/connection.service';
 import PageHeader from '../components/common/PageHeader';
 import MapLegend from '../components/map/MapLegend';
+import { useTheme } from '../context/ThemeContext';
 import './SupplyChainMap.css';
 
 // Custom markers per node type — same icons and colors as the map legend
 const nodeMarkerStyles = {
-  factory: { icon: <FaIndustry />, color: '#4dabf7' },
-  warehouse: { icon: <FaWarehouse />, color: '#748ffc' },
-  store: { icon: <FaStore />, color: '#20c997' },
-  supplier: { icon: <FaTruckLoading />, color: '#ff922b' },
-  default: { icon: <FaMapMarkerAlt />, color: '#e5e5e5' },
+  factory: { icon: <FaIndustry />, color: '#4a9ad4' },
+  warehouse: { icon: <FaWarehouse />, color: '#9c6fc4' },
+  store: { icon: <FaStore />, color: '#4f9d72' },
+  supplier: { icon: <FaTruckLoading />, color: '#dd8b3a' },
+  default: { icon: <FaMapMarkerAlt />, color: '#9b9a97' },
 };
 
 const makeNodeIcon = ({ icon, color }) =>
@@ -38,12 +39,14 @@ const nodeIcons = Object.fromEntries(
 
 // Colors for connection status
 const connectionColors = {
-  active: '#60a5fa',
-  inactive: '#6e6e6e',
-  delayed: '#f87171',
+  active: '#3b8fe4',
+  inactive: '#9b9a97',
+  delayed: '#e0625c',
 };
 
 const SupplyChainMap = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [nodes, setNodes] = useState([]);
   const [connections, setConnections] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -169,10 +172,10 @@ const SupplyChainMap = () => {
   const getConnectionColor = (connection) => {
     if (viewMode === 'risk') {
       const riskLevel = connection.riskLevel || 'low';
-      return riskLevel === 'high' ? '#f87171' : riskLevel === 'medium' ? '#fbbf24' : '#34d399';
+      return riskLevel === 'high' ? '#e0625c' : riskLevel === 'medium' ? '#d9a441' : '#4f9d72';
     } else if (viewMode === 'performance') {
       const perfLevel = connection.performanceLevel || 'medium';
-      return perfLevel === 'low' ? '#f87171' : perfLevel === 'medium' ? '#fbbf24' : '#34d399';
+      return perfLevel === 'low' ? '#e0625c' : perfLevel === 'medium' ? '#d9a441' : '#4f9d72';
     } else {
       return connectionColors[connection.status] || connectionColors.active;
     }
@@ -317,16 +320,20 @@ const SupplyChainMap = () => {
               zoom={mapZoom} 
               style={{ height: '100%', width: '100%' }}
             >
+              {/* Basemap follows the app theme. `key` forces Leaflet to
+                  swap tile sets rather than reuse the cached ones. */}
               <TileLayer
-                url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
+                key={`base-${theme}`}
+                url={`https://{s}.basemaps.cartocdn.com/${isDark ? 'dark' : 'light'}_nolabels/{z}/{x}/{y}{r}.png`}
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-                className="map-tiles-dark"
+                className="map-tiles-base"
                 opacity={1}
               />
               <TileLayer
-                url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
+                key={`labels-${theme}`}
+                url={`https://{s}.basemaps.cartocdn.com/${isDark ? 'dark' : 'light'}_only_labels/{z}/{x}/{y}{r}.png`}
                 className="map-tiles-labels"
-                opacity={0.75}
+                opacity={0.9}
               />
               
               {/* Render connections */}

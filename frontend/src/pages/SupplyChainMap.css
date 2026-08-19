@@ -2,43 +2,42 @@
   height: calc(100vh - 220px);
   min-height: 600px;
   width: 100%;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
 }
 
-/* Cinematic edge vignette + hairline ring over the map (below markers/controls) */
+/* Hairline ring over the map so it reads as a framed panel, not a bleed */
 .map-container::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 500;
   pointer-events: none;
-  border-radius: var(--radius-md);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
-    inset 0 0 90px rgba(0, 0, 0, 0.55),
-    inset 0 -40px 80px rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .leaflet-container {
   height: 100% !important;
   width: 100%;
   z-index: 1;
-  background: #131110 !important;
+  background: var(--bg-inset) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Deepen the dark basemap and warm it to match the warm-black theme */
-.map-tiles-dark {
-  filter: brightness(0.72) contrast(1.12) saturate(0.35) sepia(0.28);
+/* Carto's light basemap is a touch loud next to the app's flat surfaces;
+   pull the saturation back so markers stay the brightest thing on screen. */
+.map-tiles-base {
+  filter: saturate(0.85);
+}
+
+:root[data-theme="dark"] .map-tiles-base {
+  filter: brightness(0.92) saturate(0.75);
 }
 
 .map-tiles-labels {
-  filter: brightness(1.15);
-}
-
-.leaflet-marker-icon {
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+  filter: none;
 }
 
 /* ── Node markers (divIcon) ─────────────────────────── */
@@ -49,97 +48,102 @@
 }
 
 .node-marker {
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--marker-color);
-  background: rgba(24, 22, 19, 0.92);
+  background: var(--bg-elevated);
   border: 1.5px solid var(--marker-color);
-  box-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.55),
-    0 0 12px color-mix(in srgb, var(--marker-color) 35%, transparent);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 1px 4px rgba(15, 15, 15, 0.2);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .node-marker:hover {
-  transform: scale(1.15);
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.6),
-    0 0 18px color-mix(in srgb, var(--marker-color) 55%, transparent);
+  transform: scale(1.12);
+  box-shadow: 0 2px 8px rgba(15, 15, 15, 0.3);
 }
 
-/* ── Dark-themed Leaflet controls ───────────────────── */
+/* ── Leaflet controls, themed ───────────────────────── */
 
 .leaflet-touch .leaflet-bar,
 .leaflet-bar {
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 10px;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-raised);
 }
 
 .leaflet-bar a {
-  background: rgba(24, 22, 19, 0.92) !important;
+  background: var(--bg-elevated) !important;
   color: var(--text-primary) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid var(--border) !important;
 }
 
 .leaflet-bar a:hover {
-  background: var(--bg-elevated) !important;
-  color: var(--accent-bright) !important;
+  background: var(--bg-hover) !important;
+  color: var(--text-primary) !important;
 }
 
 .leaflet-bar a.leaflet-disabled {
-  background: rgba(24, 22, 19, 0.7) !important;
-  color: var(--text-muted) !important;
+  background: var(--bg-inset) !important;
+  color: var(--text-faint) !important;
 }
 
 .leaflet-control-attribution {
-  background: rgba(19, 17, 16, 0.8) !important;
+  background: var(--bg-elevated) !important;
   color: var(--text-muted) !important;
-  font-size: 0.62rem;
+  font-size: 0.6875rem;
 }
 
 .leaflet-control-attribution a {
-  color: var(--accent-soft) !important;
+  color: var(--accent-text) !important;
 }
 
 .leaflet-popup-content {
-  margin: 12px;
+  margin: 12px 14px;
   line-height: 1.5;
-  color: #e2e2e2;
+  color: var(--text-primary);
   font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
 }
 
 .leaflet-popup-content h6 {
   margin-top: 0;
-  margin-bottom: 8px;
-  color: #f5f5f5;
-  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
 }
 
 .leaflet-popup-content p {
-  margin: 0 0 5px 0;
-  color: #9c9c9c;
+  margin: 0 0 4px 0;
+  color: var(--text-secondary);
 }
 
 .leaflet-popup-content a {
-  color: #ffffff;
-  text-decoration: underline;
+  color: var(--accent-text);
+  text-decoration: none;
+  font-weight: 500;
 }
+
+.leaflet-popup-content a:hover { text-decoration: underline; }
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: var(--bg-card);
+  background: var(--bg-elevated);
   color: var(--text-primary);
   border: 1px solid var(--border);
-  border-radius: 10px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-popover) !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-muted) !important;
 }
 
 /* Map card body needs no padding */

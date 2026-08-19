@@ -8,10 +8,9 @@
 }
 
 .map-legend .card {
-  background: rgba(24, 22, 19, 0.92) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-popover);
 }
 
 .map-legend .card-body {
@@ -19,12 +18,12 @@
 }
 
 .legend-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .legend-items {
@@ -36,14 +35,14 @@
 .legend-item {
   display: flex;
   align-items: center;
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
 }
 
 .legend-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,10 +51,10 @@
   flex-shrink: 0;
 }
 
-.factory-icon { background: rgba(77, 171, 247, 0.2); color: #4dabf7; }
-.warehouse-icon { background: rgba(116, 143, 252, 0.2); color: #748ffc; }
-.store-icon { background: rgba(32, 201, 151, 0.2); color: #20c997; }
-.supplier-icon { background: rgba(255, 146, 43, 0.2); color: #ff922b; }
+.factory-icon { background: var(--blue-bg); color: #4a9ad4; }
+.warehouse-icon { background: var(--purple-bg); color: #9c6fc4; }
+.store-icon { background: var(--green-bg); color: #4f9d72; }
+.supplier-icon { background: var(--orange-bg); color: #dd8b3a; }
 
 .legend-color {
   width: 10px;
@@ -65,9 +64,9 @@
   flex-shrink: 0;
 }
 
-.risk-low, .performance-high { background-color: #34d399; }
-.risk-medium, .performance-medium { background-color: #fbbf24; }
-.risk-high, .performance-low { background-color: #f87171; }
+.risk-low, .performance-high { background-color: #4f9d72; }
+.risk-medium, .performance-medium { background-color: #d9a441; }
+.risk-high, .performance-low { background-color: #e0625c; }
 
 .legend-line {
   height: 3px;
@@ -77,12 +76,12 @@
   flex-shrink: 0;
 }
 
-.normal-line { background-color: #60a5fa; }
-.delayed-line { background-color: #f87171; }
-.capacity-line { background-color: #fbbf24; }
-.risk-low-line, .performance-high-line { background-color: #34d399; }
-.risk-medium-line, .performance-medium-line { background-color: #fbbf24; }
-.risk-high-line, .performance-low-line { background-color: #f87171; }
+.normal-line { background-color: #3b8fe4; }
+.delayed-line { background-color: #e0625c; }
+.capacity-line { background-color: #d9a441; }
+.risk-low-line, .performance-high-line { background-color: #4f9d72; }
+.risk-medium-line, .performance-medium-line { background-color: #d9a441; }
+.risk-high-line, .performance-low-line { background-color: #e0625c; }
 
 .legend-divider {
   height: 1px;

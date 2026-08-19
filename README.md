@@ -12,9 +12,15 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 
 ---
 
-<img width="1463" height="797" alt="Dashboard" src="https://github.com/user-attachments/assets/222fbab8-6ad9-43c2-9971-c94904035dcd" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/dashboard-dark.png">
+  <img width="1360" height="850" alt="Nexus dashboard — shipment trends, status donuts, and low-stock alerts" src="frontend/src/assets/screens/dashboard-light.png">
+</picture>
 
-<img width="1470" height="801" alt="Supply chain map" src="https://github.com/user-attachments/assets/e21d3b93-a4dc-4a08-97b5-ebae6241e7b7" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/map-dark.png">
+  <img width="1360" height="850" alt="Supply chain map — facility nodes and routes on a live world map" src="frontend/src/assets/screens/map-light.png">
+</picture>
 
 ---
 
@@ -58,9 +64,15 @@ Live Demo: [supply-chain-visualizer.onrender.com](https://supply-chain-visualize
 - **Automated quality gates** — 93 automated tests (74 backend + 19 frontend) plus ESLint run in GitHub Actions on every push, including web-layer security tests and a Testcontainers integration test against real PostgreSQL
 - **Reproducible deployment** — multi-stage Docker builds, a one-command local stack via Docker Compose, and a Render Blueprint that provisions the entire cloud environment in one click
 
-<img width="1470" height="798" alt="Analytics" src="https://github.com/user-attachments/assets/86ca81d9-bb6b-472b-866b-6ded1f8d9ab5" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/analytics-dark.png">
+  <img width="1360" height="850" alt="Analytics — delivery KPIs, cost trends, SLA performance, and lead-time variance" src="frontend/src/assets/screens/analytics-light.png">
+</picture>
 
-<img width="1470" height="796" alt="Shipments" src="https://github.com/user-attachments/assets/8fd23b74-31a2-4d1a-9f12-0e18ab2e30b0" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/screens/shipments-dark.png">
+  <img width="1360" height="850" alt="Shipment tracker — per-shipment status, progress, and delivery dates" src="frontend/src/assets/screens/shipments-light.png">
+</picture>
 
 ---
 

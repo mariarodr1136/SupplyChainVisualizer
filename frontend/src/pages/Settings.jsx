@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Row, Col, Card, Form, Alert } from 'react-bootstrap';
 import { AuthContext } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import PageHeader from '../components/common/PageHeader';
 import './Settings.css';
 
@@ -25,6 +26,7 @@ const loadSettings = () => {
 
 const Settings = () => {
   const { currentUser } = useContext(AuthContext);
+  const { theme, setTheme } = useTheme();
   const [settings, setSettings] = useState(loadSettings);
   const [saved, setSaved] = useState(false);
 
@@ -87,6 +89,38 @@ const Settings = () => {
                 onChange={() => toggle('weeklySummaryEmail')}
               />
               <p className="settings-hint mb-0">Send a weekly digest of network activity and KPIs.</p>
+            </Card.Body>
+          </Card>
+
+          <Card className="mb-4">
+            <Card.Header>
+              <h5 className="mb-0">Appearance</h5>
+            </Card.Header>
+            <Card.Body>
+              <Form.Group className="mb-0">
+                <Form.Label>Theme</Form.Label>
+                <div className="d-flex gap-3">
+                  <Form.Check
+                    type="radio"
+                    id="theme-light"
+                    name="theme"
+                    label="Light"
+                    checked={theme === 'light'}
+                    onChange={() => setTheme('light')}
+                  />
+                  <Form.Check
+                    type="radio"
+                    id="theme-dark"
+                    name="theme"
+                    label="Dark"
+                    checked={theme === 'dark'}
+                    onChange={() => setTheme('dark')}
+                  />
+                </div>
+                <p className="settings-hint mt-2 mb-0">
+                  Applies to this browser. Defaults to your system setting until you pick one.
+                </p>
+              </Form.Group>
             </Card.Body>
           </Card>
 
