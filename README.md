@@ -218,9 +218,6 @@ Registered accounts share a single demo workspace — nodes, shipments, and inve
 <img width="1470" height="797" alt="Screenshot 2026-08-19 at 3 00 44 PM" src="https://github.com/user-attachments/assets/a5d7c406-121a-428d-b8e1-20eca77b438b" />
 
 
-<img width="1470" height="796" alt="Screenshot 2026-08-19 at 3 00 58 PM" src="https://github.com/user-attachments/assets/5a4fcf56-9e8c-410b-b91b-91fd9f4ebfb4" />
-
-
 ---
 
 ### Testing
